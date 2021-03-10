@@ -10,6 +10,7 @@ import { PortalComponent } from './portal/portal.component';
 import { RecursosHumanosComponent } from './recursos-humanos/recursos-humanos.component';
 import { SupervisorComponent } from './supervisor/supervisor.component';
 
+
 const routes: Routes = [
   {path: 'auth', component: LoginComponent},
   { path: '',   redirectTo: '/auth', pathMatch: 'full' },
