@@ -11,6 +11,7 @@ import { DocumentacionComponent } from './documentacion/documentacion.component'
 import { RecursosHumanosComponent } from './recursos-humanos/recursos-humanos.component';
 import { ContabilidadComponent } from './contabilidad/contabilidad.component';
 import { PortalComponent } from './portal/portal.component';
+import { CargaDocumentosComponent } from './carga-documentos/carga-documentos.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { PortalComponent } from './portal/portal.component';
     DocumentacionComponent,
     RecursosHumanosComponent,
     ContabilidadComponent,
-    PortalComponent
+    PortalComponent,
+    CargaDocumentosComponent
   ],
   imports: [
     BrowserModule,
