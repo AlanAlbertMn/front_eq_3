@@ -14,6 +14,8 @@ import { ContabilidadComponent } from './contabilidad/contabilidad.component';
 import { PortalComponent } from './portal/portal.component';
 import { CargaDocumentosComponent } from './carga-documentos/carga-documentos.component';
 
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +32,9 @@ import { CargaDocumentosComponent } from './carga-documentos/carga-documentos.co
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

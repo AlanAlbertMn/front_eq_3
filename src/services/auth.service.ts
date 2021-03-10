@@ -18,14 +18,14 @@ export class AuthService {
 
 
   //Log in con usuario ya existente
-  login(email: string, password: string) {
+  login(email: string, passw: string) {
     const body = {
       email: email,
-      passwd: password
+      passwd: passw
     };
     console.log(body)
     return axios.post(
-      this.URL + '/login/',
+      this.URL + 'login/',
       body
     );
   }

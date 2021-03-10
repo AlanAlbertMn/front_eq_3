@@ -12,6 +12,7 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent implements OnInit {
 
   email = new FormControl('', [Validators.required, Validators.email]);
+  pass = new FormControl('');
   user = {
     email: "",
     password: ""
@@ -31,11 +32,11 @@ export class LoginComponent implements OnInit {
   login(){
     console.log(
       "Email: " + this.user.email.toString(),
-      "\nClave: " + this.user.password.toString()
+      "\nContrasenia: " + this.user.password.toString()
     );
     this.auth.login(this.user.email, this.user.password).then( res => {
       console.log(res);
-      this.router.navigate(['/pagina']); 
+      this.router.navigate(['/menu_principal.html']); 
     });
   }
 
