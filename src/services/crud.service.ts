@@ -66,7 +66,13 @@ export class CrudService {
   }
 
   getdocsByUser(body){
-    
+    let url = this.URL + '/adddocument/';
+    console.log(body);
+    return axios.post(url,body,{
+      headers:{
+        'Content-Type': 'application/json',
+      }
+    });
   }
 
 
