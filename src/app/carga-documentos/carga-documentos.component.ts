@@ -13,13 +13,14 @@ import {formatDate} from '@angular/common';
 export class CargaDocumentosComponent implements OnInit {
   date = formatDate(new Date(), 'yyyy-MM-dd', 'en');
   document = {
-    name: "",
-    ext: "",
+    name: "Prueba file.ext",
+    ext: ".ext",
     fecha: this.date, 
-    periodo: "", 
+    periodo: "2020-12-01", 
     estado: 0,
     isActive: false, 
-    usuario_fk: 0 
+    usuario_fk: 1,
+    dept:"100"
   }
 
   constructor(
@@ -38,6 +39,8 @@ export class CargaDocumentosComponent implements OnInit {
         this.document = res.data;
         this.date;
         console.log("Funciona");
+        this.router.navigate(['/menu_principal']);
+        
       })
       .catch(err => {
         console.log(err);
