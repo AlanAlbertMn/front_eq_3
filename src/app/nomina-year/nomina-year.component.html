@@ -1,8 +1,63 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="nomina-year.component.css">
+        
     </head>
+
+    <style>
+        .presentacion{
+            position: absolute;
+            top: 140px;
+            left: 100px;
+            width: 1290px;
+            height: 3px;
+            background-color: gray;
+        }
+
+        .cajaFechaI{
+            position: absolute;
+            top: 197px;
+            left: 200px;
+        }
+
+        .cajaFechaF{
+            position: absolute;
+            top: 197px;
+            left: 1000px;
+        }
+
+        .botonA{
+            position: relative;
+            top: 410px;
+            left: 1000px;
+            background-color: coral;
+            color: white;
+        }
+
+        .tabla{
+            position: absolute;
+            border: 1px solid black;
+            background-color: white;
+            top: 300px;
+            left: 100px;
+            width: 1200px;
+            height: 100px;
+        }
+        .encabezados{
+            border: 10px black;
+            background-color: cadetblue;
+            text-align: left;
+            padding: 6px;
+            color: black;
+        }
+        .datos{
+            border: 1px solid gray;
+            text-align: left;
+            padding: 6px;
+            color: black;
+        }
+    </style>
+
     <body>
         <h1>Portal de clientes</h1>
         <button>Cerrar Sesion</button>
@@ -25,6 +80,25 @@
               <a href="#">Link 3</a>
             </div>
         </div>
+
+        <br>
+
+        <table class="tabla">
+            <tr class="encabezados">
+                <th>Nombre del documento</th>
+                <th>Tipo de archivo</th>
+                <th>Periodo de informacion</th>
+                <th>Fecha de carga</th>
+                <th>Opciones</th>
+            </tr>
+            <tr class="datos" *ngFor="let item of nomina;">
+                <th>{{item.nombre_doc}}</th>
+                <th>{{item.ext_archivo}}</th>
+                <th>{{item.periodo_info}}</th>
+                <th>{{item.fecha_carga}}</th>
+                <th>Opciones</th>
+            </tr>
+        </table>
     </body>
 
 </html>
