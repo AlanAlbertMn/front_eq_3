@@ -15,6 +15,7 @@ import { PortalComponent } from './portal/portal.component';
 import { CargaDocumentosComponent } from './carga-documentos/carga-documentos.component';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { NominaYearComponent } from './nomina-year/nomina-year.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     RecursosHumanosComponent,
     ContabilidadComponent,
     PortalComponent,
-    CargaDocumentosComponent
+    CargaDocumentosComponent,
+    NominaYearComponent
   ],
   imports: [
     BrowserModule,

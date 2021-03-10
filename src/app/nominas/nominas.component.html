@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!doctype html>
 <html lang="en">
     <head>
@@ -62,4 +63,39 @@
         <a style="color: black; position: absolute; top: 500px; left: 680px; font-weight:bold; text-decoration: none;" href="ClienteN20.html">2020</a>
         <a style="color: black; position: absolute; top: 500px; left: 1050px; font-weight:bold; text-decoration: none;" href="ClienteNA.html">2019 y previos</a>
     </body>
+=======
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="nominas.component.css">
+    </head>
+    <body>
+        <h1>Portal de clientes</h1>
+        <button>Cerrar Sesion</button>
+        <div class="menu">
+            <div class="class1">
+                <a class="boton" (click)="this.goNominaYear();">
+                    <img src="../../assets/folderIcon.png" alt="inbox image" >
+                    <br>
+                    <label>2021</label>
+                </a>
+            </div>
+            <div class="class2">
+                <a (click)="this.goNominaYear();" class="boton">
+                    <img src="../../assets/folderIcon.png" alt="inbox image" >
+                    <br>
+                    <label>2020</label>
+                </a>
+            </div>
+            <div class="class3">
+                <a class="boton" (click)="this.goNominaYear();">
+                    <img src="../../assets/folderIcon.png" alt="inbox image" >
+                    <br>
+                    <label>2019 y anteriores</label>
+                </a>
+            </div>
+        </div>
+    </body>
+    
+>>>>>>> b9d5440bcb61fa46b4562db762d2de702f7073e2
 </html>
