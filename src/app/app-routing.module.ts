@@ -11,10 +11,10 @@ import { RecursosHumanosComponent } from './recursos-humanos/recursos-humanos.co
 import { SupervisorComponent } from './supervisor/supervisor.component';
 
 const routes: Routes = [
-  {path: '', component: LoginComponent},
+  {path: 'auth', component: LoginComponent},
+  { path: '',   redirectTo: '/auth', pathMatch: 'full' },
   {path: 'portal', component: PortalComponent},
   {path: 'upload', component: CargaDocumentosComponent},
-  {path: 'login', component: LoginComponent},
   {path: 'contabilidad', component: ContabilidadComponent},
   {path: 'documentacion', component: DocumentacionComponent},
   {path: 'menu_principal', component: MenuPrincipalComponent},
