@@ -1,0 +1,23 @@
+  
+body{
+    background-color: yellow;
+}
+button{
+    position: absolute;
+    right: 20px;
+    font-size: 17px;
+}
+div{
+    display: inline-block;
+}
+img{
+    width: 200px;
+    height: 200px;
+}
+.class1{
+    left: 20%;  
+}
+
+.recognition{
+    bottom: 10px;
+}

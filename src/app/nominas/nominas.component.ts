@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-nominas',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NominasComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
+
+  goNominaYear(){
+    this.router.navigate(['nominayear'])
+  } 
 
 }
