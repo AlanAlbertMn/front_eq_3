@@ -18,7 +18,7 @@ export class CrudService {
     }
 
   getdocs_admin(){
-    let url = this.URL + '/getdocsadmin';
+    let url = this.URL + '/getdocsadmin/';
     return axios.get(url, {
       headers:{
         'Content-Type': 'application/json',
@@ -27,7 +27,7 @@ export class CrudService {
   }
 
   get_notifications(){
-    let url = this.URL + '/getnotif';
+    let url = this.URL + '/getnotif/';
     return axios.get(url, {
       headers:{
         'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ export class CrudService {
   }
 
   add_document(body){
-    let url = this.URL + '/adddocument';
+    let url = this.URL + '/adddocument/';
     console.log(body);
     return axios.post(url,body,{
       headers:{
@@ -45,6 +45,29 @@ export class CrudService {
     });
   }
 
+  approve_doc(body){
+    let url = this.URL + '/approvedoc/';
+    console.log("aqui tienes el body papu " + body);
+    return axios.put(url, body, {headers:{'Content-Type': 'application/json'}});
+  }
+  
+  delete_doc(value){
+    let url = this.URL + '/deletedoc/';
+    console.log("borra este doc papu " + value);
+    let config = { 
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: { //! Take note of the `data` keyword. This is the request body.
+          id: value
+      }
+    }
+    axios.delete(url, config);
+  }
+
+  getdocsByUser(body){
+    
+  }
 
 
 }
