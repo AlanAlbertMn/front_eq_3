@@ -75,7 +75,7 @@
             <div class="introCorreos">
                 <p  style="text-align: left; font-weight: bold;">Correo Electronico <a style="color: red;">*</a></p>
                 <img src="./mailIcon.png" width="22" height="20">
-                <input class="cajaMail" id="mail" name="email" placeholder="Correo Electronico"><br><br><br><br>
+                <input class="cajaMail" [(ngModel)]="user.email" id="mail" name="email" [formControl]="email" placeholder="Correo Electronico"><br><br><br><br>
                 <p  style="text-align: left; font-weight: bold;">Contraseña <a style="color: red;">*</a></p>
                 <img src="./passIcon.png" width="22" height="20">
                 <input class="cajaMail" id="password" name="pass" placeholder="Contraseña">
