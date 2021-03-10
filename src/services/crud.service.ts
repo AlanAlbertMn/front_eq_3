@@ -26,6 +26,16 @@ export class CrudService {
     });
   }
 
+  get_doc(body){
+    let url = this.URL + '/adddocument/';
+    console.log("pasame el pack papu" + body);
+    return axios.post(url,body,{
+      headers:{
+        'Content-Type': 'application/json',
+      }
+    });
+  }
+
   get_notifications(){
     let url = this.URL + '/getnotif/';
     return axios.get(url, {
@@ -67,13 +77,55 @@ export class CrudService {
 
   getdocsByUser(body){
     let url = this.URL + '/adddocument/';
-    console.log(body);
+    console.log("aqui te van los docs papu" + body);
     return axios.post(url,body,{
       headers:{
         'Content-Type': 'application/json',
       }
     });
   }
+
+  create_notification(body){
+    let url = this.URL + '/addnotif/';
+    console.log("aqui te va un anuncio papu" + body);
+    return axios.post(url,body,{
+      headers:{
+        'Content-Type': 'application/json',
+      }
+    });
+  }
+
+  get_nomina(body){
+    let url = this.URL + '/getnomina/';
+    console.log("aqui te va un notificacion papu" + body);
+    return axios.post(url,body,{
+      headers:{
+        'Content-Type': 'application/json',
+      }
+    });
+  }
+
+  getDocs_contabilidad(body){
+    let url = this.URL + '/getcontabilidad/';
+    console.log("aqui te van los docs papu" + body);
+    return axios.post(url,body,{
+      headers:{
+        'Content-Type': 'application/json',
+      }
+    });
+  }
+
+  getDocs_recursosHumanos(body){
+    let url = this.URL + '/getrh/';
+    console.log("aqui te van los docs papu" + body);
+    return axios.post(url,body,{
+      headers:{
+        'Content-Type': 'application/json',
+      }
+    });
+  }
+
+
 
 
 }
