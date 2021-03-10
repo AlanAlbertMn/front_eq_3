@@ -8,12 +8,16 @@ import axios from 'axios';
 export class AuthService {
   URL: string;
   headers: HttpHeaders;
+  id: number;
+  name: string;
 
   constructor(private http: HttpClient) { 
     this.URL = 'http://189.190.147.48:3000/';
     this.headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
+    this.id = 0;
+    this.name = "";
   }
 
 

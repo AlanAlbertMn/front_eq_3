@@ -36,6 +36,10 @@ export class LoginComponent implements OnInit {
     );
     this.auth.login(this.user.email, this.user.password).then( res => {
       console.log(res);
+      this.auth.id = res.data.id;
+      this.auth.name = res.data.name;
+      console.log("user id: " + this.auth.id +
+      "\n user name: " + this.auth.name);
       this.router.navigate(['/menu_principal']); 
     });
   }

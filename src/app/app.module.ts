@@ -16,6 +16,8 @@ import { CargaDocumentosComponent } from './carga-documentos/carga-documentos.co
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NominaYearComponent } from './nomina-year/nomina-year.component';
+import { AdministradorMenuPrincipalComponent } from './administrador-menu-principal/administrador-menu-principal.component';
+import { AdministradorUsuariosComponent } from './administrador-usuarios/administrador-usuarios.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { NominaYearComponent } from './nomina-year/nomina-year.component';
     ContabilidadComponent,
     PortalComponent,
     CargaDocumentosComponent,
-    NominaYearComponent
+    NominaYearComponent,
+    AdministradorMenuPrincipalComponent,
+    AdministradorUsuariosComponent
   ],
   imports: [
     BrowserModule,

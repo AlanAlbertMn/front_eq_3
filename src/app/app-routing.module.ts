@@ -10,7 +10,7 @@ import { PortalComponent } from './portal/portal.component';
 import { RecursosHumanosComponent } from './recursos-humanos/recursos-humanos.component';
 import { SupervisorComponent } from './supervisor/supervisor.component';
 import { NominaYearComponent } from './nomina-year/nomina-year.component';
-
+import { AdministradorMenuPrincipalComponent } from './administrador-menu-principal/administrador-menu-principal.component';
 
 const routes: Routes = [
   {path: 'auth', component: LoginComponent},
@@ -22,7 +22,8 @@ const routes: Routes = [
   {path: 'menu_principal', component: MenuPrincipalComponent},
   {path: 'nominas', component: NominasComponent},
   {path: 'recursos_humanos', component: RecursosHumanosComponent},
-  {path: 'nominayear', component: NominaYearComponent}
+  {path: 'nominayear', component: NominaYearComponent},
+  {path: 'admin_menu', component: AdministradorMenuPrincipalComponent}
 ];
 
 @NgModule({
