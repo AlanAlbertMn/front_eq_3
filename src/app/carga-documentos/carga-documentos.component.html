@@ -1,1 +1,115 @@
-<p>carga-documentos works!</p>
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Sistema de Datos</title>
+        <body style="background-color: #fbe192;">
+            <h1 style="color: black; position: absolute; top: 50px; left: 100px;">Portal Cliente</h1>
+            <a style="color: black; position: absolute; top: 110px; left: 100px; text-decoration: none; font-weight: bolder; font-size: 15px;" href="PortalCliente.html">Mi Portal</a>
+            <h3 style="color: black; position: absolute; top: 90px; left: 170px;">> Documentacion Adicional</h3>
+            <a style="color: black; position: absolute; top: 110px; left: 1300px; font-style: italic; text-decoration: none;" href="InicioSesion.html">Cerrar Sesión</a>
+        </body>
+    </head>
+    <style>
+        .presentacion{
+            position: absolute;
+            top: 140px;
+            left: 100px;
+            width: 1290px;
+            height: 3px;
+            background-color: gray;
+        }
+
+        .cajaFechaI{
+            position: absolute;
+            top: 197px;
+            left: 200px;
+        }
+
+        .cajaFechaF{
+            position: absolute;
+            top: 197px;
+            left: 1000px;
+        }
+
+        .botonA{
+            position: relative;
+            top: 410px;
+            left: 1000px;
+            background-color: coral;
+            color: white;
+        }
+
+        .tabla{
+            position: absolute;
+            border: 1px solid black;
+            background-color: white;
+            top: 300px;
+            left: 100px;
+            width: 1200px;
+            height: 100px;
+        }
+        .encabezados{
+            border: 10px black;
+            background-color: cadetblue;
+            text-align: left;
+            padding: 6px;
+            color: black;
+        }
+        .datos{
+            border: 1px solid gray;
+            text-align: left;
+            padding: 6px;
+            color: black;
+        }
+
+        .save{
+            position: relative;
+            top: 410px;
+            left: 1000px;
+            border: 10px black;
+            background-color: cadetblue;
+        }
+    </style>
+    <body>
+        <div class="presentacion"></div>
+
+        <table class="tabla">
+            <tr class="datos">
+                <th>Cliente <select name="tip_cliente">
+                    <option value="1">Nomina</option>
+                    <option value="2">Recursos Humanos</option>
+                    <option value="3">Contabilidad</option>
+                </select></th>
+                
+            </tr>
+
+            <tr class="datos">
+                <th>Período: <input type="date"></th>
+            </tr>
+
+            <tr class="datos">
+                <th>Tipo de documento <select name="tip_cliente">
+                    <option value="txt">.txt</option>
+                    <option value="zip">.zip</option>
+                    <option value="pdf">.pdf</option>
+                </select></th>
+            </tr>
+
+            <tr class="datos">
+                <th>
+                <form class="form-file" action="upload.php" method="POST">
+                    <label class="font-weight-bold" for="exampleInputFile">Alta de documentos</label><br/>
+                    <label>Arrastre sus archivos aquí o haga clic en el área.</label><br/>
+                    <input class="input-file" type="file" multiple>
+                    <p class="p-file center">
+                    <i class="fa fa-upload" aria-hidden="true" style="font-size: 55px;"></i>Anexa Documentos en formato .pdf, .jpg, .doc ó .xls</p>
+                </form>
+                </th>
+            </tr>
+        </table>
+        
+        <button class="botonA">Reportar documento faltante</button>
+        <br>
+        <button class="save">Guardar Documento</button>
+    </body>
+</html>
