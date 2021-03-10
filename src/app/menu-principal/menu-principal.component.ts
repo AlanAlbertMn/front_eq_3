@@ -18,4 +18,16 @@ export class MenuPrincipalComponent implements OnInit {
     this.router.navigate(['nominas'])
   }
 
+  goContabilidad(){
+    this.router.navigate(['contabilidad'])
+  }
+
+  goRH(){
+    this.router.navigate(['recursos_humanos'])
+  }
+
+  goDocAdicional(){
+    this.router.navigate(['documentacion'])
+  }
+
 }
