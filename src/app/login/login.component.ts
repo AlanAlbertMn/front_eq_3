@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
     );
     this.auth.login(this.user.email, this.user.password).then( res => {
       console.log(res);
-      this.router.navigate(['/menu_principal.html']); 
+      this.router.navigate(['/menu_principal']); 
     });
   }
 
