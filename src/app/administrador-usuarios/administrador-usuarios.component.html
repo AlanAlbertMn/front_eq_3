@@ -6,29 +6,67 @@
         body{
             background-color: #fbe192;
         }
-        #titulo{
-            color: black; 
-            position: relative; 
-            margin-top: 4%; 
-            margin-left: 100px;
+        h1{
+            color: black;
+            position: relative;
+            margin-top: 5%;
+            margin-left: 35%;
+            margin-bottom: -1%;
         }
 
-        .divider{
-            position: absolute;
-            top: 140px;
-            left: 100px;
-            width: 1290px;
-            height: 3px;
-            background-color: gray;
+        .header{
+            display: flex;
+            margin-bottom: 0px;
         }
 
         #log_out{
             color: black; 
             position: relative; 
-            margin-left: 90%;
+            margin-left: 70%;
+            margin-top: 10px;
+            margin-right: 2%;
             font-style: italic; 
             text-decoration: none;
-            margin-bottom: 40px;
+            /* margin-bottom: 40px; */
+        }
+
+        .breadcrumb{
+            position: relative;
+            margin-left: 5%;
+            margin-top: 0px;
+            list-style: none; 
+            background-color: transparent;
+            height: 40px;
+        }
+
+        .breadcrumb li {
+            display: inline;
+            font-size: 18px;
+        }
+
+        .breadcrumb li+li:before {
+            padding: 8px;
+            color: black;
+            content: ">";
+        }
+
+        .breadcrumb li a:hover {
+            color: #01447e;
+            text-decoration: underline;
+        }
+
+        .breadcrumb li a:after{
+            color: black;
+            text-decoration: none;
+        }
+
+        .divider{
+            position: relative;
+            margin-left: 7%;
+            margin-right: 3%;
+            width: auto;
+            height: 3px;
+            background-color: gray;
         }
 
         .buttonAdd{
@@ -48,11 +86,11 @@
 
         .tabla{
             position: relative;
-            margin: 0px 30px 100px 150px;
+            margin: 0px 5% 5% 10%;
             border: 1px solid black;
             background-color: white;
-            width: 1200px;
-            height: 100px;
+            width: 70%;
+            height: auto;
         }
         .encabezados{
             border: 10px black;
@@ -68,32 +106,6 @@
             color: black;
         }
 
-        .breadcrumb{
-            position: relative;
-            margin-left: 50px;
-            margin-top: 3px;
-            margin-bottom: -20px;
-            /* margin: 50px 50px 75px 50px; */
-            /* padding: 10px 16px; */
-            list-style: none; 
-        }
-
-        .breadcrumb li {
-            display: inline;
-            font-size: 18px;
-        }
-
-        .breadcrumb li+li:before {
-            padding: 8px;
-            color: black;
-            content: ">";
-        }
-
-        .breadcrumb li a:hover {
-            color: #01447e;
-            text-decoration: underline;
-        }
-
         .type {
             position: relative;
             margin: -8px 55px 8px;
@@ -102,13 +114,13 @@
         .presentacion{
             position: relative;
             display: flex;
-            margin: 2% 100px 35px;
+            margin: 2% 0px 35px 5%;
             /* padding: 10px 16px; */
             list-style: none; 
         }
 
         .presentacion li {
-            padding: 0px 150px 0px;
+            padding: 0px 12% 0px;
             font-size: 18px;
         }
 
@@ -144,31 +156,33 @@
     </style>
     <body>
         <h1 id="titulo" >Portal del Administrador</h1>
-        <ul class="breadcrumb">
-            <li><a  (click)="goToAdminMenu()">Mi Portal</a></li>
-            <li>Usuarios</li>
-        </ul>
-        <a id="log_out" href="./auth/">Cerrar Sesión</a>
+        <div class="header">
+            <ul class="breadcrumb">
+                <li><a routerLink="/admin_menu">Mi Portal</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Usuarios</li>
+            </ul>
+            <a id="log_out" href="./auth/">Cerrar Sesión</a>
+        </div>
         <div class="divider"></div>
         <ul class="presentacion">
-            <li><form [formGroup]="form" (change)="submitUserTypes()" id="form-userType">
-                <label for="usertypes">Tipo de usuario: </label>
-                <select formControlName="usertypes" id="usertypes">
+            <li><form class="form-inline" [formGroup]="form" (change)="submitUserTypes()" id="form-userType">
+                <label style ="font-weight: bold;"for="usertypes">Tipo de usuario: </label>
+                <select class="form-control ml-2 mr-sm-2" formControlName="usertypes" id="usertypes">
                     <option *ngFor="let type of usertypes; let i = index" [value]="usertypes[i].id">
                         {{usertypes[i].name}}
                     </option>
                 </select>
             </form> </li>
-            <li><form [formGroup]="newform" (change)="submitUserStatus()" id="form-userStatus">
-                <label for="usertypes">Estados: </label>
-                <select formControlName="status" id="status">
+            <li><form class="form-inline" [formGroup]="newform" (change)="submitUserStatus()" id="form-userStatus">
+                <label style ="font-weight: bold;" for="usertypes">Estados: </label>
+                <select class="form-control ml-2 mr-sm-2" formControlName="status" id="status">
                     <option *ngFor="let stat of status; let i = index" [value]="status[i].id">
                         {{status[i].name}}
                     </option>
                 </select>
             </form></li>
         </ul>
-        <button class="buttonAdd">Añadir Usuario</button>
+        <button class="buttonAdd" routerLink="/add_user">Añadir Usuario</button>
         <table class="tabla">
             <tr class="encabezados">
                 <th>Nombre Completo</th>
@@ -177,17 +191,16 @@
                 <th>Estado</th>
                 <th>Opciones</th>
             </tr>
-            <tr class="datos" > 
-                <!-- *ngFor="let item of document;" -->
-                <!-- <th>{{item.nombre_doc}}</th>
-                <th>{{item.ext_archivo}}</th>
-                <th>{{item.periodo_info}}</th>
-                <th>{{item.fecha_carga}}</th>
+            <tr class="datos" *ngFor="let item of users;"> 
+                <th>{{item.nombre}}</th>
+                <th>{{item.correo}}</th>
+                <th>{{item.tipo_user}}</th>
+                <th>{{item.isActive}}</th>
                 <th>
                     <button  class="btn">
                         <img id="delete_button" src="../../assets/trash.png">
                     </button>
-                </th> -->
+                </th>
             </tr>
         </table>
     </body>

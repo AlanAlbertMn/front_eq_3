@@ -13,7 +13,7 @@ import { NominaYearComponent } from './nomina-year/nomina-year.component';
 import { AdministradorMenuPrincipalComponent } from './administrador-menu-principal/administrador-menu-principal.component';
 import { AdministradorUsuariosComponent } from './administrador-usuarios/administrador-usuarios.component';
 import { AdministradorDocumentosComponent } from './administrador-documentos/administrador-documentos.component';
-
+import { AddUserComponent } from './add-user/add-user.component';
 
 const routes: Routes = [
   {path: 'auth', component: LoginComponent},
@@ -28,7 +28,8 @@ const routes: Routes = [
   {path: 'nominayear', component: NominaYearComponent},
   {path: 'admin_menu', component: AdministradorMenuPrincipalComponent},
   {path: 'admin_users', component: AdministradorUsuariosComponent},
-  {path: 'admin_docs', component: AdministradorDocumentosComponent}
+  {path: 'admin_docs', component: AdministradorDocumentosComponent},
+  {path: 'add_user', component: AddUserComponent}
 ];
 
 @NgModule({

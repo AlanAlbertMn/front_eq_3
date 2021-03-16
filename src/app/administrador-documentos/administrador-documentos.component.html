@@ -6,29 +6,69 @@
         body{
             background-color: #fbe192;
         }
-        #titulo{
-            color: black; 
-            position: relative; 
-            margin-top: 4%; 
-            margin-left: 100px;
+        h1{
+            color: black;
+            position: relative;
+            margin-top: 5%;
+            margin-left: 35%;
+            margin-bottom: -1%;
         }
 
-        .divider{
-            position: absolute;
-            top: 140px;
-            left: 100px;
-            width: 1290px;
-            height: 3px;
-            background-color: gray;
+        .header{
+            display: flex;
+            margin-bottom: 0px;
         }
 
         #log_out{
             color: black; 
             position: relative; 
-            margin-left: 90%;
+            margin-left: 70%;
+            margin-top: 10px;
+            margin-right: 2%;
             font-style: italic; 
             text-decoration: none;
-            margin-bottom: 40px;
+            /* margin-bottom: 40px; */
+        }
+
+        .breadcrumb{
+            position: relative;
+            margin-left: 5%;
+            margin-top: 0px;
+            /* margin: 50px 50px 75px 50px; */
+            /* padding: 10px 16px; */
+            list-style: none; 
+            background-color: transparent;
+            height: 40px;
+        }
+
+        .breadcrumb li {
+            display: inline;
+            font-size: 18px;
+        }
+
+        .breadcrumb li+li:before {
+            padding: 8px;
+            color: black;
+            content: ">";
+        }
+
+        .breadcrumb li a:hover {
+            color: #01447e;
+            text-decoration: underline;
+        }
+
+        .breadcrumb li a:after{
+            color: black;
+            text-decoration: none;
+        }
+
+        .divider{
+            position: relative;
+            margin-left: 7%;
+            margin-right: 3%;
+            width: auto;
+            height: 3px;
+            background-color: gray;
         }
 
         .buttonAdd{
@@ -48,11 +88,11 @@
 
         .tabla{
             position: relative;
-            margin: 0px 30px 100px 150px;
+            margin: 0px 5% 5% 15%;
             border: 1px solid black;
             background-color: white;
-            width: 1200px;
-            height: 100px;
+            width: 70%;
+            height: auto;
         }
         .encabezados{
             border: 10px black;
@@ -66,32 +106,6 @@
             text-align: left;
             padding: 6px;
             color: black;
-        }
-
-        .breadcrumb{
-            position: relative;
-            margin-left: 50px;
-            margin-top: 3px;
-            margin-bottom: -20px;
-            /* margin: 50px 50px 75px 50px; */
-            /* padding: 10px 16px; */
-            list-style: none; 
-        }
-
-        .breadcrumb li {
-            display: inline;
-            font-size: 18px;
-        }
-
-        .breadcrumb li+li:before {
-            padding: 8px;
-            color: black;
-            content: ">";
-        }
-
-        .breadcrumb li a:hover {
-            color: #01447e;
-            text-decoration: underline;
         }
 
         .type {
@@ -108,7 +122,7 @@
         }
 
         .presentacion li {
-            padding: 0px 150px 0px;
+            padding: 0px 12% 0px;
             font-size: 18px;
         }
 
@@ -133,35 +147,38 @@
         .desde_hasta{
             position: relative;
             display: flex;
-            margin: 0px 100px 30px;
+            margin: 0px 5% 3% 17%;
             list-style: none; 
         }
 
         .desde_hasta li {
-            padding: 0px 150px 0px;
+            margin: 0px 25% 0px 0px;
             font-size: 18px;
         }
     </style>
     <body>
         <h1 id="titulo" >Portal del Administrador</h1>
-        <ul class="breadcrumb">
-            <li><a  (click)="goToAdminMenu()">Mi Portal</a></li>
-            <li>Documentos</li>
-        </ul>
-        <a id="log_out" href="./auth/">Cerrar Sesión</a>
+        <div class="header">
+            <ul class="breadcrumb">
+                <li><a routerLink="/admin_menu">Mi Portal</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Documentos</li>
+            </ul>
+            <a id="log_out" href="./auth/">Cerrar Sesión</a>
+        </div>
+        
         <div class="divider"></div>
         <ul class="presentacion">
-            <li><form [formGroup]="form" (change)="filter()" id="form-userType">
+            <li><form class="form-inline" [formGroup]="form" (change)="filter()" id="form-userType">
                 <label for="usertypes">Cliente:  </label>
-                <select formControlName="usertypes" id="usertypes">
+                <select class="form-control ml-2 mr-sm-2" formControlName="usertypes" id="usertypes">
                     <option *ngFor="let type of usertypes; let i = index" [value]="usertypes[i].id">
                         {{usertypes[i].name}}
                     </option>
                 </select>
             </form> </li>
-            <li><form [formGroup]="newform" (change)="filter()" id="form-userStatus">
+            <li><form class="form-inline"[formGroup]="newform" (change)="filter()" id="form-userStatus">
                 <label for="usertypes">Estados: </label>
-                <select formControlName="status" id="status">
+                <select class="form-control ml-2 mr-sm-2" formControlName="status" id="status">
                     <option *ngFor="let stat of status; let i = index" [value]="status[i].id">
                         {{status[i].name}}
                     </option>
@@ -169,10 +186,13 @@
             </form></li>
         </ul>
         <ul class="desde_hasta">
-                <li><label for="desde">DESDE: </label>
-                <input id="desde" type="date" [ngModel]="desde | date:'yyyy-MM-dd'" (ngModelChange)="desde = $event; filter()"   min="2010-04-01" max="2021-03-16" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"></li>
-            <li><label for="hasta">HASTA: </label>
-            <input id="hasta" type="date" [ngModel]="hasta | date:'yyyy-MM-dd'" (ngModelChange)="hasta = $event; filter()"   min="2010-04-01" max="2021-12-01" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"></li>
+                <li class="form-inline">
+                    <label for="desde">DESDE: </label>
+                    <input class="form-control mx-sm-3 mb-2" id="desde" type="date" [ngModel]="desde | date:'yyyy-MM-dd'" (ngModelChange)="desde = $event; filter()"   min="2010-04-01" max="2021-03-16" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}">
+                </li>
+            <li class="form-inline">
+                <label for="hasta">HASTA: </label>
+            <input class="form-control mx-sm-3 mb-2" id="hasta" type="date" [ngModel]="hasta | date:'yyyy-MM-dd'" (ngModelChange)="hasta = $event; filter()"   min="2010-04-01" max="2021-12-01" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"></li>
         </ul>
         <button class="buttonAdd">Añadir Archivo</button>
         <table class="tabla">

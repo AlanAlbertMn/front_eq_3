@@ -10,11 +10,36 @@
         .body{
             background-color: #fbe192;
         }
+        h1{
+            position: relative;
+            margin: 3% 0px 1% 43%;
+
+        }
+        .header{
+            display: flex;
+        }
+        h3{
+            position: relative;
+            margin-left: 7%;
+        }
+
+        #log_out{
+            color: black; 
+            position: relative; 
+            margin-left: 70%;
+            margin-top: 10px;
+            font-style: italic; 
+            text-decoration: none;
+            /* margin-bottom: 40px; */
+        }
         .presentacion{
-            position: absolute;
-            top: 140px;
-            left: 100px;
-            width: 1290px;
+            position: relative;
+            margin-left: 7%;
+            margin-right: 3%;
+            /* top: 140px;
+            left: 100px; */
+            /* width: 1290px; */
+            width: auto;
             height: 3px;
             background-color: gray;
         }
@@ -52,18 +77,63 @@
             top: 230px;
             left: 770px;
         }
+
+        ul{
+            list-style: none;
+            display: flex;
+        }
+
+        ul li{
+            margin-top: 5%;
+            flex: 50%;
+            margin-left: 10%;
+        }
+
+        ul li a{
+            font-weight: bold;
+            color: black;
+            font-style: normal;
+        }
+
+        img{
+            width: 200px;
+            height: 200px;
+            margin-bottom: 3%;
+            display: block;
+            margin-left: -15%;
+        }
+
     </style>
     <body>
-        <h1 style="color: black; position: absolute; top: 50px; left: 100px;">Portal Cliente</h1>
-        <h3 style="color: black; position: absolute; top: 90px; left: 100px;">Bienvenido, {{name}} !</h3>
-        <a style="color: black; position: absolute; top: 110px; left: 1300px; font-style: italic; text-decoration: none;" routerLink="/auth">Cerrar Sesión</a>
+        <h1>Portal Cliente</h1>
+        <div class="header">
+            <h3>Bienvenido, {{name}} !</h3>
+            <a id="log_out" routerLink="/auth">Cerrar Sesión</a>
+        </div>
+        
         <div class="presentacion"></div>
-        <div class="cajaInicial"></div>
-        <div class="cajaDos"></div>
-        <div class="cajaTres"></div>
-        <a style="color: black; position: absolute; top: 500px; left: 250px; font-weight:bold; text-decoration: none;" routerLink="/admin_users">Usuarios</a>
-        <a style="color: black; position: absolute; top: 500px; left: 520px; font-weight:bold; text-decoration: none;" routerLink="/admin_docs">Documentos</a>
-        <a style="color: black; position: absolute; top: 500px; left: 850px; font-weight:bold; text-decoration: none;" >Avisos</a>
+        <ul>
+            <li>
+                <a class= "usuarios" routerLink="/admin_users">
+                    <img src = "../../assets/folder.png">
+                    Usuarios
+                </a>
+            </li>
+            <li>
+                <a routerLink="/admin_docs">
+                    <img src = "../../assets/folder.png">
+                    Documentos
+                </a>
+            </li>
+            <li>
+                <a routerLink="/admin_docs">
+                    <img src = "../../assets/folder.png">
+                        Avisos
+                </a>
+            </li>
+        </ul>
+        <!-- <div class="cajaInicial"></div> -->
+    
         <!--(click)=this.goDocAdicional();-->
     </body>
 </html>

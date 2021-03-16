@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router'
+import { AuthService } from '../../services/auth.service';
+import { CrudService } from '../../services/crud.service';
 
 
 @Component({
@@ -8,9 +10,13 @@ import {Router} from '@angular/router'
   styleUrls: ['./menu-principal.component.css']
 })
 export class MenuPrincipalComponent implements OnInit {
-  
+  name:string;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, 
+    private crudService: CrudService,
+    private auth: AuthService) { 
+      this.name = this.auth.name;
+    }
 
   ngOnInit(): void {
   }

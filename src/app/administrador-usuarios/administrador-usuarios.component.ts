@@ -17,9 +17,10 @@ export class AdministradorUsuariosComponent implements OnInit {
   // Form for status of user
   newform: FormGroup;
   status = [];
+  users = [];
 
   constructor(private router: Router, private crudService: CrudService,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder, private auth: AuthService) {
       this.form = this.formBuilder.group({
         usertypes: ['']
       });
@@ -51,6 +52,17 @@ export class AdministradorUsuariosComponent implements OnInit {
 
 
   ngOnInit(): void {
+    console.log(this.auth.type);
+    this.crudService.getusersByAdmin(this.auth.type)
+      .then(res => {
+        this.users = res.data;
+        console.log("si se pudo");
+        console.log(res.data);
+        return res;
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   getUserTypes(){

@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
       console.log("user id: " + this.auth.id +
       "\n user name: " + this.auth.name 
       + "\n type of user: " + this.auth.type);
-      // + "\n dept: " + this.auth.dept[0].department);
+      // + "\n dept: " + this.auth.dept[0].id_depto);
       switch(this.auth.type){
         case 1: {
           this.router.navigate(['./menu_principal']); 

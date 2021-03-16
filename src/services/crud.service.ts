@@ -37,6 +37,20 @@ export class CrudService {
     });
   }
 
+  getusersByAdmin(admin: number){
+    console.log("antes de hacer la peticion" + admin);
+    let url = this.URL + 'getusers/';
+    return axios.get(url, {
+      headers:{
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      }, 
+      data: {
+        id: admin
+      }
+    });
+  }
+
   get_doc(body){
     let url = this.URL + 'adddocument/';
     console.log("pasame el pack papu" + body);
@@ -60,6 +74,17 @@ export class CrudService {
 
   add_document(body){
     let url = this.URL + 'adddocument/';
+    console.log(body);
+    return axios.post(url,body,{
+      headers:{
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      }
+    });
+  }
+
+  addUser(body){
+    let url = this.URL + 'addusuario/';
     console.log(body);
     return axios.post(url,body,{
       headers:{

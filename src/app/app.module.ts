@@ -19,6 +19,7 @@ import { NominaYearComponent } from './nomina-year/nomina-year.component';
 import { AdministradorMenuPrincipalComponent } from './administrador-menu-principal/administrador-menu-principal.component';
 import { AdministradorUsuariosComponent } from './administrador-usuarios/administrador-usuarios.component';
 import { AdministradorDocumentosComponent } from './administrador-documentos/administrador-documentos.component';
+import { AddUserComponent } from './add-user/add-user.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { AdministradorDocumentosComponent } from './administrador-documentos/adm
     NominaYearComponent,
     AdministradorMenuPrincipalComponent,
     AdministradorUsuariosComponent,
-    AdministradorDocumentosComponent
+    AdministradorDocumentosComponent,
+    AddUserComponent
   ],
   imports: [
     BrowserModule,
