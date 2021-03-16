@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router'
+import {Router} from '@angular/router';
 import {FormControl, Validators} from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
       "\nContrasenia: " + this.user.password.toString()
     );
     this.auth.login(this.user.email, this.user.password).then( res => {
-      console.log(res);
+      console.log("res:" + res.data.type);
       this.auth.id = res.data.id;
       this.auth.name = res.data.name;
       console.log("user id: " + this.auth.id +

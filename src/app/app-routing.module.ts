@@ -11,6 +11,7 @@ import { RecursosHumanosComponent } from './recursos-humanos/recursos-humanos.co
 import { SupervisorComponent } from './supervisor/supervisor.component';
 import { NominaYearComponent } from './nomina-year/nomina-year.component';
 import { AdministradorMenuPrincipalComponent } from './administrador-menu-principal/administrador-menu-principal.component';
+import { AdministradorUsuariosComponent } from './administrador-usuarios/administrador-usuarios.component';
 
 const routes: Routes = [
   {path: 'auth', component: LoginComponent},
@@ -23,7 +24,8 @@ const routes: Routes = [
   {path: 'nominas', component: NominasComponent},
   {path: 'recursos_humanos', component: RecursosHumanosComponent},
   {path: 'nominayear', component: NominaYearComponent},
-  {path: 'admin_menu', component: AdministradorMenuPrincipalComponent}
+  {path: 'admin_menu', component: AdministradorMenuPrincipalComponent},
+  {path: 'admin_users', component: AdministradorUsuariosComponent}
 ];
 
 @NgModule({

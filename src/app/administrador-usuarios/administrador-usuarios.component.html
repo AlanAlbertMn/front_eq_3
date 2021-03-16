@@ -6,7 +6,7 @@
         body{
             background-color: #fbe192;
         }
-        .presentacion{
+        .divider{
             background-color: #fbe192;
             position: absolute;
             top: 140px;
@@ -58,31 +58,90 @@
             padding: 6px;
             color: black;
         }
+
+        .breadcrumb{
+            position: relative;
+            margin: 50px 50px 75px;
+            /* padding: 10px 16px; */
+            list-style: none; 
+        }
+
+        .breadcrumb li {
+            display: inline;
+            font-size: 18px;
+        }
+
+        .breadcrumb li+li:before {
+            padding: 8px;
+            color: black;
+            content: ">";
+        }
+
+        .breadcrumb li a:hover {
+            color: #01447e;
+            text-decoration: underline;
+        }
+
+        .type {
+            position: relative;
+            margin: -8px 55px 8px;
+        }
+
+        .presentacion{
+            position: relative;
+            display: flex;
+            margin: 0px 100px 75px;
+            /* padding: 10px 16px; */
+            list-style: none; 
+        }
+
+        .presentacion li {
+            padding: 0px 150px 100px;
+            font-size: 18px;
+        }
     </style>
     <body>
-        <h1 style="color: black; position: absolute; top: 50px; left: 100px;">Portal del Administrador</h1>
-            <a style="color: black; position: absolute; top: 110px; left: 100px; text-decoration: none; font-weight: bolder; font-size: 15px;" href="PortalCliente.html">Mi Portal</a>
-            <h3 style="color: black; position: absolute; top: 90px; left: 170px;">>Usuarios</h3>
-            <a style="color: black; position: absolute; top: 110px; left: 1300px; font-style: italic; text-decoration: none;" href="./auth/">Cerrar Sesión</a>
-        <div class="presentacion"></div>
-        <input class="cajaFechaI" >
-        <input class="cajaFechaF" type="date">
-        <a style="color: black; position: absolute; top: 200px; left: 150px;">Tipo de usuario: </a>
-        <a style="color: black; position: absolute; top: 200px; left: 950px;">Estados: </a>
+        
+        <h1 style="color: black; position: relative; top: 50px; left: 100px;">Portal del Administrador</h1>
+        <ul class="breadcrumb">
+            <li><a  (click)="goToAdminMenu()">Mi Portal</a></li>
+            <li>Usuarios</li>
+        </ul>
+        <a style="color: black; position: absolute; top: 110px; left: 1300px; font-style: italic; text-decoration: none;" href="./auth/">Cerrar Sesión</a>
+        <div class="divider"></div>
+        <ul class="presentacion">
+            <li><form [formGroup]="form" (change)="submitUserTypes()" id="form-userType">
+                <label for="usertypes">Tipo de usuario: </label>
+                <select formControlName="usertypes" id="usertypes">
+                    <option *ngFor="let type of usertypes; let i = index" [value]="usertypes[i].id">
+                        {{usertypes[i].name}}
+                    </option>
+                </select>
+            </form> </li>
+            <li><form [formGroup]="newform" (change)="submitUserStatus()" id="form-userStatus">
+                <label for="usertypes">Estados: </label>
+                <select formControlName="status" id="status">
+                    <option *ngFor="let stat of status; let i = index" [value]="status[i].id">
+                        {{status[i].name}}
+                    </option>
+                </select>
+            </form></li>
+        </ul>
         <table class="tabla">
             <tr class="encabezados">
-                <th>Nombre del documento</th>
-                <th>Tipo de archivo</th>
-                <th>Periodo de informacion</th>
-                <th>Fecha de carga</th>
+                <th>Nombre Completo</th>
+                <th>Correo</th>
+                <th>Tipo de Usuario</th>
+                <th>Estado</th>
                 <th>Opciones</th>
             </tr>
-            <tr class="datos" *ngFor="let item of document;">
-                <th>{{item.nombre_doc}}</th>
+            <tr class="datos" > 
+                <!-- *ngFor="let item of document;" -->
+                <!-- <th>{{item.nombre_doc}}</th>
                 <th>{{item.ext_archivo}}</th>
                 <th>{{item.periodo_info}}</th>
                 <th>{{item.fecha_carga}}</th>
-                <th>Opciones</th>
+                <th>Opciones</th> -->
             </tr>
         </table>
         <button class="botonA">Reportar documento faltante</button>

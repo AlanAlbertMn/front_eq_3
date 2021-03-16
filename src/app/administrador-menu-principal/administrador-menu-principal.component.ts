@@ -7,10 +7,15 @@ import {Router} from '@angular/router'
   styleUrls: ['./administrador-menu-principal.component.css']
 })
 export class AdministradorMenuPrincipalComponent implements OnInit {
+  number: number;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {  
+  }
+
+  goToUsers(){
+    this.router.navigate(['/admin_users']);
   }
 
 }
