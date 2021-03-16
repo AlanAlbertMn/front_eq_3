@@ -23,6 +23,9 @@ export class AddUserComponent implements OnInit {
   password="";
   departamentos =[];
   //boolean
+  nom: boolean;
+  rec: boolean;
+  
   nominas: number;
 
 
@@ -78,7 +81,6 @@ export class AddUserComponent implements OnInit {
     this.user.email = this.email;
     console.log("tipo de usuario tiene valor: " + this.form.value);
     this.user.userType = this.form.value;
-
     if(this.nominas){}
     console.log("nominas tiene valor: " + this.nominas);
 
