@@ -17,12 +17,22 @@ export class CrudService {
 
     }
 
-  getdocs_admin(){
+  getdocs_admin(filter: boolean, init: string, limit: string){
     let url = this.URL + 'getdocsadmin/';
+    const body = {
+      filter: filter,
+      date_init: init,
+      date_limit: limit
+    };
     return axios.get(url, {
       headers:{
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
+      }, 
+      data: {
+        filter: filter,
+        date_init: init,
+        date_limit: limit
       }
     });
   }

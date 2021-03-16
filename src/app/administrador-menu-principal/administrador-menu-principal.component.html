@@ -7,6 +7,9 @@
         </body> -->
     </head>
     <style>
+        .body{
+            background-color: #fbe192;
+        }
         .presentacion{
             position: absolute;
             top: 140px;
@@ -50,16 +53,16 @@
             left: 770px;
         }
     </style>
-    <body style="background-color: #fbe192;">
+    <body>
         <h1 style="color: black; position: absolute; top: 50px; left: 100px;">Portal Cliente</h1>
-        <h3 style="color: black; position: absolute; top: 90px; left: 100px;">Bienvenido, 'NAME' !</h3>
-        <a style="color: black; position: absolute; top: 110px; left: 1300px; font-style: italic; text-decoration: none;" href="InicioSesion.html">Cerrar Sesión</a>
+        <h3 style="color: black; position: absolute; top: 90px; left: 100px;">Bienvenido, {{name}} !</h3>
+        <a style="color: black; position: absolute; top: 110px; left: 1300px; font-style: italic; text-decoration: none;" routerLink="/auth">Cerrar Sesión</a>
         <div class="presentacion"></div>
-        <div class="cajaInicial" onclick=""></div>
+        <div class="cajaInicial"></div>
         <div class="cajaDos"></div>
         <div class="cajaTres"></div>
-        <a style="color: black; position: absolute; top: 500px; left: 250px; font-weight:bold; text-decoration: none;" (click)="goToUsers()">Usuarios</a>
-        <a style="color: black; position: absolute; top: 500px; left: 520px; font-weight:bold; text-decoration: none;">Documentos</a>
+        <a style="color: black; position: absolute; top: 500px; left: 250px; font-weight:bold; text-decoration: none;" routerLink="/admin_users">Usuarios</a>
+        <a style="color: black; position: absolute; top: 500px; left: 520px; font-weight:bold; text-decoration: none;" routerLink="/admin_docs">Documentos</a>
         <a style="color: black; position: absolute; top: 500px; left: 850px; font-weight:bold; text-decoration: none;" >Avisos</a>
         <!--(click)=this.goDocAdicional();-->
     </body>

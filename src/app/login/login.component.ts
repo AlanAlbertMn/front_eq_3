@@ -14,8 +14,13 @@ export class LoginComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.email]);
   pass = new FormControl('');
   user = {
+    // id: 0,
+    // name: "",
     email: "",
     password: ""
+    // status: "",
+    // type: 0,
+    // dept: []  
   }
 
 
@@ -38,9 +43,34 @@ export class LoginComponent implements OnInit {
       console.log("res:" + res.data.type);
       this.auth.id = res.data.id;
       this.auth.name = res.data.name;
+      this.auth.dept = res.data.dept;
+      this.auth.type = res.data.type;
       console.log("user id: " + this.auth.id +
-      "\n user name: " + this.auth.name);
-      this.router.navigate(['/menu_principal']); 
+      "\n user name: " + this.auth.name 
+      + "\n type of user: " + this.auth.type);
+      // + "\n dept: " + this.auth.dept[0].department);
+      switch(this.auth.type){
+        case 1: {
+          this.router.navigate(['./menu_principal']); 
+          break;
+        }
+        case 2: {
+          // this.router.navigate(['./menu_principal']); 
+          break;
+        }
+        case 3: {
+          // this.router.navigate(['./menu_principal']); 
+          break;
+        }
+        case 4: {
+          // this.router.navigate(['./menu_principal']); 
+          break;
+        }
+        case 5: {
+          this.router.navigate(['./admin_menu']); 
+        }
+      }
+      
     });
   }
 

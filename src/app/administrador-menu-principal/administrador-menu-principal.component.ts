@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router'
+import { AuthService } from '../../services/auth.service';
+import { CrudService } from '../../services/crud.service';
 
 @Component({
   selector: 'app-administrador-menu-principal',
@@ -8,8 +10,14 @@ import {Router} from '@angular/router'
 })
 export class AdministradorMenuPrincipalComponent implements OnInit {
   number: number;
+  name: string;
 
-  constructor(private router: Router) { }
+
+  constructor(private router: Router, 
+    private crudService: CrudService,
+    private auth: AuthService) { 
+      this.name = this.auth.name;
+    }
 
   ngOnInit(): void {  
   }

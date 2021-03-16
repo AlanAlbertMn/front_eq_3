@@ -146,20 +146,20 @@
         <h1 id="titulo" >Portal del Administrador</h1>
         <ul class="breadcrumb">
             <li><a  (click)="goToAdminMenu()">Mi Portal</a></li>
-            <li>Usuarios</li>
+            <li>Documentos</li>
         </ul>
         <a id="log_out" href="./auth/">Cerrar Sesión</a>
         <div class="divider"></div>
         <ul class="presentacion">
-            <li><form [formGroup]="form" (change)="submitUserTypes()" id="form-userType">
-                <label for="usertypes">Tipo de usuario: </label>
+            <li><form [formGroup]="form" (change)="filter()" id="form-userType">
+                <label for="usertypes">Cliente:  </label>
                 <select formControlName="usertypes" id="usertypes">
                     <option *ngFor="let type of usertypes; let i = index" [value]="usertypes[i].id">
                         {{usertypes[i].name}}
                     </option>
                 </select>
             </form> </li>
-            <li><form [formGroup]="newform" (change)="submitUserStatus()" id="form-userStatus">
+            <li><form [formGroup]="newform" (change)="filter()" id="form-userStatus">
                 <label for="usertypes">Estados: </label>
                 <select formControlName="status" id="status">
                     <option *ngFor="let stat of status; let i = index" [value]="status[i].id">
@@ -168,27 +168,42 @@
                 </select>
             </form></li>
         </ul>
-        <button class="buttonAdd">Añadir Usuario</button>
+        <ul class="desde_hasta">
+                <li><label for="desde">DESDE: </label>
+                <input id="desde" type="date" [ngModel]="desde | date:'yyyy-MM-dd'" (ngModelChange)="desde = $event; filter()"   min="2010-04-01" max="2021-03-16" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"></li>
+            <li><label for="hasta">HASTA: </label>
+            <input id="hasta" type="date" [ngModel]="hasta | date:'yyyy-MM-dd'" (ngModelChange)="hasta = $event; filter()"   min="2010-04-01" max="2021-12-01" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"></li>
+        </ul>
+        <button class="buttonAdd">Añadir Archivo</button>
         <table class="tabla">
             <tr class="encabezados">
-                <th>Nombre Completo</th>
-                <th>Correo</th>
-                <th>Tipo de Usuario</th>
+                <th>Nombre</th>
+                <th>Cliente</th>
+                <th>Tipo de Archivo</th>
+                <th>Fecha de Carga</th>
                 <th>Estado</th>
                 <th>Opciones</th>
             </tr>
-            <tr class="datos" > 
-                <!-- *ngFor="let item of document;" -->
-                <!-- <th>{{item.nombre_doc}}</th>
+            <tr class="datos" *ngFor="let item of documents;">
+                <th>{{item.nombre_doc}}</th>
+                <th>{{item.usuario_emisor}}</th>
                 <th>{{item.ext_archivo}}</th>
-                <th>{{item.periodo_info}}</th>
-                <th>{{item.fecha_carga}}</th>
+                <th>{{item.fecha_carga | date:'yyyy/MM/dd'}}</th>
+                <th>{{item.estado}}</th>
                 <th>
-                    <button  class="btn">
-                        <img id="delete_button" src="../../assets/trash.png">
+                    <!-- (click)="delete(employee)" -->
+                    <button class="btn">
+                        <img id= "delete_button" src="../../assets/folder.png">
                     </button>
-                </th> -->
+                    <button  class="btn">
+                        <img id= "delete_button" src="../../assets/trash.png">
+                    </button>
+                    <button  class="btn">
+                        <img id= "delete_button" src="../../assets/check.png">
+                    </button>
+                </th>
             </tr>
         </table>
     </body>
 </html>
+

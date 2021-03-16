@@ -10,6 +10,9 @@ export class AuthService {
   headers: HttpHeaders;
   id: number;
   name: string;
+  type: number;
+  status: number;
+  dept = [];
 
   constructor(private http: HttpClient) { 
     this.URL = 'http://189.190.147.48:3000/';
@@ -18,6 +21,8 @@ export class AuthService {
     });
     this.id = 0;
     this.name = "";
+    this.type = 0;
+
   }
 
 

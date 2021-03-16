@@ -12,6 +12,8 @@ import { SupervisorComponent } from './supervisor/supervisor.component';
 import { NominaYearComponent } from './nomina-year/nomina-year.component';
 import { AdministradorMenuPrincipalComponent } from './administrador-menu-principal/administrador-menu-principal.component';
 import { AdministradorUsuariosComponent } from './administrador-usuarios/administrador-usuarios.component';
+import { AdministradorDocumentosComponent } from './administrador-documentos/administrador-documentos.component';
+
 
 const routes: Routes = [
   {path: 'auth', component: LoginComponent},
@@ -25,7 +27,8 @@ const routes: Routes = [
   {path: 'recursos_humanos', component: RecursosHumanosComponent},
   {path: 'nominayear', component: NominaYearComponent},
   {path: 'admin_menu', component: AdministradorMenuPrincipalComponent},
-  {path: 'admin_users', component: AdministradorUsuariosComponent}
+  {path: 'admin_users', component: AdministradorUsuariosComponent},
+  {path: 'admin_docs', component: AdministradorDocumentosComponent}
 ];
 
 @NgModule({

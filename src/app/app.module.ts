@@ -18,6 +18,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NominaYearComponent } from './nomina-year/nomina-year.component';
 import { AdministradorMenuPrincipalComponent } from './administrador-menu-principal/administrador-menu-principal.component';
 import { AdministradorUsuariosComponent } from './administrador-usuarios/administrador-usuarios.component';
+import { AdministradorDocumentosComponent } from './administrador-documentos/administrador-documentos.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { AdministradorUsuariosComponent } from './administrador-usuarios/adminis
     CargaDocumentosComponent,
     NominaYearComponent,
     AdministradorMenuPrincipalComponent,
-    AdministradorUsuariosComponent
+    AdministradorUsuariosComponent,
+    AdministradorDocumentosComponent
   ],
   imports: [
     BrowserModule,
