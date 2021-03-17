@@ -22,6 +22,7 @@ import { AdministradorDocumentosComponent } from './administrador-documentos/adm
 import { AddUserComponent } from './add-user/add-user.component';
 import { OpMenuComponent } from './op-menu/op-menu.component';
 import { OperadorComponent } from './operador/operador.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { OperadorComponent } from './operador/operador.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NoopAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
