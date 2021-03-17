@@ -1,6 +1,13 @@
 <!doctype html>
 <html lang="en">
-    <head>     
+    <head>
+        <title>Sistema de Datos</title>
+        <body style="background-color: #fbe192;">
+            <h1 style="color: black; position: absolute; top: 50px; left: 100px;">Portal Cliente</h1>
+            <a style="color: black; position: absolute; top: 110px; left: 100px; text-decoration: none; font-weight: bolder; font-size: 15px;" href="PortalCliente.html">Mi Portal</a>
+            <h3 style="color: black; position: absolute; top: 90px; left: 170px;">> Documentacion Adicional</h3>
+            <a style="color: black; position: absolute; top: 110px; left: 1300px; font-style: italic; text-decoration: none;" href="InicioSesion.html">Cerrar Sesión</a>
+        </body>
     </head>
     <style>
         .presentacion{
@@ -56,12 +63,6 @@
         }
     </style>
     <body>
-        <body style="background-color: #fbe192;">
-            <h1 style="color: black; position: absolute; top: 50px; left: 100px;">Portal Cliente</h1>
-            <a style="color: black; position: absolute; top: 110px; left: 100px; text-decoration: none; font-weight: bolder; font-size: 15px;" href="PortalCliente.html">Mi Portal</a>
-            <h3 style="color: black; position: absolute; top: 90px; left: 170px;">> Documentacion Adicional</h3>
-            <a style="color: black; position: absolute; top: 110px; left: 1300px; font-style: italic; text-decoration: none;" href="InicioSesion.html">Cerrar Sesión</a>
-        </body>
         <div class="presentacion"></div>
         <input class="cajaFechaI" type="date">
         <input class="cajaFechaF" type="date">
@@ -75,11 +76,11 @@
                 <th>Fecha de carga</th>
                 <th>Opciones</th>
             </tr>
-            <tr class="datos" *ngFor="let item of document;">
-                <th>{{item.nombre_doc}}</th>
-                <th>{{item.ext_archivo}}</th>
-                <th>{{item.periodo_info}}</th>
-                <th>{{item.fecha_carga}}</th>
+            <tr class="datos">
+                <th>Nombre del documento</th>
+                <th>Tipo de archivo</th>
+                <th>Periodo de informacion</th>
+                <th>Fecha de carga</th>
                 <th>Opciones</th>
             </tr>
         </table>
