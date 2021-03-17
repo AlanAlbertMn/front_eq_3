@@ -38,15 +38,15 @@ export class CrudService {
   }
 
   getusersByAdmin(admin: number){
+    const body = {
+      id: admin
+    }
     console.log("antes de hacer la peticion" + admin);
     let url = this.URL + 'getusers/';
-    return axios.get(url, {
+    return axios.post(url,body,{
       headers:{
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-      }, 
-      data: {
-        id: admin
+        'Access-Control-Allow-Origin': '*',
       }
     });
   }

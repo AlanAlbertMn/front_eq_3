@@ -134,9 +134,21 @@
             width: 14px; */
         }
 
-        .btn :hover{
-            background-color: red;
+        .btn_check img{ 
+            display: block;
+            height: 25px;  
+            width:25px;
         }
+
+        .btn_check:hover img {
+            src: url("../../assets/folder.png");
+        }
+
+
+        /* .btn :hover{
+            background-color: red;
+
+        } */
 
         #delete_button{
             display: block;
@@ -212,15 +224,18 @@
                 <th>{{item.estado}}</th>
                 <th>
                     <!-- (click)="delete(employee)" -->
-                    <button class="btn">
-                        <img id= "delete_button" src="../../assets/folder.png">
-                    </button>
-                    <button  class="btn">
-                        <img id= "delete_button" src="../../assets/trash.png">
-                    </button>
-                    <button  class="btn">
-                        <img id= "delete_button" src="../../assets/check.png">
-                    </button>
+                    <div class="btn">
+                        <button class="btn_download">
+                            <img id= "delete_button" src="../../assets/folder.png">
+                        </button>
+                        <button  class="btn_delete">
+                            <img id= "delete_button" src="../../assets/trash.png">
+                        </button>
+                        <button  class="btn_check">
+                            <img id= "check_button" src="../../assets/check.png">
+                        </button>
+                    </div>
+                    
                 </th>
             </tr>
         </table>

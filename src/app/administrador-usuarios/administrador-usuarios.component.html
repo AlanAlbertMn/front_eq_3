@@ -165,7 +165,7 @@
         </div>
         <div class="divider"></div>
         <ul class="presentacion">
-            <li><form class="form-inline" [formGroup]="form" (change)="submitUserTypes()" id="form-userType">
+            <li><form class="form-inline" [formGroup]="form" (change)="filter()" id="form-userType">
                 <label style ="font-weight: bold;"for="usertypes">Tipo de usuario: </label>
                 <select class="form-control ml-2 mr-sm-2" formControlName="usertypes" id="usertypes">
                     <option *ngFor="let type of usertypes; let i = index" [value]="usertypes[i].id">
@@ -173,7 +173,7 @@
                     </option>
                 </select>
             </form> </li>
-            <li><form class="form-inline" [formGroup]="newform" (change)="submitUserStatus()" id="form-userStatus">
+            <li><form class="form-inline" [formGroup]="newform" (change)="filter()" id="form-userStatus">
                 <label style ="font-weight: bold;" for="usertypes">Estados: </label>
                 <select class="form-control ml-2 mr-sm-2" formControlName="status" id="status">
                     <option *ngFor="let stat of status; let i = index" [value]="status[i].id">
@@ -183,7 +183,7 @@
             </form></li>
         </ul>
         <button class="buttonAdd" routerLink="/add_user">Añadir Usuario</button>
-        <table class="tabla">
+        <table class="tabla" >
             <tr class="encabezados">
                 <th>Nombre Completo</th>
                 <th>Correo</th>
