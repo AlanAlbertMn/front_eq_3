@@ -4,9 +4,13 @@
         <title>Sistema de Datos</title>
     </head>
     <style>
+        .body{
+            background-color: #fbe192;
+        }
         h1{
             position: relative;
             margin: 3% 0px 1% 43%;
+
         }
         .header{
             display: flex;
@@ -19,7 +23,7 @@
         #log_out{
             color: black; 
             position: relative; 
-            margin-left: 60%;
+            margin-left: 70%;
             margin-top: 10px;
             font-style: italic; 
             text-decoration: none;
@@ -37,49 +41,29 @@
             background-color: gray;
         }
 
-        .cajaInicial{
-            border-radius: 50px;
-            width: 270px;
-            height: 250px;
-            object-fit: fill;
-            background-image: url('../assets/folderIcon.png');
-            background-size: cover;  
-            position: absolute;
-            top: 230px;
-            left: 130px;
+        ul{
+            list-style: none;
+            display: flex;
         }
-        .cajaDos{
-            border-radius: 50px;
-            width: 270px;
-            height: 250px;
-            object-fit: fill;
-            background-image: url('../assets/folderIcon.png');
-            background-size: cover;  
-            position: absolute;
-            top: 230px;
-            left: 450px;
+
+        ul li{
+            margin-top: 5%;
+            flex: 50%;
+            margin-left: 10%;
         }
-        .cajaTres{
-            border-radius: 50px;
-            width: 270px;
-            height: 250px;
-            object-fit: fill;
-            background-image: url('../assets/folderIcon.png');
-            background-size: cover;  
-            position: absolute;
-            top: 230px;
-            left: 770px;
+
+        ul li a{
+            font-weight: bold;
+            color: black;
+            font-style: normal;
         }
-        .cajaCuatro{
-            border-radius: 50px;
-            width: 270px;
-            height: 250px;
-            object-fit: fill;
-            background-image: url('../assets/folderIcon.png');
-            background-size: cover;  
-            position: absolute;
-            top: 230px;
-            left: 1090px;
+
+        img{
+            width: 200px;
+            height: 200px;
+            margin-bottom: 3%;
+            display: block;
+            margin-left: -15%;
         }
     </style>
     <body>
@@ -89,13 +73,31 @@
             <a id="log_out" routerLink="/auth">Cerrar Sesión</a>
         </div>
         <div class="presentacion"></div>
-        <div class="cajaInicial" onclick=""></div>
-        <div class="cajaDos"></div>
-        <div class="cajaTres"></div>
-        <div class="cajaCuatro"></div>
-        <a style="color: black; position: absolute; top: 500px; left: 250px; font-weight:bold; text-decoration: none;" (click)="this.goNominas();">Nóminas</a>
-        <a style="color: black; position: absolute; top: 500px; left: 520px; font-weight:bold; text-decoration: none;" (click)="this.goContabilidad();">Contabilidad/Impuestos</a>
-        <a style="color: black; position: absolute; top: 500px; left: 850px; font-weight:bold; text-decoration: none;" (click)="this.goRH();">Recursos Humanos</a>
-        <a style="color: black; position: absolute; top: 500px; left: 1150px; font-weight:bold; text-decoration: none;" (click)="this.goDocAdicional();">Documentación Adicional</a>
+        <ul>
+            <li>
+                <a class= "usuarios" routerLink="/nominas">
+                    <img src = "../../assets/folder.png">
+                    Nominas
+                </a>
+            </li>
+            <li>
+                <a routerLink="/contabilidad">
+                    <img src = "../../assets/folder.png">
+                    Contabilidad / Impuestos
+                </a>
+            </li>
+            <li>
+                <a routerLink="/admin_docs">
+                    <img src = "../../assets/folder.png">
+                        Recursos Humanos
+                </a>
+            </li>
+            <li>
+                <a routerLink="/admin_docs">
+                    <img src = "../../assets/folder.png">
+                        Documentacion Adicional
+                </a>
+            </li>
+        </ul>
     </body>
 </html>

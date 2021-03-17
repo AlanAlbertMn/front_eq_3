@@ -72,6 +72,16 @@ export class CrudService {
     });
   }
 
+  getClients(){
+    let url = this.URL + 'getusersdocs/';
+    return axios.get(url, {
+      headers:{
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      }
+    });
+  }
+
   add_document(body){
     let url = this.URL + 'adddocument/';
     console.log(body);
@@ -85,6 +95,17 @@ export class CrudService {
 
   addUser(body){
     let url = this.URL + 'addusuario/';
+    console.log(body);
+    return axios.post(url,body,{
+      headers:{
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      }
+    });
+  }
+
+  addUserDept(body){
+    let url = this.URL + 'adduserdept/';
     console.log(body);
     return axios.post(url,body,{
       headers:{
@@ -116,7 +137,7 @@ export class CrudService {
   }
 
   getdocsByUser(body){
-    let url = this.URL + 'adddocument/';
+    let url = this.URL + 'getdocsbyuser/';
     console.log("aqui te van los docs papu" + body);
     return axios.post(url,body,{
       headers:{
@@ -137,40 +158,14 @@ export class CrudService {
     });
   }
 
-  get_nomina(body){
-    let url = this.URL + 'getnomina/';
+  getDocsByUser(body){
+    let url = this.URL + 'getdocsbyuser/';
     console.log("aqui te va un notificacion papu" + body);
-    return axios.post(url,body,{
+    return axios.post(url, body,{
       headers:{
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
       }
     });
   }
-
-  getDocs_contabilidad(body){
-    let url = this.URL + 'getcontabilidad/';
-    console.log("aqui te van los docs papu" + body);
-    return axios.post(url,body,{
-      headers:{
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-      }
-    });
-  }
-
-  getDocs_recursosHumanos(body){
-    let url = this.URL + 'getrh/';
-    console.log("aqui te van los docs papu" + body);
-    return axios.post(url,body,{
-      headers:{
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-      }
-    });
-  }
-
-
-
-
 }

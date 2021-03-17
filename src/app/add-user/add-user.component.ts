@@ -30,6 +30,7 @@ export class AddUserComponent implements OnInit {
   nominas: number;
   recursos: number;
   contabilidad: number;
+  id = 0;
 
 
   user = {
@@ -38,9 +39,13 @@ export class AddUserComponent implements OnInit {
     passwd: this.password,
     rfc: this.rfc,
     dom: this.address,
-    dept: this.departamentos,
     tel: this.phone,
     userType: 0
+  }
+
+  userDept = {
+    id: this.id,
+    dept : this.departamentos
   }
 
 
@@ -83,16 +88,35 @@ export class AddUserComponent implements OnInit {
     console.log("correo tiene valor: " + this.email);
     this.user.email = this.email;
     console.log("tipo de usuario tiene valor: " + this.form.value);
-    this.user.userType = this.form.value;
+    this.user.userType = parseInt(this.form.value.usertypes);
+    this.user.passwd = "1234";
+    this.crudService.addUser(this.user)
+    .then(res => {
+      console.log("si se pudo");
+      console.log(res.data);
+      this.id = res.data.id;
+      return res;
+    })
+    .catch(err => {
+      console.log(err);
+    });
 
     console.log("nominas tiene valor: " + this.nom);
-    if(this.nom){this.nominas = 2;}
+    if(this.nom){this.nominas = 2; this.departamentos.push(2);}
     console.log("recursos humanos tiene valor: " + this.rec);
-    if(this.rec){this.recursos = 3;}
+    if(this.rec){this.recursos = 3;} this.departamentos.push(3);
     console.log("recursos humanos tiene valor: " + this.cont);
-    if(this.cont){this.contabilidad = 1;}
-    const body = {
-      
-    }
+    if(this.cont){this.contabilidad = 1; this.departamentos.push(1);}
+
+    this.crudService.addUserDept(this.userDept)
+    .then(res => {
+      this.id = res.data.id;
+      console.log("si se pudo");
+      console.log(res.data);
+      return res;
+    })
+    .catch(err => {
+      console.log(err);
+    });
   }
 }

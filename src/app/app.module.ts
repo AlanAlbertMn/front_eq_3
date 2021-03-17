@@ -24,6 +24,14 @@ import { OperadorComponent } from './operador/operador.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule} from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatNativeDateModule} from '@angular/material/core';
+import { MatInputModule  } from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+
+// import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 @NgModule({
   declarations: [
@@ -51,7 +59,13 @@ import { MatSortModule } from '@angular/material/sort';
     ReactiveFormsModule,
     NoopAnimationsModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

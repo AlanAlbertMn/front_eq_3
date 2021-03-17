@@ -4,7 +4,12 @@
         <title>Sistema de Datos</title>
     </head>
     <style>
-        .introPhoto{
+        body{
+            background-image: url('../assets/MenuImage.png');
+            background-size: contain;
+        }
+
+        /* .introPhoto{
             border-radius: 50px;
             width: 600px;
             height: 280px;
@@ -14,7 +19,7 @@
             position: absolute;
             top: 150px;
             left: 100px;
-        }
+        } */
 
         .introDocs{
             border-width: 2px;
@@ -29,38 +34,104 @@
         }
 
         .introLogin{
-            width: 450px;
-            height: 480px;
             position: absolute;
+
+            background: rgba(0, 0, 0, 0.65);
+            top: 15%;
+            width: 450px;
+            height: 75%;
+            
+            right: 10%;
             border-radius: 10px;
-            background-color: white;
-            top: 200px;
-            left: 900px;
+            border: 1px solid;
+            padding: 10px;
+            box-shadow: 5px 10px 8px #151a50;
+            /* background-color: white; */
         }
-        .introCorreos{
-            width: 300px;
-            height: 300px;
-            position:relative;
-            left: 80px;
-            top: 30px;
+
+        h2{
+            position: absolute;
+            margin-top: 5%;
+            left: 33%;
+            font-size: 26px;
+            color: white;
         }
-        .cajaMail{
-            width: 250px;
-            height: 20px;
-            border-width: 2px;
-            border-radius: 1px;
-            background-color: transparent;
-            border-color: gray;
+
+        input{
+            color: #ffff;
         }
-        .botonLogin{
-            width: 100px;
-            height: 40px;
-            border-radius: 5px;
-            background-color: rgb(0, 184, 153);
-            border-style: solid;
+
+        mat-hint{
+            color: white;
+        }
+
+        mat-icon{
+            color: white;
+        }
+
+                /* // mat-icon-stepper selected color change  */
+        ::ng-deep .mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {
+            background-color: white!important;
+        }
+
+        /* //input outline color */
+        ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+            color: white!important;
+            /* // opacity: 1!important; */
+        }
+
+        /* //mat-input focused color */
+        ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+            color: white!important;
+        }
+
+        /* // mat-input error outline color */
+        ::ng-deep .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick{
+            color: red!important;
+            opacity: 0.8!important;
+        }
+
+        /* // mat-input carent color */
+        ::ng-deep .mat-input-element {
+            caret-color: white!important;
+        }
+
+        /* // mat-input error carent color */
+        ::ng-deep .mat-form-field-invalid .mat-input-element, .mat-warn .mat-input-element {
+            caret-color: red!important;
+        }
+
+        /* // mat-label normal state style */
+        ::ng-deep .mat-form-field-label {
+            color: white!important;
+            /* // color: $mainColor!important; */
+        }
+
+        /* // mat-label focused style */
+        ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+            color: white!important;
+        }
+
+        /* // mat-label error style */
+        ::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label {
+            color: red!important;
+        }
+
+        .primero{
             position: relative;
-            left: 180px;
+            margin-left: 15%;
+            width: 70%;
+            margin-top: 25%;
+            margin-bottom: 8%;
         }
+
+        .segundo{
+            position: relative;
+            margin-left: 15%;
+            width: 70%;
+            margin-bottom: 10%;
+        }
+
         .icon_container{
             width: 38px;
             height: 38px;
@@ -76,6 +147,17 @@
         }
         .form-control{
             width: 50%;    
+        }
+
+        button {
+            position: relative;
+            margin-left: 25%;
+            width: 50%;
+            height: 11%;
+            font-size: 20px;
+            background-color: cadetblue;
+            color: white;
+            font-family: monospace;
         }
     </style>
     <body>
@@ -94,21 +176,40 @@
 
 
 
-        <div class="introPhoto"></div>
+        <!-- <div class="introPhoto"></div> -->
         <b class="introDocs" style="color: black;">
             Free Access Documuentation
         </b>
         <div class="introLogin">
-            <p style="text-align: center; font-weight: bolder;">Inicia Sesion</p>
+            <h2>Inicia Sesión</h2>
+
             <div class="introCorreos">
-                <p  style="text-align: left; font-weight: bold;">Correo Electronico <a style="color: red;">*</a></p>
-                <img src="../assets/mailIcon.png" width="22" height="20">
-                <input class="cajaMail" [(ngModel)]="user.email" id="mail" name="email" [formControl]="email" placeholder="Correo Electronico"><br><br><br><br>
-                <p  style="text-align: left; font-weight: bold;">Contraseña <a style="color: red;">*</a></p>
-                <img src="../assets/passIcon.png" width="22" height="20">
-                <input class="cajaMail" [(ngModel)]="user.password" id="pass" name="pass" [formControl]="pass" placeholder="Contraseña"><br><br><br><br>
+
+                <mat-form-field class = "primero" appearance="outline">
+                    <mat-label >Correo Electronico</mat-label>
+                    <input matInput [(ngModel)]="user.email" id="mail" name="email" [formControl]="email" placeholder="Placeholder">
+                    <mat-icon matSuffix>contact_mail</mat-icon>
+                    <mat-hint >example@mail.com</mat-hint>
+                </mat-form-field>
+
+                <mat-form-field class = "segundo" appearance="outline">
+                    <mat-label>Contraseña</mat-label>
+                    <input matInput [(ngModel)]="user.password" id="pass" name="pass" [formControl]="pass" placeholder="Placeholder">
+                    <mat-icon matSuffix>lock</mat-icon>
+                    <mat-hint>Minimo de 8 caracteres</mat-hint>
+                </mat-form-field>
+                <!-- </p> -->
+                <!-- <p  style="text-align: left; font-weight: bold;">Correo Electronico <a style="color: red;">*</a></p>
+                <img src="../assets/mailIcon.png" width="22" height="20"> -->
+                <!-- <input class="cajaMail"  placeholder="Correo Electronico"><br><br><br><br> -->
+                
+                
+                <!-- <p  style="text-align: left; font-weight: bold;">Contraseña <a style="color: red;">*</a></p>
+                <img src="../assets/passIcon.png" width="22" height="20"> -->
+                <!-- <input class="cajaMail" [(ngModel)]="user.password" id="pass" name="pass" [formControl]="pass" placeholder="Contraseña"><br><br><br><br> -->
             </div>
-            <button class="botonLogin" style="color: white;" (click)="login()">INGRESAR</button>
+            <button  mat-raised-button class="save" (click)="login()" >INGRESAR</button>
+            <!-- <button class="botonLogin" style="color: white;" (click)="login()">INGRESAR</button> -->
         </div>
     </body>
 </html>

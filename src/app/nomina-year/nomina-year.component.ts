@@ -21,15 +21,15 @@ export class NominaYearComponent implements OnInit {
 
   get_nomina(){
     console.log(this.nomina);
-    this.crudService.get_nomina(this.nomina)
-      .then(res => {
-        this.nomina = res.data;
-        console.log("Funciona");
-        console.log(this.nomina);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    // this.crudService.get_nomina(this.nomina)
+    //   .then(res => {
+    //     this.nomina = res.data;
+    //     console.log("Funciona");
+    //     console.log(this.nomina);
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
   }
   
 

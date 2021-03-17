@@ -33,15 +33,15 @@ export class RecursosHumanosComponent implements OnInit {
     private auth: AuthService) { }
 
   ngOnInit(): void {
-    this.crudService.getDocs_recursosHumanos(this.user)
-      .then(res => {
-        this.document = res.data;
-        console.log("si se pudo");
-        console.log(res.data)
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    // this.crudService.getDocs_recursosHumanos(this.user)
+    //   .then(res => {
+    //     this.document = res.data;
+    //     console.log("si se pudo");
+    //     console.log(res.data)
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
   }
 
 }

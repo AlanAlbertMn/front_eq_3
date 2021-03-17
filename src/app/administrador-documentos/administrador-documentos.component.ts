@@ -47,7 +47,8 @@ export class AdministradorDocumentosComponent implements OnInit  {
     estado: 0,
     isActive: false, 
     usuario_fk: 1,
-    dept:"100"
+    dept:"100",
+    usuario_receptor: 0
   }
 
   
