@@ -1,17 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, ViewChild, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { CrudService } from '../../services/crud.service';
 import { FormBuilder, FormGroup, FormArray, FormControl, ValidatorFn } from '@angular/forms';
 import { of } from 'rxjs';
 import {formatDate} from '@angular/common';
+import {MatTableDataSource} from '@angular/material/table';
+import {MatSort} from '@angular/material/sort';
+import {MatTable} from '@angular/material/table';
 
 @Component({
   selector: 'app-administrador-documentos',
   templateUrl: './administrador-documentos.component.html',
   styleUrls: ['./administrador-documentos.component.css']
 })
-export class AdministradorDocumentosComponent implements OnInit {
+export class AdministradorDocumentosComponent implements OnInit  {
+  displayedColumns: string[] = ['Nombre', 'Cliente', 'Tipo', 'Fecha', 'Estado'];
+  dataSource = new MatTableDataSource();
+  @ViewChild(MatTable) table: MatTable<any>;
+  filterSelectObj:any;
+
   estado: number;
   cliente: number;
 
@@ -27,6 +35,7 @@ export class AdministradorDocumentosComponent implements OnInit {
   // Form for status of user
   newform: FormGroup;
   status = [];
+  filterValues = {};
   
 
   date = formatDate(new Date(), 'yyyy-MM-dd', 'en');
@@ -41,8 +50,10 @@ export class AdministradorDocumentosComponent implements OnInit {
     dept:"100"
   }
 
+  
   constructor(private router: Router, private crudService: CrudService,
     private formBuilder: FormBuilder) { 
+
       this.form = this.formBuilder.group({
         usertypes: ['']
       });
@@ -66,6 +77,7 @@ export class AdministradorDocumentosComponent implements OnInit {
   ngOnInit(): void {
     this.crudService.getdocs_admin(false, this.date, this.date)
       .then(res => {
+        this.dataSource = new MatTableDataSource(res.data);
         this.documents = res.data;
         console.log("si se pudo");
         console.log(res.data);
@@ -74,7 +86,93 @@ export class AdministradorDocumentosComponent implements OnInit {
       .catch(err => {
         console.log(err);
       });
+
+      this.getData(this.dataSource);      
   }
+
+  getData(data: any){
+    // Object to create Filter for
+    this.filterSelectObj = [
+      {
+        name: 'CLIENTE',
+        columnProp: 'Cliente',
+        options: []
+      }, {
+        name: 'ESTADO',
+        columnProp: 'Estado',
+        options: []
+      }
+    ];
+    this.filterSelectObj.filter((o) => {
+      o.options = this.getFilterObject(this.dataSource, o.columnProp);
+    });
+
+    this.dataSource.filterPredicate = this.createFilter();
+  }
+
+  // Get Uniqu values from columns to build filter
+  getFilterObject(fullObj: any, key) {
+    const uniqChk = [];
+    fullObj.filter((obj) => {
+      if (!uniqChk.includes(obj[key])) {
+        uniqChk.push(obj[key]);
+      }
+      return obj;
+    });
+    return uniqChk;
+  }
+
+  // Called on Filter change
+  filterChange(filter, event) {
+    //let filterValues = {}
+    this.filterValues[filter.columnProp] = event.target.value.trim().toLowerCase()
+    this.dataSource.filter = JSON.stringify(this.filterValues)
+  }
+
+  // Custom filter method fot Angular Material Datatable
+  createFilter() {
+    let filterFunction = function (data: any, filter: string): boolean {
+      let searchTerms = JSON.parse(filter);
+      let isFilterSet = false;
+      for (const col in searchTerms) {
+        if (searchTerms[col].toString() !== '') {
+          isFilterSet = true;
+        } else {
+          delete searchTerms[col];
+        }
+      }
+
+      console.log(searchTerms);
+
+      let nameSearch = () => {
+        let found = false;
+        if (isFilterSet) {
+          for (const col in searchTerms) {
+            searchTerms[col].trim().toLowerCase().split(' ').forEach(word => {
+              if (data[col].toString().toLowerCase().indexOf(word) != -1 && isFilterSet) {
+                found = true
+              }
+            });
+          }
+          return found
+        } else {
+          return true;
+        }
+      }
+      return nameSearch()
+    }
+    return filterFunction
+  }
+
+  // Reset table filters
+  resetFilters() {
+    this.filterValues = {}
+    this.filterSelectObj.forEach((value, key) => {
+      value.modelValue = undefined;
+    })
+    this.dataSource.filter = "";
+  }
+
 
   getClients(){
     return [
@@ -105,6 +203,7 @@ export class AdministradorDocumentosComponent implements OnInit {
     console.log("nuevo estado:" + this.estado);
     this.cliente = this.form.value.usertypes;
     console.log("nuevo cliente:" + this.cliente);
+    
     this.crudService.getdocs_admin(this.cfilter, this.desde, this.hasta)
     .then(res => {
       this.documents = res.data;
@@ -122,6 +221,11 @@ export class AdministradorDocumentosComponent implements OnInit {
       this.documents = this.documents.filter(document => document.estado == this.estado && document.usuario_emisor == this.cliente);
     }
     console.log("documents update" + this.documents);
+    this.dataSource.data = this.documents;
+    this.table.renderRows();
+    // this.dataSource = this.dataSource.filter((value,key)=>{
+    //   return value.id == this.estado;
+    // });
   }
 
   goToAdminMenu(){
