@@ -20,6 +20,8 @@ import { AdministradorMenuPrincipalComponent } from './administrador-menu-princi
 import { AdministradorUsuariosComponent } from './administrador-usuarios/administrador-usuarios.component';
 import { AdministradorDocumentosComponent } from './administrador-documentos/administrador-documentos.component';
 import { AddUserComponent } from './add-user/add-user.component';
+import { OpMenuComponent } from './op-menu/op-menu.component';
+import { OperadorComponent } from './operador/operador.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { AddUserComponent } from './add-user/add-user.component';
     AdministradorMenuPrincipalComponent,
     AdministradorUsuariosComponent,
     AdministradorDocumentosComponent,
-    AddUserComponent
+    AddUserComponent,
+    OpMenuComponent,
+    OperadorComponent
   ],
   imports: [
     BrowserModule,
