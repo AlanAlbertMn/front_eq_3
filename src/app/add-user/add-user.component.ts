@@ -84,12 +84,15 @@ export class AddUserComponent implements OnInit {
     this.user.email = this.email;
     console.log("tipo de usuario tiene valor: " + this.form.value);
     this.user.userType = this.form.value;
+
     console.log("nominas tiene valor: " + this.nom);
     if(this.nom){this.nominas = 2;}
     console.log("recursos humanos tiene valor: " + this.rec);
     if(this.rec){this.recursos = 3;}
     console.log("recursos humanos tiene valor: " + this.cont);
     if(this.cont){this.contabilidad = 1;}
-
+    const body = {
+      
+    }
   }
 }

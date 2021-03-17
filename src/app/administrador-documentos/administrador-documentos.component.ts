@@ -15,7 +15,7 @@ import {MatTable} from '@angular/material/table';
   styleUrls: ['./administrador-documentos.component.css']
 })
 export class AdministradorDocumentosComponent implements OnInit  {
-  displayedColumns: string[] = ['Nombre', 'Cliente', 'Tipo', 'Fecha', 'Estado'];
+  displayedColumns: string[] = ['Nombre', 'Cliente', 'Tipo', 'Fecha', 'estado'];
   dataSource = new MatTableDataSource();
   @ViewChild(MatTable) table: MatTable<any>;
   filterSelectObj:any;
@@ -99,12 +99,12 @@ export class AdministradorDocumentosComponent implements OnInit  {
         options: []
       }, {
         name: 'ESTADO',
-        columnProp: 'Estado',
+        columnProp: 'estado',
         options: []
       }
     ];
     this.filterSelectObj.filter((o) => {
-      o.options = this.getFilterObject(this.dataSource, o.columnProp);
+      o.options = this.getFilterObject(this.dataSource.data, o.columnProp);
     });
 
     this.dataSource.filterPredicate = this.createFilter();
