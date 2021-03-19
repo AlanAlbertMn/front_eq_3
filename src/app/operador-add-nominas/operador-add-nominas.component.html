@@ -234,9 +234,9 @@
         <h1 id="titulo" >Portal del Administrador</h1>
         <div class="header">
             <ul class="breadcrumb">
-                <li><a routerLink="/admin_menu">Mi Portal</a></li>
-                <li><a routerLink="/admin_docs">Documentos</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Documentos</li>
+                <li><a routerLink="/op_menu">Mi Portal</a></li>
+                <li><a routerLink="/oper_nominas">Contabilidad</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Añadir Documento</li>
             </ul>
             <a id="log_out" href="./auth/">Cerrar Sesión</a>
         </div>
@@ -248,24 +248,25 @@
                     <option *ngFor = "let user of users;" [value]='user.id'>{{user.nombre}}</option>
                 </select>
             </form> </li>
-            <li><form class="form-inline"[formGroup]="newform"  id="form-userStatus">
+            <!-- <li><form class="form-inline"[formGroup]="newform"  id="form-userStatus">
                 <label for="status">Extensiones: </label>
                 <select class="form-control ml-2 mr-sm-2" formControlName="extensions" id="status">
                     <option *ngFor="let stat of extensions; let i = index" [value]="extensions[i].name">
                         {{extensions[i].name}}
                     </option>
                 </select>
-            </form></li>
+            </form></li> -->
         </ul>
         <ul class = "segunda">
-            <li><form class="form-inline"[formGroup]="form"  id="form-userStatus">
+            <!-- <li><form class="form-inline"[formGroup]="form"  id="form-userStatus">
                 <label for="dept">Departamentos: </label>
                 <select class="form-control ml-2 mr-sm-2" [(ngModel)]="dep" (change)="deptchanged()" formControlName="dept" id="dept">
                     <option *ngFor="let stat of dept; let i = index" [value]="dept[i].id">
                         {{dept[i].name}}
                     </option>
                 </select>
-            </form></li>
+            </form></li> -->
+
             <li class="date">
                 <mat-label>Periodo: </mat-label>
                 <mat-form-field appearance="fill">
@@ -273,7 +274,7 @@
                     <input matInput [matDatepicker]="picker" [ngModel]="periodo | date:'yyyy-MM-dd'" (ngModelChange)="periodo = $event;">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
-                  </mat-form-field>
+                </mat-form-field>
             </li>
         </ul>
         <div class="tabla" >

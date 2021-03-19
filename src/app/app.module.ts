@@ -14,7 +14,7 @@ import { ContabilidadComponent } from './contabilidad/contabilidad.component';
 import { PortalComponent } from './portal/portal.component';
 import { CargaDocumentosComponent } from './carga-documentos/carga-documentos.component';
 
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
 import { NominaYearComponent } from './nomina-year/nomina-year.component';
 import { AdministradorMenuPrincipalComponent } from './administrador-menu-principal/administrador-menu-principal.component';
 import { AdministradorUsuariosComponent } from './administrador-usuarios/administrador-usuarios.component';
@@ -22,14 +22,26 @@ import { AdministradorDocumentosComponent } from './administrador-documentos/adm
 import { AddUserComponent } from './add-user/add-user.component';
 import { OperadorComponent } from './operador/operador.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { MatInputModule  } from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+
 import { MatTableModule} from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatNativeDateModule} from '@angular/material/core';
-import { MatInputModule  } from '@angular/material/input';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
+
+import { AdminAvisosComponent } from './admin-avisos/admin-avisos.component';
+import { OpMenuComponent } from './op-menu/op-menu.component';
+import { OperadorRecursosHumanosComponent } from './operador-recursos-humanos/operador-recursos-humanos.component';
+import { OpAddDocumentComponent } from './op-add-document/op-add-document.component';
+import { OperadorNominasComponent } from './operador-nominas/operador-nominas.component';
+import { OperadorContabilidadComponent } from './operador-contabilidad/operador-contabilidad.component';
+import { OperadorAddNominasComponent } from './operador-add-nominas/operador-add-nominas.component';
+import { OperadorAddContabilidadComponent } from './operador-add-contabilidad/operador-add-contabilidad.component';
 
 // import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
@@ -49,7 +61,15 @@ import {MatIconModule} from '@angular/material/icon';
     AdministradorMenuPrincipalComponent,
     AdministradorUsuariosComponent,
     AdministradorDocumentosComponent,
-    AddUserComponent
+    AddUserComponent,
+    AdminAvisosComponent,
+    OpMenuComponent,
+    OperadorRecursosHumanosComponent,
+    OpAddDocumentComponent,
+    OperadorNominasComponent,
+    OperadorContabilidadComponent,
+    OperadorAddNominasComponent,
+    OperadorAddContabilidadComponent
   ],
   imports: [
     BrowserModule,

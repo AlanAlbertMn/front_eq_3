@@ -15,7 +15,7 @@ import {MatTable} from '@angular/material/table';
   styleUrls: ['./contabilidad.component.css']
 })
 export class ContabilidadComponent implements OnInit {
-  displayedColumns: string[] = ['Nombre', 'Periodo', 'Tipo', 'Fecha', 'estado'];
+  displayedColumns: string[] = ['Nombre', 'Periodo', 'Tipo', 'Fecha', 'estado', 'Opciones'];
   dataSource = new MatTableDataSource();
   @ViewChild(MatTable) table: MatTable<any>;
   filterSelectObj:any;

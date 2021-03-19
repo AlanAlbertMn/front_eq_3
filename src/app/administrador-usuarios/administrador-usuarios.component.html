@@ -3,8 +3,16 @@
     <head>
     </head>
     <style>
-        body{
+        html{
+            height: 100%;
             background-color: #fbe192;
+            overflow: auto;
+        }
+        body {
+            position: relative;
+            height: auto;
+            min-height: 100% !important;
+            background-color: #fbe192;         /* optional, center the image */
         }
         h1{
             color: black;
@@ -22,10 +30,10 @@
 
         #log_out{
             color: black; 
-            position: relative; 
+            position: absolute; 
             margin-left: 70%;
             margin-top: 10px;
-            margin-right: 2%;
+            right: 5%;
             font-style: italic; 
             text-decoration: none;
             /* margin-bottom: 40px; */
@@ -134,7 +142,7 @@
         }
 
         .btn :hover{
-            background-color: red;
+            background-color: teal;
         }
 
         #delete_button{
@@ -184,25 +192,53 @@
             </form></li>
         </ul>
         <button class="buttonAdd" routerLink="/add_user">Añadir Usuario</button>
-        <table class="tabla" >
-            <tr class="encabezados">
-                <th>Nombre Completo</th>
-                <th>Correo</th>
-                <th>Tipo de Usuario</th>
-                <th>Estado</th>
-                <th>Opciones</th>
-            </tr>
-            <tr class="datos" *ngFor="let item of users;"> 
-                <th>{{item.nombre}}</th>
-                <th>{{item.correo}}</th>
-                <th>{{item.tipo_user}}</th>
-                <th>{{item.isActive}}</th>
-                <th>
-                    <button  class="btn">
-                        <img id="delete_button" src="../../assets/trash.png">
-                    </button>
-                </th>
-            </tr>
+        <table mat-table [dataSource]="users" class="tabla" matSort>
+
+            <ng-container matColumnDef="Nombre">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre Completo </th>
+                <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Correo">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Correo Electronico </th>
+                <td mat-cell *matCellDef="let element"> {{element.correo}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Tipo">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo de Usuario </th>
+                <td mat-cell *matCellDef="let element"> {{element.tipo_user}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Estado">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado </th>
+                <td mat-cell *matCellDef="let element"> {{element.isActive }} </td>
+            </ng-container>
+
+            <!-- <ng-container matColumnDef="estado">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado </th>
+                <td mat-cell *matCellDef="let element; "> {{ element.estado }} </td>
+            </ng-container> -->
+
+            <ng-container matColumnDef="Opciones">
+                <th mat-header-cell *matHeaderCellDef> Opciones</th>
+                <td mat-cell  *matCellDef="let element">
+                    <div class="btn">
+                        <button mat-icon-button class="btn_see" >
+                            <mat-icon> person_search</mat-icon>
+                        </button>
+                        <button mat-icon-button>
+                            <mat-icon>delete_forever</mat-icon>
+                        </button>
+                        <button mat-icon-button class="check"
+                        (click) = "approveDoc(element.id_documentos, 1)">
+                            <mat-icon>manage_accounts</mat-icon>
+                        </button>
+                    </div>
+                </td>
+            </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
     </body>
 </html>

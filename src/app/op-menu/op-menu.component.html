@@ -75,19 +75,19 @@
         <div class="presentacion"></div>
         <ul>
             <li>
-                <a class= "usuarios" *ngIf="dept.includes('Nominas')" routerLink="/nominas">
+                <a class= "usuarios" *ngIf="dept.includes('Nominas')" (click)="selectDepartment(2)" routerLink="/oper_nominas">
                     <img src = "../../assets/folder.png">
                     Nominas
                 </a>
             </li>
             <li>
-                <a *ngIf="dept.includes('Contabilidad')" routerLink="/contabilidad">
+                <a *ngIf="dept.includes('Contabilidad')" (click)="selectDepartment(1)" routerLink="/oper_contabilidad">
                     <img src = "../../assets/folder.png">
                     Contabilidad / Impuestos
                 </a>
             </li>
             <li>
-                <a *ngIf="dept.includes('Recursos Humanos')" routerLink="/recursos_humanos">
+                <a *ngIf="dept.includes('Recursos Humanos')" (click)="selectDepartment(3)" routerLink="/oper_recursos">
                     <img src = "../../assets/folder.png">
                         Recursos Humanos
                 </a>

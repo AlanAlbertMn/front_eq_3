@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
 
   email = new FormControl('', [Validators.required, Validators.email]);
   pass = new FormControl('');
+  dept = [];
   user = {
     // id: 0,
     // name: "",
@@ -40,22 +41,29 @@ export class LoginComponent implements OnInit {
       "\nContrasenia: " + this.user.password.toString()
     );
     this.auth.login(this.user.email, this.user.password).then( res => {
-      console.log("res:" + res.data.type);
+      console.log("res:" + res.data.dept);
       this.auth.id = res.data.id;
       this.auth.name = res.data.name;
       this.auth.dept = res.data.dept;
       this.auth.type = res.data.type;
       console.log("user id: " + this.auth.id +
       "\n user name: " + this.auth.name 
-      + "\n type of user: " + this.auth.type);
-      // + "\n dept: " + this.auth.dept[0].id_depto);
+      + "\n type of user: " + this.auth.type
+      + "\n dept: " + this.auth.dept);
+
+      this.auth.dept.forEach(element => {
+        this.dept.push(element.department);
+      });
+      this.auth.depart = this.dept;
+      console.log(this.auth.depart); 
+
       switch(this.auth.type){
         case 1: {
           this.router.navigate(['./menu_principal']); 
           break;
         }
         case 2: {
-          // this.router.navigate(['./menu_principal']); 
+          this.router.navigate(['./op_menu']); 
           break;
         }
         case 3: {

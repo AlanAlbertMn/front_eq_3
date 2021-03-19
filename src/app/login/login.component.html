@@ -21,16 +21,20 @@
             left: 100px;
         } */
 
+        h1{
+            color: white;
+        }
         .introDocs{
-            border-width: 2px;
+            border-width: 3px;
             border-style:dashed;
             border-radius: 10px;
             border-color: green;
-            width: 600px;
-            height: 280px;
             position: absolute;
-            top: 450px;
-            left: 100px;
+            width: 50%;
+            height: 80%;
+            top: 10%;
+            left: 5%;
+            color: white;
         }
 
         .introLogin{
@@ -50,9 +54,10 @@
         }
 
         h2{
+            font-family: monospace;
             position: absolute;
             margin-top: 5%;
-            left: 33%;
+            left: 27%;
             font-size: 26px;
             color: white;
         }
@@ -161,24 +166,8 @@
         }
     </style>
     <body>
-
-
-        <!-- <div class="container">
-            <div class="row">
-                <div class="input-group mb-3">
-                    <div class="icon_container">
-                        <img src="../../assets/mailIcon.png">
-                    </div>
-                    <input type="text" class="form-control" placeholder="Correo Electronico" aria-label="Username" >
-                  </div>
-            </div>
-        </div> -->
-
-
-
-        <!-- <div class="introPhoto"></div> -->
-        <b class="introDocs" style="color: black;">
-            Free Access Documuentation
+        <b class="introDocs" >
+            <h1>Free Access Documentation</h1>
         </b>
         <div class="introLogin">
             <h2>Inicia Sesión</h2>
@@ -198,18 +187,8 @@
                     <mat-icon matSuffix>lock</mat-icon>
                     <mat-hint>Minimo de 8 caracteres</mat-hint>
                 </mat-form-field>
-                <!-- </p> -->
-                <!-- <p  style="text-align: left; font-weight: bold;">Correo Electronico <a style="color: red;">*</a></p>
-                <img src="../assets/mailIcon.png" width="22" height="20"> -->
-                <!-- <input class="cajaMail"  placeholder="Correo Electronico"><br><br><br><br> -->
-                
-                
-                <!-- <p  style="text-align: left; font-weight: bold;">Contraseña <a style="color: red;">*</a></p>
-                <img src="../assets/passIcon.png" width="22" height="20"> -->
-                <!-- <input class="cajaMail" [(ngModel)]="user.password" id="pass" name="pass" [formControl]="pass" placeholder="Contraseña"><br><br><br><br> -->
             </div>
             <button  mat-raised-button class="save" (click)="login()" >INGRESAR</button>
-            <!-- <button class="botonLogin" style="color: white;" (click)="login()">INGRESAR</button> -->
         </div>
     </body>
 </html>

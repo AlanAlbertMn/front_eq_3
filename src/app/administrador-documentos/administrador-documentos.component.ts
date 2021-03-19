@@ -15,10 +15,12 @@ import {MatTable} from '@angular/material/table';
   styleUrls: ['./administrador-documentos.component.css']
 })
 export class AdministradorDocumentosComponent implements OnInit  {
-  displayedColumns: string[] = ['Nombre', 'Cliente', 'Tipo', 'Fecha', 'estado'];
+  displayedColumns: string[] = ['Nombre', 'Cliente', 'Tipo', 'Fecha', 'estado', 'Opciones'];
   dataSource = new MatTableDataSource();
   @ViewChild(MatTable) table: MatTable<any>;
-  filterSelectObj:any;
+  @ViewChild(MatSort) sort: MatSort;
+  array:any;
+
 
   estado: number;
   cliente: number;
@@ -36,9 +38,21 @@ export class AdministradorDocumentosComponent implements OnInit  {
   newform: FormGroup;
   status = [];
   filterValues = {};
+  users:any;
+  estados=[
+    {id: 999, name: 'Todos'},
+    {id: 0, name: 'Cargado'},
+    {id: 1, name: 'Validado'},
+    {id: 2, name: 'Visto por el cliente'},
+    {id: 3, name: 'Marcado para eliminacion'}
+  ];
   
 
   date = formatDate(new Date(), 'yyyy-MM-dd', 'en');
+  doc = {
+    id: 0,
+    estado: 0
+  }
   document = {
     name: "Prueba file",
     ext: ".ext",
@@ -73,10 +87,7 @@ export class AdministradorDocumentosComponent implements OnInit  {
         this.newform.controls.status.patchValue(this.status[0].id);
       });
 
-    }
-
-  ngOnInit(): void {
-    this.crudService.getdocs_admin(false, this.date, this.date)
+      this.crudService.getdocs_admin(false, this.date, this.date)
       .then(res => {
         this.dataSource = new MatTableDataSource(res.data);
         this.documents = res.data;
@@ -88,92 +99,26 @@ export class AdministradorDocumentosComponent implements OnInit  {
         console.log(err);
       });
 
-      this.getData(this.dataSource);      
-  }
+      this.crudService.getClients()
+      .then(res => {
+        this.users = res.data;
+        console.log("si se pudo");
+        console.log(res.data);
+        return res;
+      })
+      .catch(err => {
+        console.log(err);
+      });
 
-  getData(data: any){
-    // Object to create Filter for
-    this.filterSelectObj = [
-      {
-        name: 'CLIENTE',
-        columnProp: 'Cliente',
-        options: []
-      }, {
-        name: 'ESTADO',
-        columnProp: 'estado',
-        options: []
-      }
-    ];
-    this.filterSelectObj.filter((o) => {
-      o.options = this.getFilterObject(this.dataSource.data, o.columnProp);
-    });
-
-    this.dataSource.filterPredicate = this.createFilter();
-  }
-
-  // Get Uniqu values from columns to build filter
-  getFilterObject(fullObj: any, key) {
-    const uniqChk = [];
-    fullObj.filter((obj) => {
-      if (!uniqChk.includes(obj[key])) {
-        uniqChk.push(obj[key]);
-      }
-      return obj;
-    });
-    return uniqChk;
-  }
-
-  // Called on Filter change
-  filterChange(filter, event) {
-    //let filterValues = {}
-    this.filterValues[filter.columnProp] = event.target.value.trim().toLowerCase()
-    this.dataSource.filter = JSON.stringify(this.filterValues)
-  }
-
-  // Custom filter method fot Angular Material Datatable
-  createFilter() {
-    let filterFunction = function (data: any, filter: string): boolean {
-      let searchTerms = JSON.parse(filter);
-      let isFilterSet = false;
-      for (const col in searchTerms) {
-        if (searchTerms[col].toString() !== '') {
-          isFilterSet = true;
-        } else {
-          delete searchTerms[col];
-        }
-      }
-
-      console.log(searchTerms);
-
-      let nameSearch = () => {
-        let found = false;
-        if (isFilterSet) {
-          for (const col in searchTerms) {
-            searchTerms[col].trim().toLowerCase().split(' ').forEach(word => {
-              if (data[col].toString().toLowerCase().indexOf(word) != -1 && isFilterSet) {
-                found = true
-              }
-            });
-          }
-          return found
-        } else {
-          return true;
-        }
-      }
-      return nameSearch()
     }
-    return filterFunction
-  }
 
-  // Reset table filters
-  resetFilters() {
-    this.filterValues = {}
-    this.filterSelectObj.forEach((value, key) => {
-      value.modelValue = undefined;
-    })
-    this.dataSource.filter = "";
-  }
+  ngOnInit(): void {
+    
 
+
+
+      // this.getData(this.dataSource);      
+  }
 
   getClients(){
     return [
@@ -187,11 +132,35 @@ export class AdministradorDocumentosComponent implements OnInit  {
 
   getUserStatus(){
     return [
-      {id: 3, name: 'Todos'},
+      {id: 999, name: 'Todos'},
       {id: 0, name: 'Cargado'},
-      {id: 1, name: 'Validado'}
+      {id: 1, name: 'Validado'},
+      {id: 2, name: 'Visto por el cliente'},
+      {id: 3, name: 'Marcado para eliminacion'}
     ];
   } 
+
+  approveDoc(num: number, status: number){
+    console.log("id " + num);
+    console.log("estado " + status);
+    this.doc.id = num;
+    this.doc.estado = status;
+    this.crudService.approve_doc(this.doc)
+    .then(res => {
+      console.log("documento aprovado");
+      return res;
+    })
+    .catch(err => {
+      console.log(err);
+    });
+    this.table.renderRows();
+  }
+
+  changed(value:any){
+    console.log("nuevo cliente:" + value);
+    this.cliente = parseInt(value);
+    this.filter();
+  }
 
   filter(){
     if(this.desde != "2010-01-01" || this.hasta != formatDate(new Date(), 'yyyy-MM-dd', 'en')){
@@ -202,7 +171,7 @@ export class AdministradorDocumentosComponent implements OnInit  {
     console.log("hasta fecha" + this.hasta);
     this.estado = parseInt(this.newform.value.status);
     console.log("nuevo estado:" + this.estado);
-    this.cliente = this.form.value.usertypes;
+    // this.cliente = this.form.value.usertypes;
     console.log("nuevo cliente:" + this.cliente);
     
     this.crudService.getdocs_admin(this.cfilter, this.desde, this.hasta)
@@ -215,8 +184,8 @@ export class AdministradorDocumentosComponent implements OnInit  {
     .catch(err => {
       console.log(err);
     });
-    if(this.estado == 3 && this.cliente == 999){}
-    else if(this.estado == 3) {this.documents = this.documents.filter(document => document.usuario_emisor == this.cliente); }
+    if(this.estado == 999 && this.cliente == 999){}
+    else if(this.estado == 999) {this.documents = this.documents.filter(document => document.usuario_emisor == this.cliente); }
     else if(this.cliente == 999) { this.documents = this.documents.filter(document => document.estado == this.estado);}
     else {
       this.documents = this.documents.filter(document => document.estado == this.estado && document.usuario_emisor == this.cliente);
@@ -227,6 +196,13 @@ export class AdministradorDocumentosComponent implements OnInit  {
     // this.dataSource = this.dataSource.filter((value,key)=>{
     //   return value.id == this.estado;
     // });
+  }
+
+  applyFilter(filterValue: string) {
+    console.log(filterValue);
+    console.log(this.dataSource.filteredData);
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.table.renderRows();  
   }
 
   goToAdminMenu(){

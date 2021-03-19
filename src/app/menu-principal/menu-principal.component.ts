@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router'
+import {Router} from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { CrudService } from '../../services/crud.service';
 
@@ -11,6 +11,7 @@ import { CrudService } from '../../services/crud.service';
 })
 export class MenuPrincipalComponent implements OnInit {
   name:string;
+  dept = [];
 
   constructor(private router: Router, 
     private crudService: CrudService,
@@ -19,6 +20,7 @@ export class MenuPrincipalComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    this.dept = this.auth.depart;
   }
 
   goNominas(){

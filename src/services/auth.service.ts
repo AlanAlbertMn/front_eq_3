@@ -13,6 +13,8 @@ export class AuthService {
   type: number;
   status: number;
   dept = [];
+  depart = [];
+  dep_actual: number;
 
   constructor(private http: HttpClient) { 
     this.URL = 'http://189.190.147.48:3000/';

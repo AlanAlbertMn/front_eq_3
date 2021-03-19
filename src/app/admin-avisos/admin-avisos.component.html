@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    html{
+            background-color: #fbe192;
+            overflow: auto;
+        }
+        body{
+            position: relative;
+            height: auto;
+            min-height: 100% !important;
+            background-color: #fbe192;
+        }
+        h1{
+            color: black;
+            position: relative;
+            margin-top: 5%;
+            margin-left: 33%;
+            margin-bottom: 0px;
+            font-size: 50px;
+        }
+        .header{
+            display: flex;
+            margin-bottom: 0px;
+        }
+
+        #log_out{
+            color: black; 
+            position: absolute; 
+            right: 3%;
+            /* margin-top: 10px; */
+            margin-right: 2%;
+            font-style: italic; 
+            text-decoration: none;
+            /* margin-bottom: 40px; */
+        }
+
+        .breadcrumb{
+            position: relative;
+            margin-left: 5%;
+            margin-top: 0px;
+            /* margin: 50px 50px 75px 50px; */
+            /* padding: 10px 16px; */
+            list-style: none; 
+            background-color: transparent;
+            height: 40px;
+        }
+
+        .breadcrumb li {
+            display: inline;
+            font-size: 18px;
+        }
+
+        .breadcrumb li+li:before {
+            padding: 8px;
+            color: black;
+            content: ">";
+        }
+
+        .breadcrumb li a:hover {
+            color: #01447e;
+            text-decoration: underline;
+        }
+
+        .breadcrumb li a:after{
+            color: black;
+            text-decoration: none;
+        }
+
+        .divider{
+            position: relative;
+            margin-left: 7%;
+            margin-right: 3%;
+            width: auto;
+            height: 3px;
+            background-color: gray;
+        }
+</style>
+<body>
+    <h1 id="titulo" >Portal del Administrador</h1>
+    <div class="header">
+        <ul class="breadcrumb">
+            <li><a routerLink="/admin_menu">Mi Portal</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Notificaciones</li>
+        </ul>
+        <a id="log_out" href="./auth/">Cerrar Sesión</a>
+    </div>
+        
+    <div class="divider"></div>
+</body>
+</html>

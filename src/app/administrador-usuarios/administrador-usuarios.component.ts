@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, ViewChild, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { CrudService } from '../../services/crud.service';
 import { FormBuilder, FormGroup, FormArray, FormControl, ValidatorFn } from '@angular/forms';
 import { of } from 'rxjs';
+import {formatDate} from '@angular/common';
+import {MatTableDataSource} from '@angular/material/table';
+import {MatSort} from '@angular/material/sort';
+import {MatTable} from '@angular/material/table';
 
 @Component({
   selector: 'app-administrador-usuarios',
@@ -17,9 +21,16 @@ export class AdministradorUsuariosComponent implements OnInit {
   // Form for status of user
   newform: FormGroup;
   status = [];
-  users = [];
+  users:any;
   estado: number;
   cliente: number;
+
+
+  displayedColumns: string[] = ['Nombre', 'Correo', 'Tipo', 'Estado', 'Opciones'];
+  dataSource = new MatTableDataSource();
+  @ViewChild(MatTable) table: MatTable<any>;
+
+
 
   constructor(private router: Router, private crudService: CrudService,
     private formBuilder: FormBuilder, private auth: AuthService) {
@@ -57,7 +68,8 @@ export class AdministradorUsuariosComponent implements OnInit {
     console.log(this.auth.type);
     this.crudService.getusersByAdmin(this.auth.type)
       .then(res => {
-        this.users = res.data;
+        this.dataSource = new MatTableDataSource(res.data);
+        this.users = this.dataSource;
         console.log("si se pudo");
         console.log(res.data);
         return res;

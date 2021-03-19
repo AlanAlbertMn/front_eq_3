@@ -1,8 +1,16 @@
 <!doctype html>
 <html lang="en">
     <style>
-        body{
+        html{
+            height: 100%;
             background-color: #fbe192;
+            overflow: auto;
+        }
+        body {
+            position: relative;
+            height: auto;
+            min-height: 100% !important;
+            background-color: #fbe192;         /* optional, center the image */
         }
         h1{
             color: black;
@@ -245,7 +253,17 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado </th>
                 <td mat-cell *matCellDef="let element"> {{element.estado}} </td>
               </ng-container>
-
+              
+              <ng-container matColumnDef="Opciones">
+                <th mat-header-cell *matHeaderCellDef> Opciones</th>
+                <td mat-cell  *matCellDef="let row">
+                    <div class="btn">
+                        <button mat-icon-button color="primary" >
+                            <mat-icon>cloud_download</mat-icon>
+                        </button>
+                    </div>
+                </td>
+              </ng-container>
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                 <!-- <th>

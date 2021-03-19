@@ -3,7 +3,8 @@ import {Router} from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { CrudService } from '../../services/crud.service';
 import { FormBuilder, FormGroup, FormArray, FormControl, ValidatorFn } from '@angular/forms';
-import { of } from 'rxjs';
+import { of, from, fromEvent, interval, Observable } from 'rxjs';
+import { concatMap, mergeMap, flatMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-user',
@@ -22,6 +23,7 @@ export class AddUserComponent implements OnInit {
   email = "";
   password="";
   departamentos =[];
+  array: any;
   //boolean
   nom: boolean;
   rec: boolean;
@@ -30,7 +32,7 @@ export class AddUserComponent implements OnInit {
   nominas: number;
   recursos: number;
   contabilidad: number;
-  id = 0;
+  id : number;
 
 
   user = {
@@ -44,7 +46,7 @@ export class AddUserComponent implements OnInit {
   }
 
   userDept = {
-    id: this.id,
+    id : 1,
     dept : this.departamentos
   }
 
@@ -75,7 +77,7 @@ export class AddUserComponent implements OnInit {
   }
 
   submitUserTypes() { console.log(this.form.value); }
-  input(){
+  async input(){
     console.log("razon social tiene valor: " + this.reason);
     console.log("nombre de contacto tiene valor: " + this.name);
     this.user.name = this.name;
@@ -90,33 +92,53 @@ export class AddUserComponent implements OnInit {
     console.log("tipo de usuario tiene valor: " + this.form.value);
     this.user.userType = parseInt(this.form.value.usertypes);
     this.user.passwd = "1234";
-    this.crudService.addUser(this.user)
-    .then(res => {
-      console.log("si se pudo");
-      console.log(res.data);
-      this.id = res.data.id;
-      return res;
-    })
-    .catch(err => {
-      console.log(err);
-    });
 
     console.log("nominas tiene valor: " + this.nom);
     if(this.nom){this.nominas = 2; this.departamentos.push(2);}
     console.log("recursos humanos tiene valor: " + this.rec);
-    if(this.rec){this.recursos = 3;} this.departamentos.push(3);
-    console.log("recursos humanos tiene valor: " + this.cont);
+    if(this.rec){this.recursos = 3; this.departamentos.push(3)};
+    console.log("contabilidad tiene valor: " + this.cont);
     if(this.cont){this.contabilidad = 1; this.departamentos.push(1);}
+    console.log("departamentos " + this.userDept.dept);
+    this.userDept.dept = this.departamentos;
 
+
+    const remoteData = await this.crudService.addUser(this.user);
+    console.log("data regresada" + JSON.stringify(remoteData.data));
+
+    this.userDept.id = remoteData.data.idInserted;
+    console.log("id de usuario creado" + this.userDept.id);  
+    // this.userDept.id = this.id;
     this.crudService.addUserDept(this.userDept)
-    .then(res => {
-      this.id = res.data.id;
-      console.log("si se pudo");
-      console.log(res.data);
-      return res;
+    .then(result => {
+      console.log("aqui te mando un usuario papu");
+      console.log(result.data);
+      return result;
     })
-    .catch(err => {
-      console.log(err);
+    .catch(error => {
+      console.log(error);
     });
+
+    this.router.navigate(['/admin_users']);
   }
+
+  // getId(){
+    
+    
+    
+  //   .then(res => {
+  //     console.log("si se pudo");
+
+  //     this.array=res.data;
+  //     console.log("que sad " + JSON.stringify(res.data));
+  //     this.userDept.id = res.data.idInserted;
+  //     console.log("idInserted " + this.id);
+  //     return res;
+  //   })
+  //   .catch(err => {
+  //     console.log(err);
+  //   });
+  //   return this.array;
+  // }
+
 }

@@ -117,8 +117,8 @@ export class CrudService {
 
   approve_doc(body){
     let url = this.URL + 'approvedoc/';
-    console.log("aqui tienes el body papu " + body);
-    return axios.put(url, body, {headers:{'Content-Type': 'application/json'}});
+    console.log("aqui tienes el body papu " + JSON.stringify(body));
+    return axios.post(url, body, {headers:{'Content-Type': 'application/json'}});
   }
   
   delete_doc(value){
@@ -158,14 +158,39 @@ export class CrudService {
     });
   }
 
-  getDocsByUser(body){
-    let url = this.URL + 'getdocsbyuser/';
-    console.log("aqui te va un notificacion papu" + body);
-    return axios.post(url, body,{
+  getDocsRHbyMaker(body){
+    let url = this.URL + 'getrh/';
+    console.log("aqui te va el usuario papu" + body);
+    return axios.post(url,body,{
       headers:{
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
       }
     });
   }
+
+  getDocsContabilidadbyMaker(body){
+    let url = this.URL + 'getcontabilidad/';
+    console.log("aqui te va el usuario papu" + body);
+    return axios.post(url,body,{
+      headers:{
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      }
+    });
+  }
+
+  getDocsNominabyMaker(body){
+    let url = this.URL + 'getnomina/';
+    console.log("aqui te va el usuario papu" + body);
+    return axios.post(url,body,{
+      headers:{
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      }
+    });
+  }
+
+
+
 }

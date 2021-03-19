@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router'
-import {FormControl, Validators} from '@angular/forms';
+import {AfterViewInit, Component, ViewChild, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { CrudService } from '../../services/crud.service';
+import { FormBuilder, FormGroup, FormArray, FormControl, ValidatorFn } from '@angular/forms';
+import { of } from 'rxjs';
 import {formatDate} from '@angular/common';
+import {MatTableDataSource} from '@angular/material/table';
+import {MatSort} from '@angular/material/sort';
+import {MatTable} from '@angular/material/table';
 
 @Component({
   selector: 'app-recursos-humanos',
@@ -12,20 +16,17 @@ import {formatDate} from '@angular/common';
 })
 export class RecursosHumanosComponent implements OnInit {
   date = formatDate(new Date(), 'yyyy-MM-dd', 'en');
-  document = {
-    name: "Prueba file.ext",
-    ext: ".ext",
-    fecha: this.date, 
-    periodo: "2020-12-01", 
-    estado: 0,
-    isActive: false, 
-    usuario_fk: 1,
-    dept:"100"
-  }
+  displayedColumns: string[] = ['Nombre', 'Periodo', 'Tipo', 'Fecha', 'estado', 'Opciones'];
+  dataSource = new MatTableDataSource();
+  @ViewChild(MatTable) table: MatTable<any>;
+  filterSelectObj:any;
+  documents = [];
+  desde="";
+  hasta="";
 
-  user = {
-    id: 1,
-    dept: "001"
+  format = {
+    id: this.auth.id,
+    dept: 3
   }
 
   constructor(private router: Router, 
@@ -33,15 +34,16 @@ export class RecursosHumanosComponent implements OnInit {
     private auth: AuthService) { }
 
   ngOnInit(): void {
-    // this.crudService.getDocs_recursosHumanos(this.user)
-    //   .then(res => {
-    //     this.document = res.data;
-    //     console.log("si se pudo");
-    //     console.log(res.data)
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
+    this.crudService.getdocsByUser(this.format)
+      .then(res => {
+        this.dataSource = new MatTableDataSource(res.data);
+        this.documents = res.data;
+        console.log("si se pudo");
+        console.log(res.data)
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
 }

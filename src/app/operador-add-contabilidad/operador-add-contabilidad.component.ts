@@ -10,16 +10,12 @@ import { HttpClient } from '@angular/common/http';
 import { FileService } from '../../services/file.service';
 import { HttpResponse, HttpEventType } from '@angular/common/http';
 
-import {MatFormFieldModule} from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 @Component({
-  selector: 'app-carga-documentos',
-  templateUrl: './carga-documentos.component.html',
-  styleUrls: ['./carga-documentos.component.css']
+  selector: 'app-operador-add-contabilidad',
+  templateUrl: './operador-add-contabilidad.component.html',
+  styleUrls: ['./operador-add-contabilidad.component.css']
 })
-export class CargaDocumentosComponent implements OnInit {
+export class OperadorAddContabilidadComponent implements OnInit {
   selectedFiles: FileList;
 	currentFile: File;
   file=new FormControl('');
@@ -131,18 +127,20 @@ export class CargaDocumentosComponent implements OnInit {
     this.cliente = parseInt(value);
   }
 
-  deptchanged(){
+  // deptchanged(){
 
-    console.log("departamento" + parseInt(this.dep));
-  }
+  //   console.log("departamento" + parseInt(this.dep));
+  // }
 
   create_document(){
-    console.log("departamento: " + this.dep);
-    this.document.dept = parseInt(this.dep);
+    // console.log("departamento: " + this.dep);
+    // this.document.dept = parseInt(this.dep);
     // console.log("a ver que sale" + this.newform.value.id);
     // this.extension = this.newform.value.extensions;
     // console.log("nuevo estado:" + this.extension);
     // this.document.ext = this.extension;
+    this.document.dept = this.auth.dep_actual;
+    console.log("document dep: " + this.document.dept);
 
     this.document.usuario_fk = this.auth.id;
     console.log(this.document);
@@ -158,7 +156,7 @@ export class CargaDocumentosComponent implements OnInit {
         this.document = res.data;
         this.date;
         console.log("Funciona");
-        this.router.navigate(['./admin_docs']);
+        this.router.navigate(['./oper_contabilidad']);
         // switch(this.auth.type){
           
         // }
