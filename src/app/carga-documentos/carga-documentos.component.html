@@ -138,17 +138,7 @@
             color: white;
         }
 
-        .tabla{
-            position: relative;
-            border: 4px cadetblue;
-            border-style: dotted;
-            /* background-color: coral; */
-            background: transparent;
-            margin-top: 0px;
-            margin-left: 7%;
-            width: 85%;
-            height: 47%;
-        }
+        
         .encabezados{
             border: 10px black;
             background-color: cadetblue;
@@ -196,12 +186,6 @@
             margin-bottom: 1%;
         }
 
-        .label2{
-            font-weight: bold;
-            font-size: 25px;
-            margin-bottom: 2%;
-            margin-left: 7%;
-        }
         .p-file-center{
             /* font-weight: bold; */
             /* margin-left: 25%; */
@@ -219,6 +203,29 @@
             width: 250px;
         }
 
+        
+
+
+        .tabla{
+            position: relative;
+            border: 4px cadetblue;
+            border-style: dotted;
+            /* background-color: coral; */
+            background: transparent;
+            margin-top: 0px;
+            margin-left: 7%;
+            width: 85%;
+            height: 47%;
+        }
+
+        .label2{
+            position: relative;
+            font-weight: bold;
+            font-size: 25px;
+            margin-top: 2%;
+            margin-left: 30%;
+        }
+
         .save{
             position: relative;
             margin-left: 45%;
@@ -227,6 +234,45 @@
             height: 50px;
             width: 200px;
             margin-bottom: 3%;
+        }
+
+        .uploadfilecontainer {
+            background-image: url("../../assets/folder.png");
+            background-repeat: no-repeat;
+            background-size: 100px;
+            background-position: center;
+            height: 200px;
+            width: 80%;
+            margin: 20px auto;
+            border: 2px dashed #1C8ADB;
+            border-radius: 10px;
+        }
+
+        .uploadfilecontainer:hover {
+            cursor: pointer;
+            background-color: #9ecbec !important;
+            opacity: 0.8;
+        }
+
+        .files-list {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            margin: 10px auto;
+            background: #ffffff;
+            border: 1px dashed;
+            border-radius: 12px;
+            padding: 5px;
+            color: #1c8adb;
+        }
+
+        .files-list .delete-file {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+        .files-list .delete-file img{
+            width:30px;
         }
 
     </style>
@@ -276,7 +322,7 @@
                   </mat-form-field>
             </li>
         </ul>
-        <div class="tabla" >
+        <!-- <div class="tabla" >
             <button mat-raised-button color="warn" class="report">Reportar documento faltante</button>
 
             <form class="form-file" action="upload.php" method="POST">
@@ -290,9 +336,25 @@
                     Cargar Documento
                 </button> 
             </form>
+        </div> -->
+        
+        <div class="tabla" >
+            <label class="label2">Arrastre sus archivos aquí o haga clic en el área</label>
+            <div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop (onFileDropped)="uploadFiles($event)">
+                
+                <input hidden type="file" #fileInput [formControl]="file" (change)="uploadFiles($event.target.files)">
+            </div>
+            <div  class="files-list" *ngFor="let file of files;let i=index">
+              <p>{{ file }}</p>
+              <button class="delete-file" (click)="deleteAttachment(i)">
+                <img src="../../assets/trash.png">
+              </button>
+            </div>
+            <button [disabled]="!selectedFiles" mat-raised-button color="primary" class="save" 
+                (click)="uploadFile()" mat-raised-button color="primary"> 
+                    Cargar Documento
+                </button> 
         </div>
-        
-        
         <!-- <table class="tabla">
             <tr class="datos">
                 <th>
@@ -304,7 +366,7 @@
                     <p class="p-file-center">
                     <i class="fafa-upload" aria-hidden="true" ></i>Anexa Documentos en formato .pdf, .jpg, .doc ó .xls</p>
                     <button  mat-raised-button color="primary" class="save" (click)="this.create_document()">Guardar Documento</button>
-                    
+                        
                 </form>
                 </th>
             </tr>

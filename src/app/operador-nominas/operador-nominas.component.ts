@@ -15,7 +15,7 @@ import {MatTable} from '@angular/material/table';
   styleUrls: ['./operador-nominas.component.css']
 })
 export class OperadorNominasComponent implements OnInit {
-  displayedColumns: string[] = ['Nombre', 'Cliente', 'Tipo', 'Fecha', 'estado', 'Opciones'];
+  displayedColumns: string[] = ['Nombre', 'Cliente', 'Periodo', 'Tipo', 'Fecha', 'estado', 'Opciones'];
   dataSource = new MatTableDataSource();
   @ViewChild(MatTable) table: MatTable<any>;
   array:any;
@@ -30,6 +30,10 @@ export class OperadorNominasComponent implements OnInit {
   newform: FormGroup;
   status = [];
   filterValues = {};
+
+  estado = 999;
+  cliente=999;
+
   users:any;
   user = {
     id: this.auth.id
@@ -76,9 +80,6 @@ export class OperadorNominasComponent implements OnInit {
         console.log(err);
       });
 
-
-
-
     }
 
   ngOnInit(): void {
@@ -94,11 +95,44 @@ export class OperadorNominasComponent implements OnInit {
     ];
   } 
 
-  applyFilter(filterValue: string) {
-    console.log(filterValue);
-    console.log(this.dataSource.filteredData);
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-    this.table.renderRows();  
+  changed(value:any){
+    console.log("nuevo cliente:" + value);
+    this.cliente = parseInt(value);
+    this.filter();
+  }
+
+  filter(){
+    this.desde = formatDate(this.desde, 'yyyy-MM-dd', 'en');
+    console.log("desde fecha " + this.desde);
+
+    this.hasta = formatDate(this.hasta, 'yyyy-MM-dd', 'en');
+    console.log("hasta fecha " + this.hasta);
+
+    this.estado = parseInt(this.newform.value.status);
+    console.log("nuevo estado: " + this.estado);
+
+    console.log("nuevo cliente: " + this.cliente);
+
+    this.crudService.getDocsNominabyMaker(this.user)
+      .then(res => {
+        this.dataSource = new MatTableDataSource(res.data);
+        this.documents = res.data;
+        console.log("ahi te van las nominas");
+        console.log(res.data);
+
+        if(this.estado != 999){ this.documents = this.documents.filter(documento => documento.estado === this.estado); console.log("documentos filtraods por estado " + this.estado);}
+        if(this.cliente != 999) {this.documents = this.documents.filter(documento => documento.usuario_receptor == this.cliente); }
+        if(this.desde != "2020-01-01" || this.hasta != formatDate(new Date(), 'yyyy-MM-dd', 'en')){
+          this.documents = this.documents.filter(doc => 
+            formatDate(doc.periodo_info, 'yyyy-MM-dd', 'en') >= this.desde
+            && formatDate(doc.periodo_info, 'yyyy-MM-dd', 'en') <= this.hasta
+            );
+        }
+        return res;
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   modifyDoc(num: number, status: number){
@@ -114,7 +148,7 @@ export class OperadorNominasComponent implements OnInit {
     .catch(err => {
       console.log(err);
     });
-    this.table.renderRows();
+    this.filter();
   }
 
 

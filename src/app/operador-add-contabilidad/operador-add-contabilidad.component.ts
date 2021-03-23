@@ -19,6 +19,7 @@ export class OperadorAddContabilidadComponent implements OnInit {
   selectedFiles: FileList;
 	currentFile: File;
   file=new FormControl('');
+  files: any = [];
 
   // Form for type of user 
   form: FormGroup;
@@ -157,10 +158,6 @@ export class OperadorAddContabilidadComponent implements OnInit {
         this.date;
         console.log("Funciona");
         this.router.navigate(['./oper_contabilidad']);
-        // switch(this.auth.type){
-          
-        // }
-        
       })
       .catch(err => {
         console.log(err);
@@ -168,19 +165,24 @@ export class OperadorAddContabilidadComponent implements OnInit {
   }
 
 
-  fileChange(event) {
-    this.selectedFiles = event.target.files;
-    const fileList: FileList = event.target.files;
+  uploadFiles(event) {
+    for (let index = 0; index < event.length; index++) {
+      const element = event[index];
+      this.files.push(element.name);
+    }
+    this.selectedFiles = event;
+    const fileList: FileList = event;
     //check whether file is selected or not
     if (fileList.length > 0) {
       const file = fileList[0];
-      //get file information such as name, size and type
+    //get file information such as name, size and type
       console.log('finfo',file.name,file.size,file.type);
       this.document.name = file.name;
       this.document.ext = file.type;
       //max file size is 4 mb   
     }
   }
+
   ip="http://localhost/"
 
   uploadFile()
@@ -194,6 +196,10 @@ export class OperadorAddContabilidadComponent implements OnInit {
       }	  
     });
     this.create_document();    
+  }
+
+  deleteAttachment(index) {
+    this.files.splice(index, 1)
   }
 
 }

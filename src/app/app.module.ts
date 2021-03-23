@@ -33,6 +33,7 @@ import { MatTableModule} from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
+import {MatDialogModule } from '@angular/material/dialog';
 
 import { AdminAvisosComponent } from './admin-avisos/admin-avisos.component';
 import { OpMenuComponent } from './op-menu/op-menu.component';
@@ -42,6 +43,8 @@ import { OperadorNominasComponent } from './operador-nominas/operador-nominas.co
 import { OperadorContabilidadComponent } from './operador-contabilidad/operador-contabilidad.component';
 import { OperadorAddNominasComponent } from './operador-add-nominas/operador-add-nominas.component';
 import { OperadorAddContabilidadComponent } from './operador-add-contabilidad/operador-add-contabilidad.component';
+import { DragDropDirective } from './drag-drop.directive';
+
 
 // import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
@@ -69,7 +72,8 @@ import { OperadorAddContabilidadComponent } from './operador-add-contabilidad/op
     OperadorNominasComponent,
     OperadorContabilidadComponent,
     OperadorAddNominasComponent,
-    OperadorAddContabilidadComponent
+    OperadorAddContabilidadComponent,
+    DragDropDirective
   ],
   imports: [
     BrowserModule,
@@ -85,9 +89,12 @@ import { OperadorAddContabilidadComponent } from './operador-add-contabilidad/op
     MatNativeDateModule,
     MatInputModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [MatDialogModule]
+
 })
 export class AppModule { }

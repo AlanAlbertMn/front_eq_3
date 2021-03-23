@@ -6,7 +6,6 @@ import { FormBuilder, FormGroup, FormArray, FormControl, ValidatorFn } from '@an
 import { of } from 'rxjs';
 import {formatDate} from '@angular/common';
 import {MatTableDataSource} from '@angular/material/table';
-import {MatSort} from '@angular/material/sort';
 import {MatTable} from '@angular/material/table';
 
 @Component({
@@ -15,14 +14,36 @@ import {MatTable} from '@angular/material/table';
   styleUrls: ['./admin-avisos.component.css']
 })
 export class AdminAvisosComponent implements OnInit {
-  displayedColumns: string[] = ['Nombre', 'Cliente', 'Tipo', 'Fecha', 'estado', 'Opciones'];
+  displayedColumns: string[] = ['Nombre', 'Tipo', 'Usuario','Notificacion'];
   dataSource = new MatTableDataSource();
   @ViewChild(MatTable) table: MatTable<any>;
   array:any;
 
-  constructor() { }
+  type=999;
+  notifs = [];
+
+  constructor(private router: Router, private crudService: CrudService,
+    private formBuilder: FormBuilder) { 
+
+    }
 
   ngOnInit(): void {
+
+    this.crudService.get_notifications()
+    .then(res => {
+        console.log("obteniendo respuesta");
+        this.dataSource = new MatTableDataSource(res.data);
+        this.notifs = res.data;
+        console.log(res.data);
+        return res;
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  addNotif(){
+    // this.router.navigate(['/'])
   }
 
 }

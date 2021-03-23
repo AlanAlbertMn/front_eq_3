@@ -17,22 +17,13 @@ export class CrudService {
 
     }
 
-  getdocs_admin(filter: boolean, init: string, limit: string){
+  getdocs_admin(body){
     let url = this.URL + 'getdocsadmin/';
-    const body = {
-      filter: filter,
-      date_init: init,
-      date_limit: limit
-    };
-    return axios.get(url, {
+    console.log("cuerpo filtro: " + body.filter + " inicio: " + body.date_init + " limite: " + body.date_limit);
+    return axios.post(url,body,{
       headers:{
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
-      }, 
-      data: {
-        filter: filter,
-        date_init: init,
-        date_limit: limit
       }
     });
   }
@@ -124,16 +115,15 @@ export class CrudService {
   delete_doc(value){
     let url = this.URL + 'deletedoc/';
     console.log("borra este doc papu " + value);
-    let config = { 
+    const body = {//! Take note of the `data` keyword. This is the request body.
+          id: value
+    }
+    return axios.post(url,body, {
       headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-      },
-      body: { //! Take note of the `data` keyword. This is the request body.
-          id: value
+        'Access-Control-Allow-Origin': '*'
       }
-    }
-    axios.delete(url, config);
+    });
   }
 
   getdocsByUser(body){

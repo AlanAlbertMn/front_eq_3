@@ -21,7 +21,7 @@ export class AdministradorUsuariosComponent implements OnInit {
   // Form for status of user
   newform: FormGroup;
   status = [];
-  users:any;
+  users = [];
   estado: number;
   cliente: number;
 
@@ -69,7 +69,7 @@ export class AdministradorUsuariosComponent implements OnInit {
     this.crudService.getusersByAdmin(this.auth.type)
       .then(res => {
         this.dataSource = new MatTableDataSource(res.data);
-        this.users = this.dataSource;
+        this.users = res.data;
         console.log("si se pudo");
         console.log(res.data);
         return res;
@@ -112,20 +112,23 @@ export class AdministradorUsuariosComponent implements OnInit {
     this.crudService.getusersByAdmin(this.auth.type)
     .then(res => {
       this.users = res.data;
-      console.log("si se pudo");
+      console.log("aqui te van los usuarios papu");
       console.log(res.data);
+
+      if(this.estado == 3 && this.cliente == 999){console.log("sin filtros mamacita " + this.users);}
+      if(this.cliente != 999) {this.users = this.users.filter(usuario => usuario.tipo_user == this.cliente); }
+      if(this.estado != 3) { this.users = this.users.filter(usuario => usuario.isActive == this.estado);}
       return res;
     })
     .catch(err => {
       console.log(err);
     });
-    if(this.estado == 3 && this.cliente == 999){console.log("sin filtros mamacita " + this.users);}
-    else if(this.estado == 3) {this.users = this.users.filter(usuario => usuario.tipo_user == 3); }
-    else if(this.cliente == 999) { this.users = this.users.filter(usuario => usuario.isActive == this.estado);}
-    else {
-      this.users = this.users.filter(usuario => usuario.isActive == this.estado && usuario.tipo_user == this.cliente);
-    }
+    
+    // else {
+    //   this.users = this.users.filter(usuario => usuario.isActive == this.estado && usuario.tipo_user == this.cliente);
+    // }
     console.log("users update" + this.users);
+    this.dataSource = new MatTableDataSource(this.users);
   }
 
 
