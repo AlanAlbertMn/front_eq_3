@@ -43,6 +43,13 @@ export class OperadorNominasComponent implements OnInit {
     estado: 0
   }
 
+  estados=[
+    'Cargado',
+    'Validado',
+    'Visto por el cliente',
+    'Marcado para eliminacion'
+  ];
+
   constructor(private router: Router, private crudService: CrudService,
     private formBuilder: FormBuilder, private auth: AuthService) { 
       

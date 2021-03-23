@@ -16,13 +16,20 @@ import {MatTable} from '@angular/material/table';
 })
 export class RecursosHumanosComponent implements OnInit {
   date = formatDate(new Date(), 'yyyy-MM-dd', 'en');
-  displayedColumns: string[] = ['Nombre', 'Periodo', 'Tipo', 'Fecha', 'estado', 'Opciones'];
+  displayedColumns: string[] = ['Nombre', 'Tipo', 'Fecha', 'estado', 'Opciones'];
   dataSource = new MatTableDataSource();
   @ViewChild(MatTable) table: MatTable<any>;
   filterSelectObj:any;
   documents = [];
   desde="2020-01-01";
   hasta=formatDate(new Date(), 'yyyy-MM-dd', 'en');
+
+  states=[
+    'Cargado',
+    'Validado',
+    'Visto por el cliente',
+    'Marcado para eliminacion'
+  ];
 
   format = {
     id: this.auth.id,

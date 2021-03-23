@@ -1,4 +1,11 @@
-import {AfterViewInit, Component, ViewChild, OnInit} from '@angular/core';
+import {
+  AfterViewInit, 
+  Component, 
+  ViewChild, 
+  OnInit, 
+  Output,
+  EventEmitter,
+  Inject} from '@angular/core';
 import {Router} from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { CrudService } from '../../services/crud.service';
@@ -8,6 +15,13 @@ import {formatDate} from '@angular/common';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 import {MatTable} from '@angular/material/table';
+import {
+  MatDialog,
+  MatDialogRef, 
+  MatDialogConfig,
+  MAT_DIALOG_DATA
+} from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-administrador-usuarios',
@@ -25,6 +39,15 @@ export class AdministradorUsuariosComponent implements OnInit {
   estado: number;
   cliente: number;
 
+  usuario = {
+    id: 0,
+    name: "",
+    email: "",
+    type: 0,
+    estado: 0,
+    address:"",
+    phone: ""
+  }
 
   displayedColumns: string[] = ['Nombre', 'Correo', 'Tipo', 'Estado', 'Opciones'];
   dataSource = new MatTableDataSource();
@@ -33,7 +56,8 @@ export class AdministradorUsuariosComponent implements OnInit {
 
 
   constructor(private router: Router, private crudService: CrudService,
-    private formBuilder: FormBuilder, private auth: AuthService) {
+    private formBuilder: FormBuilder, private auth: AuthService,
+    private dialog: MatDialog) {
       this.form = this.formBuilder.group({
         usertypes: ['']
       });
@@ -63,6 +87,19 @@ export class AdministradorUsuariosComponent implements OnInit {
     userType: 1, 
   }
 
+  tipos = [
+    '',
+    'Cliente',
+    'Operador de Nomina',
+    'Recepcion',
+    'Supervisor',
+    'Administrador'
+  ];
+
+  estados = [
+    'Inactivo',
+    'Activo'
+  ];  
 
   ngOnInit(): void {
     console.log(this.auth.type);
@@ -131,10 +168,88 @@ export class AdministradorUsuariosComponent implements OnInit {
     this.dataSource = new MatTableDataSource(this.users);
   }
 
+  visualizar(usuar: any){
+    this.usuario.id = usuar.id;
+    this.usuario.name = usuar.nombre;
+    this.usuario.type = usuar.tipo_user;
+    this.usuario.email = usuar.correo;
+    this.usuario.estado = usuar.isActive;
+    this.usuario.address = usuar.domicilio;
+    this.usuario.phone = usuar.telefono;
 
+    console.log("usuario id: " + usuar.id 
+    + ", nombre " + usuar.nombre 
+    + ", tipo " + usuar.tipo_user
+    + ", correo " + usuar.correo
+    +  ", telefono " + usuar.telefono
+    );
+    this.openDialog();
+  }
 
-  goToAdminMenu(){
-    this.router.navigate(['./admin_menu']);
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogContentExampleDialog, {
+      data: {
+        id: this.usuario.id,
+        name: this.usuario.name,
+        tipo: this.usuario.type,
+        email: this.usuario.email,
+        phone: this.usuario.phone,
+        address: this.usuario.address,
+        status: this.usuario.estado
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(' here is the result ' + result );
+    })
+    // const dialogConfig = new MatDialogConfig();
+    // this.matDialog.open(DialogBodyComponent, dialogConfig);
+  }
+
+}
+
+@Component({
+  selector: 'dialog-content-example-dialog',
+  templateUrl: 'dialog-content-example-dialog.html',
+})
+export class DialogContentExampleDialog {
+  nombre:string;
+  id: number;
+  type: number;
+  email: string;
+  cel: string;
+  address: string;
+  status: number;
+  tipos = [
+    '',
+    'Cliente',
+    'Operador de Nomina',
+    'Recepcion',
+    'Supervisor',
+    'Administrador'
+  ];
+  estados = [
+    'Inactivo',
+    'Activo'
+  ];
+
+  @Output() submitClicked = new EventEmitter<any>();
+  
+  constructor( public dialogRef: MatDialogRef<DialogContentExampleDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: any){}
+
+    ngOnInit(){
+      this.id = this.data.id;
+      this.nombre = this.data.name;
+      this.type = this.data.tipo;
+      this.email = this.data.email;
+      this.cel = this.data.phone;
+      this.address = this.data.address;
+      this.status = this.data.status;
+    }
+
+  closeDialog() {
+    console.log("close clicked");
+    this.dialogRef.close();
   }
 
 }

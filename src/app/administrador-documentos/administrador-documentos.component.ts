@@ -57,6 +57,15 @@ export class AdministradorDocumentosComponent implements OnInit  {
     {id: 2, name: 'Visto por el cliente'},
     {id: 3, name: 'Marcado para eliminacion'}
   ];
+
+  usuarios = [];
+
+  states=[
+    'Cargado',
+    'Validado',
+    'Visto por el cliente',
+    'Marcado para eliminacion'
+  ];
   
 
   date = formatDate(new Date(), 'yyyy-MM-dd', 'en');
@@ -119,6 +128,10 @@ export class AdministradorDocumentosComponent implements OnInit  {
       this.crudService.getClients()
       .then(res => {
         this.users = res.data;
+        this.users.forEach(element => {
+          this.usuarios.push(element);
+        });
+        console.log(" clientes " + this.usuarios);
         console.log("obteniendo clientes...");
         console.log(res.data);
         return res;

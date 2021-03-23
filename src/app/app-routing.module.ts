@@ -16,6 +16,7 @@ import { AdministradorUsuariosComponent } from './administrador-usuarios/adminis
 import { AdministradorDocumentosComponent } from './administrador-documentos/administrador-documentos.component';
 import { AddUserComponent } from './add-user/add-user.component';
 import { AdminAvisosComponent } from './admin-avisos/admin-avisos.component';
+import { AddNotifComponent } from './add-notif/add-notif.component';
 
 import { OpMenuComponent } from './op-menu/op-menu.component';
 import { OperadorRecursosHumanosComponent } from './operador-recursos-humanos/operador-recursos-humanos.component';
@@ -47,7 +48,8 @@ const routes: Routes = [
   {path: 'oper_nominas', component: OperadorNominasComponent},
   {path: 'oper_addNominas', component: OperadorAddNominasComponent},
   {path: 'oper_contabilidad', component: OperadorContabilidadComponent},
-  {path: 'oper_addContabilidad', component: OperadorAddContabilidadComponent}
+  {path: 'oper_addContabilidad', component: OperadorAddContabilidadComponent},
+  {path: 'add_notif', component: AddNotifComponent}
 ];
 
 @NgModule({

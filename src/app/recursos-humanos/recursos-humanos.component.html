@@ -218,11 +218,6 @@
                 <td mat-cell *matCellDef="let element"> {{element.nombre_doc}} </td>
               </ng-container>
 
-              <ng-container matColumnDef="Periodo">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Periodo </th>
-                <td mat-cell *matCellDef="let element"> {{element.periodo}} </td>
-              </ng-container>
-
               <ng-container matColumnDef="Tipo">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo de Archivo </th>
                 <td mat-cell *matCellDef="let element"> {{element.ext_archivo}} </td>
@@ -235,7 +230,7 @@
 
               <ng-container matColumnDef="estado">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado </th>
-                <td mat-cell *matCellDef="let element"> {{element.estado}} </td>
+                <td mat-cell *matCellDef="let element"> {{states[element.estado]}} </td>
               </ng-container>
 
               <ng-container matColumnDef="Opciones">

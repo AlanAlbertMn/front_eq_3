@@ -14,14 +14,21 @@ import {MatTable} from '@angular/material/table';
   styleUrls: ['./admin-avisos.component.css']
 })
 export class AdminAvisosComponent implements OnInit {
-  displayedColumns: string[] = ['Nombre', 'Tipo', 'Usuario','Notificacion'];
+  displayedColumns: string[] = ['Nombre', 'Usuario','Notificacion'];
   dataSource = new MatTableDataSource();
   @ViewChild(MatTable) table: MatTable<any>;
   array:any;
 
   type=999;
   notifs = [];
-
+  tipos = [
+    '',
+    'Cliente',
+    'Operador de Nomina',
+    'Recepcion',
+    'Supervisor',
+    'Administrador'
+  ];
   constructor(private router: Router, private crudService: CrudService,
     private formBuilder: FormBuilder) { 
 

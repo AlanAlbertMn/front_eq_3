@@ -44,6 +44,7 @@ import { OperadorContabilidadComponent } from './operador-contabilidad/operador-
 import { OperadorAddNominasComponent } from './operador-add-nominas/operador-add-nominas.component';
 import { OperadorAddContabilidadComponent } from './operador-add-contabilidad/operador-add-contabilidad.component';
 import { DragDropDirective } from './drag-drop.directive';
+import { AddNotifComponent } from './add-notif/add-notif.component';
 
 
 // import { MatMomentDateModule } from '@angular/material-moment-adapter';
@@ -73,7 +74,8 @@ import { DragDropDirective } from './drag-drop.directive';
     OperadorContabilidadComponent,
     OperadorAddNominasComponent,
     OperadorAddContabilidadComponent,
-    DragDropDirective
+    DragDropDirective,
+    AddNotifComponent
   ],
   imports: [
     BrowserModule,
