@@ -17,7 +17,7 @@ export class AuthService {
   dep_actual: number;
 
   constructor(private http: HttpClient) { 
-    this.URL = 'http://189.190.147.48:3000/';
+    this.URL = 'http://189.190.152.47:3000/';
     this.headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });

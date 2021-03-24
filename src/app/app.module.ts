@@ -45,6 +45,7 @@ import { OperadorAddNominasComponent } from './operador-add-nominas/operador-add
 import { OperadorAddContabilidadComponent } from './operador-add-contabilidad/operador-add-contabilidad.component';
 import { DragDropDirective } from './drag-drop.directive';
 import { AddNotifComponent } from './add-notif/add-notif.component';
+import { EditarUsuarioComponent } from './editar-usuario/editar-usuario.component';
 
 
 // import { MatMomentDateModule } from '@angular/material-moment-adapter';
@@ -75,7 +76,8 @@ import { AddNotifComponent } from './add-notif/add-notif.component';
     OperadorAddNominasComponent,
     OperadorAddContabilidadComponent,
     DragDropDirective,
-    AddNotifComponent
+    AddNotifComponent,
+    EditarUsuarioComponent
   ],
   imports: [
     BrowserModule,
@@ -96,7 +98,7 @@ import { AddNotifComponent } from './add-notif/add-notif.component';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [MatDialogModule]
+  entryComponents: [MatDialogModule, FormsModule]
 
 })
 export class AppModule { }

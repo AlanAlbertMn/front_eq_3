@@ -52,7 +52,7 @@ export class CargaDocumentosComponent implements OnInit {
     fecha: this.date, 
     periodo: "2020-12-01", 
     estado: 0,
-    isActive: 1, 
+    isActive: 0, 
     usuario_fk: this.auth.id,
     dept: 1,
     usuario_receptor: 0
