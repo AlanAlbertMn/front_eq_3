@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+    <style>
+        html{
+            height: 100%;
+            background-color: #fbe192;
+            overflow: auto;
+        }
+        body {
+            position: relative;
+            height: auto;
+            min-height: 100% !important;
+            background-color: #fbe192;         /* optional, center the image */
+        }
+        /* html { 
+            background: url("../../assets/MenuImage.png") no-repeat center center fixed; 
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        } */
+
+        /* body{
+            background: #fbe192;
+            background-color: #fbe192;
+        } */
+        h1{
+            color: black;
+            text-align: center;
+            position: relative;
+            margin-top: 5%;
+            /* margin-left: 35%; */
+            margin-bottom: 0px;
+            font-size: 50px;
+        }
+
+        .header{
+            display: flex;
+            margin-bottom: 0px;
+        }
+
+        #log_out{
+            color: black; 
+            position: absolute; 
+            right: 5%;
+            margin-top: 10px;
+            margin-right: 2%;
+            font-style: italic; 
+            text-decoration: none;
+            /* margin-bottom: 40px; */
+        }
+
+        .breadcrumb{
+            position: relative;
+            margin-left: 5%;
+            margin-top: 0px;
+            /* margin: 50px 50px 75px 50px; */
+            /* padding: 10px 16px; */
+            list-style: none; 
+            background-color: transparent;
+            height: 40px;
+        }
+
+        .breadcrumb li {
+            display: inline;
+            font-size: 18px;
+        }
+
+        .breadcrumb li+li:before {
+            padding: 8px;
+            color: black;
+            content: ">";
+        }
+
+        .breadcrumb li a:hover {
+            color: #01447e;
+            text-decoration: underline;
+        }
+
+        .breadcrumb li a:after{
+            color: black;
+            text-decoration: none;
+        }
+
+        .divider{
+            position: relative;
+            margin-left: 7%;
+            margin-right: 3%;
+            width: auto;
+            height: 3px;
+            background-color: gray;
+        }
+
+        .presentacion{
+            position: relative;
+            display: flex;
+            margin: 2% 100px 5%;
+            /* padding: 10px 16px; */
+            list-style: none; 
+        }
+
+        .presentacion li {
+            padding: 0px 12% 0px;
+            font-size: 18px;
+        }
+
+        .segunda{
+            position: relative;
+            display: flex;
+            margin: 0px 3% 5% 8%;
+            /* padding: 10px 16px; */
+            list-style: none; 
+        }
+
+        .segunda li {
+            padding: 0px 5% 0px;
+            font-size: 18px;
+        }
+
+
+        .cajaFechaI{
+            position: absolute;
+            top: 197px;
+            left: 200px;
+        }
+
+        .cajaFechaF{
+            position: absolute;
+            top: 197px;
+            left: 1000px;
+        }
+
+        .botonA{
+            position: relative;
+            top: 410px;
+            left: 1000px;
+            background-color: coral;
+            color: white;
+        }
+
+        .font-weight-bold{
+            font-size: 50px;
+            margin: 0px 0px 1% 30%;
+        }
+
+        ::ng-deep mat-form-field {
+            /* background-color:rgba(255, 198, 162, 255); */
+            background: white !important;
+            width: 350px;
+        }
+
+        mat-datepicker-toggle{
+            background: transparent;
+        }
+
+        mat-datepicker{
+            background: transparent;
+        }
+
+        .date{
+            margin-top: -25px;
+        }
+
+        .input-file{
+            position: relative;
+            margin-left: 15%;
+            margin-bottom: 1%;
+        }
+
+        
+        .p-file-center{
+            /* font-weight: bold; */
+            /* margin-left: 25%; */
+            font-size: 14px;
+            margin-left: 12.5%;
+            margin-bottom: 2%;
+        }
+
+        .report{
+            /* padding: 0px 2% 1% 75%; */
+            position: absolute;
+
+            right: 3%;
+            height: 60px;
+            width: 250px;
+        }
+
+        .tabla{
+            position: relative;
+            border: 4px cadetblue;
+            border-style: dotted;
+            /* background-color: coral; */
+            background: transparent;
+            margin-top: 0px;
+            margin-left: 7%;
+            width: 85%;
+            height: 47%;
+        }
+
+        .label2{
+            position: relative;
+            font-weight: bold;
+            font-size: 25px;
+            margin-top: 2%;
+            margin-left: 30%;
+        }
+
+        .save{
+            position: relative;
+            margin-left: 45%;
+            margin-right: 10%;
+            background-color: cadetblue;
+            height: 50px;
+            width: 200px;
+            margin-bottom: 3%;
+        }
+
+        .uploadfilecontainer {
+            background-image: url("../../assets/folder.png");
+            background-repeat: no-repeat;
+            background-size: 100px;
+            background-position: center;
+            height: 200px;
+            width: 80%;
+            margin: 20px auto;
+            border: 2px dashed #1C8ADB;
+            border-radius: 10px;
+        }
+
+        .uploadfilecontainer:hover {
+            cursor: pointer;
+            background-color: #9ecbec !important;
+            opacity: 0.8;
+        }
+
+        .files-list {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            margin: 10px auto;
+            background: #ffffff;
+            border: 1px dashed;
+            border-radius: 12px;
+            padding: 5px;
+            color: #1c8adb;
+        }
+
+        .files-list .delete-file {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+        .files-list .delete-file img{
+            width:30px;
+        }
+    </style>
+    <body>
+        <h1 id="titulo" >Portal del Administrador</h1>
+        <div class="header">
+            <ul class="breadcrumb">
+                <li><a routerLink="/op_menu">Mi Portal</a></li>
+                <li><a routerLink="/oper_contabilidad">Contabilidad</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Añadir Documento</li>
+            </ul>
+            <a id="log_out" href="./auth/">Cerrar Sesión</a>
+        </div>
+        <div class="divider"></div>
+        <ul class="presentacion">
+            <li><form class="form-inline" [formGroup]="userform"  id="form-userType">
+                <label for="usertypes">Cliente:  </label>
+                <select class="form-control ml-2 mr-sm-2" #mySelect  (change)="changed($event.target.value)">
+                    <option *ngFor = "let user of users;" [value]='user.id'>{{user.nombre}}</option>
+                </select>
+            </form> </li>
+            <!-- <li><form class="form-inline"[formGroup]="newform"  id="form-userStatus">
+                <label for="status">Extensiones: </label>
+                <select class="form-control ml-2 mr-sm-2" formControlName="extensions" id="status">
+                    <option *ngFor="let stat of extensions; let i = index" [value]="extensions[i].name">
+                        {{extensions[i].name}}
+                    </option>
+                </select>
+            </form></li> -->
+        </ul>
+        <ul class = "segunda">
+            <!-- <li><form class="form-inline"[formGroup]="form"  id="form-userStatus">
+                <label for="dept">Departamentos: </label>
+                <select class="form-control ml-2 mr-sm-2" [(ngModel)]="dep" (change)="deptchanged()" formControlName="dept" id="dept">
+                    <option *ngFor="let stat of dept; let i = index" [value]="dept[i].id">
+                        {{dept[i].name}}
+                    </option>
+                </select>
+            </form></li> -->
+
+            <li class="date">
+                <mat-label>Periodo: </mat-label>
+                <mat-form-field appearance="fill">
+                    <mat-label class="inside">Escoge una fecha</mat-label>
+                    <input matInput [matDatepicker]="picker" [ngModel]="periodo | date:'yyyy-MM-dd'" (ngModelChange)="periodo = $event;">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+                </mat-form-field>
+            </li>
+        </ul>
+
+        <div class="tabla" >
+            <label class="label2">Arrastre sus archivos aquí o haga clic en el área</label>
+            <div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop (onFileDropped)="uploadFiles($event)">
+                
+                <input hidden type="file" #fileInput [formControl]="file" (change)="uploadFiles($event.target.files)">
+            </div>
+            <div  class="files-list" *ngFor="let file of files;let i=index">
+              <p>{{ file }}</p>
+              <button class="delete-file" (click)="deleteAttachment(i)">
+                <img src="../../assets/trash.png">
+              </button>
+            </div>
+            <button [disabled]="!selectedFiles" mat-raised-button color="primary" class="save" 
+                (click)="uploadFile()" mat-raised-button color="primary"> 
+                    Cargar Documento
+                </button> 
+        </div>
+        <!-- <div class="tabla" >
+            <button mat-raised-button color="warn" class="report">Reportar documento faltante</button>
+
+            <form class="form-file" action="upload.php" method="POST">
+                <label class="font-weight-bold" for="exampleInputFile">Alta de documentos</label><br/>
+                <label class="label2">Arrastre sus archivos aquí o haga clic en el área.</label><br/>
+                <input class="input-file" [formControl]="file" (change)="fileChange($event)" type="file" placeholder="File">
+                <p class="p-file-center">
+                    <i class="fafa-upload" aria-hidden="true" ></i>Anexa Documentos en formato .pdf, .jpg, .doc ó .xls</p>
+                <button [disabled]="!selectedFiles" mat-raised-button color="primary" class="save" 
+                (click)="uploadFile()" mat-raised-button color="primary"> 
+                    Cargar Documento
+                </button> 
+            </form>
+        </div> -->
+        
+        
+        <!-- <table class="tabla">
+            <tr class="datos">
+                <th>
+                <button mat-raised-button color="warn" class="report">Reportar documento faltante</button>
+                <form class="form-file" action="upload.php" method="POST">
+                    <label class="font-weight-bold" for="exampleInputFile">Alta de documentos</label><br/>
+                    <label class="label2">Arrastre sus archivos aquí o haga clic en el área.</label><br/>
+                    <input class="input-file" type="file" multiple>
+                    <p class="p-file-center">
+                    <i class="fafa-upload" aria-hidden="true" ></i>Anexa Documentos en formato .pdf, .jpg, .doc ó .xls</p>
+                    <button  mat-raised-button color="primary" class="save" (click)="this.create_document()">Guardar Documento</button>
+                    
+                </form>
+                </th>
+            </tr>
+        </table> -->
+        
+        
+        
+    </body>
+</html>

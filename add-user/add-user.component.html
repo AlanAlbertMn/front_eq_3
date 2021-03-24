@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         html{
+            height: 100%;
+            background-color: #fbe192;
+            overflow: auto;
+        }
+        body {
+            position: relative;
+            height: auto;
+            min-height: 100% !important;
+            background-color: #fbe192;         /* optional, center the image */
+        }
+        h1{
+            color: black;
+            position: relative;
+            margin-top: 5%;
+            margin-left: 35%;
+            margin-bottom: 1%;
+            font-size: 50px;
+        }
+        h3{
+            color: black;
+            position: relative;
+            margin-top: 0px;
+            margin-left: 5%;
+            margin-bottom: -23px;
+        }
+        #log_out{
+            color: black; 
+            position: relative; 
+            margin-left: 90%;
+            font-style: italic; 
+            text-decoration: none;
+            margin-bottom: 40px;
+        }
+
+        .breadcrumb{
+            position: relative;
+            margin-left: 5%;
+            margin-top: 20px;
+            margin-bottom: -45px;
+            /* margin: 50px 50px 75px 50px; */
+            /* padding: 10px 16px; */
+            list-style: none; 
+            background-color: transparent;
+            height: 45px;
+        }
+
+        .breadcrumb li {
+            display: inline;
+            font-size: 18px;
+        }
+
+        .breadcrumb li+li:before {
+            padding: 8px;
+            color: black;
+            content: ">";
+        }
+
+        .breadcrumb li a:hover {
+            color: #01447e;
+            text-decoration: underline;
+        }
+
+        .breadcrumb li a:after{
+            color: black;
+            text-decoration: none;
+        }
+
+        .divider{
+            position: relative;
+            margin-top: 1%;
+            margin-left: 6%;
+            width: 1290px;
+            height: 3px;
+            background-color: gray;
+        }
+
+        .layout{
+            display: flex;
+        }
+
+        .layout div{
+            flex: 50%;
+        }
+
+        .presentacion{
+            position: relative;
+            margin: 2% 15px 35px 150px ;
+            /* padding: 10px 16px; */
+            list-style: none; 
+        }
+
+        .presentacion li{
+            color: black;
+            font-size: 20px;
+            margin: 0px 0px 3%;
+        }
+
+        .presentacion li label{
+            margin-right: 20px;
+        }
+
+        .right{
+            position: relative;
+            margin: 2% 0px 3%;
+            list-style: none; 
+        }
+
+        .right li{
+            color: black;
+            font-size: 20px;
+            margin: 0px 0px 3%;
+        }
+
+        .form-control{
+            width: 350px;
+        }
+
+        #usertypes{
+            width: 200px;
+            resize: both;
+        }
+
+        .form-check-label{
+            display: block;
+            font-size: 16px;
+        }
+
+        .form-check li{
+            margin-bottom: 1%;
+            margin-left: 3%;
+        }
+
+        #departamentos{
+            color: black;
+            font-size: 20px;
+            margin-left: -3%;
+        }
+
+        .form-check2{
+            display: flex;
+        }
+        #estado{
+            font-size: 20px;
+        } 
+
+        .form-check2 li{
+            margin-top: 5px;
+            margin-bottom: 1%;
+            margin-left: 7%;
+        }
+
+        #status-label{
+            font-size: 14px;
+        }
+
+        .btn{
+            margin-left: 5%;
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Portal de Administrador</h1>
+    <h3>Bienvenido, !</h3>
+        <!--  {{name}} -->
+    <ul class="breadcrumb">
+        <li><a routerLink="/admin_menu">Mi Portal</a></li>
+        <li><a routerLink="/admin_users">Usuarios</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Agregar Usuario</li>
+    </ul>
+    <a id="log_out" routerLink="/auth">Cerrar Sesión</a>
+    <div class="divider"></div>
+    <ul class="layout">
+        <div class="presentacion">
+            <li><form [formGroup]="form" (change)="submitUserTypes()" id="form-userType">
+                <label for="usertypes">Tipo de usuario: </label>
+                <select formControlName="usertypes" class="form-control" id="usertypes">
+                    <option *ngFor="let type of usertypes; let i = index" [value]="usertypes[i].id">
+                        {{usertypes[i].name}}
+                    </option>
+                </select>
+            </form> </li>
+            <li > 
+                <label for="razonsocial">Razon Social</label>
+                <input id="razonsocial" type="text" class="form-control" [ngModel]="reason" (ngModelChange)="reason = $event;">
+            </li>
+            <li>
+                <label for="nombre">Nombre de Contacto</label>
+                <input id="nombre" type="text" class="form-control" [ngModel]="name" (ngModelChange)="name = $event;">
+            </li>
+            <li>
+                <label for="rfc">RFC</label>
+                <input id="rfc" type="text" class="form-control" [ngModel]="rfc" (ngModelChange)="rfc = $event;">
+            </li>
+            <li>
+                <label for="phone">Teléfono</label>
+                <input id="phone" class="form-control" type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" [ngModel]="phone" (ngModelChange)="phone = $event;" placeholder="xxx-xxx-xxxx">
+            </li>
+        </div>
+        <div class="right">
+            <li>
+                <label for="address">Domicilio</label>
+                <input id="address" type="text" class="form-control" [ngModel]="address" (ngModelChange)="address = $event;">
+            </li>
+            <li>
+                    <label for="email">Correo</label>
+                    <input id="email" class="form-control" type="email" placeholder="Ingresa tu correo" [ngModel]="email" (ngModelChange)="email = $event;" required>
+                    <small id="emailHelp" class="form-text text-muted">Ejemplo: correo@mail.com</small>
+            </li>
+            <div class="form-check" id="form-check">
+                <label id="departamentos">Departamentos</label>
+                <li>
+                    <input class="form-check-input" type="checkbox" [(ngModel)]="nom" value="" id="nominas">
+                    <label class="form-check-label" for="nominas">
+                        Nominas
+                    </label>
+                </li>
+                <li>
+                    <input class="form-check-input" type="checkbox" [(ngModel)]="cont" value="" id="contabilidad">
+                    <label class="form-check-label" for="contabilidad">
+                        Contabilidad    
+                    </label>
+                </li>
+                <li>
+                    <input class="form-check-input" type="checkbox" [(ngModel)]="rec" value="" id="recursoshumanos">
+                    <label class="form-check-label" for="recursoshumanos">
+                        Recursos Humanos
+                    </label>
+                </li>
+            </div>
+            <div class="form-check2">
+                <label id="estado">Estado</label>
+                <li>
+                    <input class="form-check-input" type="checkbox" value="" id="status">
+                    <label id = "status-label"class="form-check-label" for="status">
+                        Activo
+                    </label>
+                </li>
+            </div>
+            <button type="button" class="btn btn-success" (click)="input()">Enviar</button>
+            <button type="button" class="btn btn-danger" routerLink="/admin_users">Cancelar</button>
+        </div>
+    </ul>
+    
+    
+</body>
+</html>
