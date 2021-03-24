@@ -203,4 +203,15 @@ export class CrudService {
     });
   }
 
+  updateDoc(body){
+    let url = this.URL + 'updatedoc/';
+    console.log("aqui te va el doc" + body);
+    return axios.put(url, body, {
+      headers:{
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      }
+    });
+  }
+
 }

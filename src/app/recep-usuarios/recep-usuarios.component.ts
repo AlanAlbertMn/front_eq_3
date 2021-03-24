@@ -19,14 +19,13 @@ import {
   MAT_DIALOG_DATA
 } from '@angular/material/dialog';  
 import { EditarUsuarioComponent } from '../editar-usuario/editar-usuario.component';
-import { async } from 'rxjs/internal/scheduler/async';
 
 @Component({
-  selector: 'app-administrador-usuarios',
-  templateUrl: './administrador-usuarios.component.html',
-  styleUrls: ['./administrador-usuarios.component.css']
+  selector: 'app-recep-usuarios',
+  templateUrl: './recep-usuarios.component.html',
+  styleUrls: ['./recep-usuarios.component.css']
 })
-export class AdministradorUsuariosComponent implements OnInit {
+export class RecepUsuariosComponent implements OnInit {
   // Form for type of user 
   form: FormGroup;
   usertypes = [];
@@ -64,11 +63,10 @@ export class AdministradorUsuariosComponent implements OnInit {
   dataSource = new MatTableDataSource();
   @ViewChild(MatTable) table: MatTable<any>;
 
-
-
   constructor(private router: Router, private crudService: CrudService,
     private formBuilder: FormBuilder, private auth: AuthService,
-    private dialog: MatDialog) {
+    private dialog: MatDialog) { 
+
       this.form = this.formBuilder.group({
         usertypes: ['']
       });
@@ -86,8 +84,27 @@ export class AdministradorUsuariosComponent implements OnInit {
         this.status = status;
         this.newform.controls.status.patchValue(this.status[0].id);
       });
-    }
-  // name, email, passwd, rfc, dom, dept, tel, userType}
+  }
+
+  getUserTypes(){
+    return [
+      {id: 999, name: 'Todos'},
+      {id: 1, name: 'Cliente'},
+      {id: 2, name: 'Operador de Nomina'},
+      {id: 3, name: 'Recepcion'},
+      {id: 4, name: 'Supervisor'},
+      {id: 5, name: 'Administrador'}
+    ];
+  }
+
+  getUserStatus(){
+    return [
+      {id: 3, name: 'Todos'},
+      {id: 1, name: 'Activo'},
+      {id: 0, name: 'No Activo'}
+    ];
+  }
+  
   user = {
     id: 0, 
     nombre: "",
@@ -112,10 +129,15 @@ export class AdministradorUsuariosComponent implements OnInit {
     'Inactivo',
     'Activo'
   ];  
+  
 
   ngOnInit(): void {
+    this.getUsers();
+  }
+
+  getUsers(){
     console.log(this.auth.type);
-    this.crudService.getusersByAdmin(this.auth.type)
+    this.crudService.getusersByAdmin(5)
       .then(res => {
         this.dataSource = new MatTableDataSource(res.data);
         this.users = res.data;
@@ -128,25 +150,6 @@ export class AdministradorUsuariosComponent implements OnInit {
       });
   }
 
-  getUserTypes(){
-    return [
-      {id: 999, name: 'Todos'},
-      {id: 1, name: 'Cliente'},
-      {id: 2, name: 'Operador de Nomina'},
-      {id: 3, name: 'Recepcion'},
-      {id: 4, name: 'Supervisor'},
-      {id: 5, name: 'Administrador'}
-    ];
-  }
-
-  getUserStatus(){
-    return [
-      {id: 3, name: 'Todos'},
-      {id: 1, name: 'Activo'},
-      {id: 0, name: 'No Activo'}
-    ];
-  }
-
   submitUserTypes() { console.log(this.form.value); }
 
   submitUserStatus() { console.log(this.newform.value); }
@@ -157,15 +160,11 @@ export class AdministradorUsuariosComponent implements OnInit {
     console.log("nuevo estado:" + this.estado);
     this.cliente = this.form.value.usertypes;
     console.log("nuevo cliente:" + this.cliente);
-    this.getInfo();
-    // else {
-    //   this.users = this.users.filter(usuario => usuario.isActive == this.estado && usuario.tipo_user == this.cliente);
-    // }
-    
+    this.getInfo();    
   }
 
   getInfo(){
-    this.crudService.getusersByAdmin(this.auth.type)
+    this.crudService.getusersByAdmin(5)
     .then(res => {
       this.users = res.data;
       console.log("aqui te van los usuarios papu");
@@ -174,7 +173,7 @@ export class AdministradorUsuariosComponent implements OnInit {
       if(this.cliente != 999) {this.users = this.users.filter(usuario => usuario.tipo_user == this.cliente); }
       if(this.estado != 3) { this.users = this.users.filter(usuario => usuario.isActive == this.estado);}
       console.log("users update" + this.users);
-    this.dataSource = new MatTableDataSource(this.users);
+      this.dataSource = new MatTableDataSource(this.users);
       return res;
     })
     .catch(err => {
@@ -248,7 +247,8 @@ export class AdministradorUsuariosComponent implements OnInit {
     + ", correo " + usuar.correo
     +  ", telefono " + usuar.telefono
     +  ", domicilio " + usuar.domicilio
-    +  ", contraseña " + usuar.passwd
+    +  ", contraseña " + usuar.password
+    +  ", RFC " + this.usuario.rfc
     );
     this.editDialog();
   }
@@ -285,35 +285,49 @@ export class AdministradorUsuariosComponent implements OnInit {
       console.log(result.password);
 
       this.user.rfc = result.rfc;
-      console.log(result.rfc);
+      console.log("RFC " + result.rfc);
 
       this.user.domicilio = result.address;
       console.log(result.address);
 
-      if(result.id == undefined){}else{this.update();}
-      
+      if(result.id == undefined){}
+      else{
+        this.update();
+      }
     });
+    
 
     
     // const dialogConfig = new MatDialogConfig();
     // this.matDialog.open(DialogBodyComponent, dialogConfig);
   }
 
-  update(){
-    
-    this.crudService.updateUser(this.user)
+  async update(){
+    console.log(this.auth.type);
+    await this.crudService.updateUser(this.user);
+    this.crudService.getusersByAdmin(5)
       .then(res => {
-        
-        console.log("aqui te van el usuario mamu");
+        this.dataSource = new MatTableDataSource(res.data);
+        this.users = res.data;
+        console.log("si se pudo");
         console.log(res.data);
-        this.getInfo();
         return res;
       })
       .catch(err => {
         console.log(err);
       });
-      
+    
+      // .then(res => {
+      //   console.log("aqui te van el usuario mamu");
+      //   console.log(res.data);
+      //   this.getUsers();
+      //   return res;
+      // })
+      // .catch(err => {
+      //   console.log(err);
+      // });
   }
+
 }
 
 @Component({

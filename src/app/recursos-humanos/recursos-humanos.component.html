@@ -235,10 +235,13 @@
 
               <ng-container matColumnDef="Opciones">
                 <th mat-header-cell *matHeaderCellDef> Opciones</th>
-                <td mat-cell  *matCellDef="let row">
+                <td mat-cell  *matCellDef="let element">
                     <div class="btn">
-                        <button mat-icon-button color="primary" >
-                            <mat-icon>cloud_download</mat-icon>
+                        <button mat-icon-button color="primary" (click)="seen(element)">
+                            <mat-icon [ngClass]="{
+                                'seen' : element.estado == 2,
+                                'negative' : element.estado != 2
+                            }">cloud_download</mat-icon>
                         </button>
                     </div>
                 </td>

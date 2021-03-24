@@ -36,6 +36,17 @@ export class RecursosHumanosComponent implements OnInit {
     dept: 3
   }
 
+  doc = {
+    id: 0,
+    name: "",
+    ext: "",
+    periodo: "",
+    estado: 2,
+    isActive: 1,
+    dept: 3,
+    usuario_receptor: this.auth.id
+  }
+
   constructor(private router: Router, 
     private crudService: CrudService,
     private auth: AuthService) { }
@@ -60,6 +71,10 @@ export class RecursosHumanosComponent implements OnInit {
     this.hasta = formatDate(this.hasta, 'yyyy-MM-dd', 'en');
     console.log("hasta fecha" + this.hasta);
 
+    this.getInfo();    
+  }
+
+  getInfo(){
     this.crudService.getdocsByUser(this.format)
       .then(res => {
         this.dataSource = new MatTableDataSource(res.data);
@@ -74,6 +89,38 @@ export class RecursosHumanosComponent implements OnInit {
       .catch(err => {
         console.log(err);
       });
+  }
+
+  seen(document: any){
+    if (document.estado > 2){
+      console.log("sin cambios");
+    }
+    else{
+      this.doc.id = document.id_documentos;
+      console.log("id: " + document.id_documentos);
+
+      this.doc.name = document.nombre_doc;
+      console.log("name: " + document.nombre_doc);
+
+      this.doc.ext = document.ext_archivo;
+      console.log("ext: " + document.ext_archivo);
+
+      this.doc.periodo = formatDate(document.periodo_info, 'yyyy-MM-dd', 'en'); ;
+      console.log("periodo: " + this.doc.periodo);
+
+      this.doc.estado = 2;
+      console.log("estado: " + this.doc.estado);
+
+      this.crudService.updateDoc(this.doc)
+      .then(res => {
+        console.log("documento visto ");
+        this.getInfo();
+        // return res;
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    }
   }
 
 }

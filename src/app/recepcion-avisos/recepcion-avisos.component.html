@@ -7,10 +7,10 @@
     <title>Document</title>
 </head>
 <body>
-    <h1 id="titulo" >Portal del Administrador</h1>
+    <h1 id="titulo" >Portal de Perfil de Recepción</h1>
     <div class="header">
         <ul class="breadcrumb">
-            <li><a routerLink="/admin_menu">Mi Portal</a></li>
+            <li><a routerLink="/rec_menu">Mi Portal</a></li>
             <li class="breadcrumb-item active" aria-current="page">Notificaciones</li>
         </ul>
         <a id="log_out" href="./auth/">Cerrar Sesión</a>
@@ -18,7 +18,7 @@
         
     <div class="divider"></div>
 
-    <button class="buttonAdd" routerLink = "/add_notif">Añadir Notificacion</button>
+    <button class="buttonAdd" routerLink = "/rec_add_notif">Añadir Notificacion</button>
         <table mat-table multiTemplateDataRows [dataSource]="notifs" class="tabla" >
 
             <ng-container matColumnDef="Nombre">

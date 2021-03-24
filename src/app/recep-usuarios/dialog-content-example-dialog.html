@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .close{
+    background-color: coral;
+    color: white;
+    width: 120px;
+    height: 35px;
+    border-radius: 5px;
+    font-size: 18px;
+    border: 3px solid rgb(250, 76, 12);
+  }
+</style>
+<body>
+  <h2 mat-dialog-title>Información sobre {{nombre}}</h2>
+  <div mat-dialog-content class="mat-typography">
+    <!-- <h3>Develop across all platforms</h3> -->
+      <div>
+        <h3>Cuenta con id: {{id}}</h3>
+      </div>
+      <div>
+        <h3>Su nombre de usuario: {{nombre}}</h3>
+      </div>
+      <div>
+        <h3>El tipo de usuario es {{tipos[type]}}</h3>
+      </div>
+      <div>
+        <h3>Su correo es  {{email}}</h3>
+      </div>
+      <div>
+        <h3>Su numero de contacto es  {{cel}}</h3>
+      </div>
+      <div>
+        <h3>Su dirección es {{address}}</h3>
+      </div>
+      <div>
+        <h3>El estado de este cliente es {{estados[status]}}</h3>
+      </div>
+  </div>
+
+  <div mat-dialog-actions >
+    <button class="close" mat-dialog-close (click)="closeDialog()" >Cierra cuadro</button>
+  </div>
+</body>
+</html>
+

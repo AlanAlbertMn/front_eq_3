@@ -59,6 +59,7 @@ export class EditarUsuarioComponent implements OnInit {
       this.user.domicilio = this.data.address;
       this.user.telefono = this.data.phone;
       this.user.passwd = this.data.pass; 
+      this.user.rfc = this.data.rfc;
       this.tipo = this.data.tipo;
     }
 

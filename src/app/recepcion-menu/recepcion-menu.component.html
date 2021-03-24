@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Sistema de Datos</title>
+    </head>
+    <body>
+        <h1>Portal de Perfil de Recepción</h1>
+        <div class="header">
+            <h3>Bienvenido, {{name}} !</h3>
+            <a id="log_out" routerLink="/auth">Cerrar Sesión</a>
+        </div>
+        
+        <div class="presentacion"></div>
+        <ul>
+            <li>
+                <a class= "usuarios" routerLink="/rec_users">
+                    <img src = "../../assets/folder.png">
+                    Usuarios
+                </a>
+            </li>
+            <li>
+                <a routerLink="/rec_notif">
+                    <img src = "../../assets/folder.png">
+                        Notificaciones
+                </a>
+            </li>
+        </ul>
+    </body>
+</html>

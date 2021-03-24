@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
           break;
         }
         case 3: {
-          // this.router.navigate(['./menu_principal']); 
+          this.router.navigate(['./rec_menu']); 
           break;
         }
         case 4: {

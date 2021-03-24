@@ -6,19 +6,20 @@ import {MatTableDataSource} from '@angular/material/table';
 import {MatTable} from '@angular/material/table';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 
+
 @Component({
-  selector: 'app-admin-avisos',
-  templateUrl: './admin-avisos.component.html',
-  styleUrls: ['./admin-avisos.component.css'],
+  selector: 'app-recepcion-avisos',
+  templateUrl: './recepcion-avisos.component.html',
+  styleUrls: ['./recepcion-avisos.component.css'],
   animations: [
     trigger('detailExpand', [
       state('collapsed', style({height: '0px', minHeight: '0'})),
       state('expanded', style({height: '*'})),
       transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
     ]),
-  ],
+  ]
 })
-export class AdminAvisosComponent implements OnInit {
+export class RecepcionAvisosComponent implements OnInit {
   displayedColumns: string[] = ['Nombre', 'Usuario'];
   dataSource = new MatTableDataSource();
   @ViewChild(MatTable) table: MatTable<any>;
@@ -36,12 +37,10 @@ export class AdminAvisosComponent implements OnInit {
     'Supervisor',
     'Administrador'
   ];
-  constructor(private router: Router, private crudService: CrudService) { 
 
-    }
+  constructor(private crudService: CrudService) { }
 
   ngOnInit(): void {
-
     this.crudService.get_notifications()
     .then(res => {
         console.log("obteniendo respuesta");
@@ -53,10 +52,6 @@ export class AdminAvisosComponent implements OnInit {
       .catch(err => {
         console.log(err);
       });
-  }
-
-  addNotif(){
-    // this.router.navigate(['/'])
   }
 
 }

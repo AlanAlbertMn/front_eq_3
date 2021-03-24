@@ -46,6 +46,11 @@ import { OperadorAddContabilidadComponent } from './operador-add-contabilidad/op
 import { DragDropDirective } from './drag-drop.directive';
 import { AddNotifComponent } from './add-notif/add-notif.component';
 import { EditarUsuarioComponent } from './editar-usuario/editar-usuario.component';
+import { RecepcionMenuComponent } from './recepcion-menu/recepcion-menu.component';
+import { RecepcionAvisosComponent } from './recepcion-avisos/recepcion-avisos.component';
+import { RecepAddNotifComponent } from './recep-add-notif/recep-add-notif.component';
+import { RecepUsuariosComponent } from './recep-usuarios/recep-usuarios.component';
+import { RecepAddUsuarioComponent } from './recep-add-usuario/recep-add-usuario.component';
 
 
 // import { MatMomentDateModule } from '@angular/material-moment-adapter';
@@ -77,7 +82,12 @@ import { EditarUsuarioComponent } from './editar-usuario/editar-usuario.componen
     OperadorAddContabilidadComponent,
     DragDropDirective,
     AddNotifComponent,
-    EditarUsuarioComponent
+    EditarUsuarioComponent,
+    RecepcionMenuComponent,
+    RecepcionAvisosComponent,
+    RecepAddNotifComponent,
+    RecepUsuariosComponent,
+    RecepAddUsuarioComponent
   ],
   imports: [
     BrowserModule,

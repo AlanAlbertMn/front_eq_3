@@ -1,0 +1,11 @@
+.seen{
+    color:rgb(64, 136, 224);
+}
+
+.positive {
+    color: red;
+}
+
+.negative {
+    color: black;
+}
