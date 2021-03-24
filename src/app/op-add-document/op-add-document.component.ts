@@ -54,6 +54,15 @@ export class OpAddDocumentComponent implements OnInit {
     usuario_receptor: 0
   }
 
+  log = {
+    /*action that is made*/
+    desc: 0,
+    /* user id */
+    id: this.auth.id,
+    /* doc id */
+    doc: 0
+  }
+
   constructor(
     private router: Router, private crudService: CrudService,
     private formBuilder: FormBuilder, private auth: AuthService,
@@ -128,10 +137,16 @@ export class OpAddDocumentComponent implements OnInit {
     this.cliente = parseInt(value);
   }
 
-  // deptchanged(){
-
-  //   console.log("departamento" + parseInt(this.dep));
-  // }
+  newAction(){
+    this.crudService.addLog(this.log)
+    .then(res => {
+      console.log("log creado");
+      return res;
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  }
 
   create_document(){
     // console.log("departamento: " + this.dep);
@@ -140,7 +155,10 @@ export class OpAddDocumentComponent implements OnInit {
     // this.extension = this.newform.value.extensions;
     // console.log("nuevo estado:" + this.extension);
     // this.document.ext = this.extension;
+    
+
     this.document.dept = this.auth.dep_actual;
+    
     console.log("document dep: " + this.document.dept);
 
     this.document.usuario_fk = this.auth.id;
@@ -152,22 +170,23 @@ export class OpAddDocumentComponent implements OnInit {
     console.log(this.cliente + "cliente");
     this.document.usuario_receptor = this.cliente;
 
+    this.log.desc = 0;
+
     this.crudService.add_document(this.document)
       .then(res => {
         this.document = res.data;
-        this.date;
+        console.log("resultado " + res.data.idInserted);
+        this.log.doc = res.data.idInserted;
+        this.newAction();
+        // this.date;
         console.log("Funciona");
         this.router.navigate(['./oper_recursos']);
-        // switch(this.auth.type){
-          
-        // }
-        
       })
       .catch(err => {
         console.log(err);
       });
+      
   }
-
 
   uploadFiles(event) {
     for (let index = 0; index < event.length; index++) {

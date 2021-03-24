@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="titulo" >Portal de Perfil de Recepción</h1>
+    <div class="header">
+        <ul class="breadcrumb">
+            <li><a routerLink="/rec_menu">Mi Portal</a></li>
+            <li><a routerLink="/rec_notif">Notificaciones</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Crear Aviso</li>
+        </ul>
+        <a id="log_out" href="./auth/">Cerrar Sesión</a>
+    </div>
+        
+    <div class="divider"></div>
+    <form [formGroup]="form" class="type" (change)="submitUserTypes()" id="form-userType">
+        <label for="usertypes">Tipo de usuario: </label>
+        <select formControlName="usertypes" class="form-control" id="usertypes">
+            <option *ngFor="let type of usertypes; let i = index" [value]="usertypes[i].id">
+                {{usertypes[i].name}}
+            </option>
+        </select>
+    </form>
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1">Contenido del mensaje</label>
+        <textarea class="form-control" [(ngModel)]="notif" id="notif" rows="3"></textarea>
+    </div>
+    <button type="button" class="btn btn-success" id= "send" (click)="submit()">Enviar</button>
+    <button type="button" class="btn btn-danger" id="cancel" routerLink="/rec_notif">Cancelar</button>
+
+</body>
+</html>

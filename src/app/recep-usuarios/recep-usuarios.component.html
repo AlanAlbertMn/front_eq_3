@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+    <body>
+        <h1 id="titulo" >Portal de Perfil de Recepción</h1>
+        <div class="header">
+            <ul class="breadcrumb">
+                <li><a routerLink="/rec_menu">Mi Portal</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Usuarios</li>
+            </ul>
+            <a id="log_out" href="./auth/">Cerrar Sesión</a>
+        </div>
+        <div class="divider"></div>
+        <ul class="presentacion">
+            <li><form class="form-inline" [formGroup]="form" (change)="filter()" id="form-userType">
+                <label style ="font-weight: bold;"for="usertypes">Tipo de usuario: </label>
+                <select class="form-control ml-2 mr-sm-2" formControlName="usertypes" id="usertypes">
+                    <option *ngFor="let type of usertypes; let i = index" [value]="usertypes[i].id">
+                        {{usertypes[i].name}}
+                    </option>
+                </select>
+            </form> </li>
+
+            <li><form class="form-inline" [formGroup]="newform" (change)="filter()" id="form-userStatus">
+                <label style ="font-weight: bold;" for="usertypes">Estados: </label>
+                <select class="form-control ml-2 mr-sm-2" formControlName="status" id="status">
+                    <option *ngFor="let stat of status; let i = index" [value]="status[i].id">
+                        {{status[i].name}}
+                    </option>
+                </select>
+            </form></li>
+
+        </ul>
+
+        <button class="buttonAdd" routerLink="/rec_add_user">Añadir Usuario</button>
+        <table mat-table [dataSource]="users" class="tabla" matSort>
+
+            <ng-container matColumnDef="Nombre">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre Completo </th>
+                <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Correo">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Correo Electronico </th>
+                <td mat-cell *matCellDef="let element"> {{element.correo}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Tipo">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo de Usuario </th>
+                <td mat-cell *matCellDef="let element"> {{tipos[element.tipo_user]}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Estado">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado </th>
+                <td mat-cell *matCellDef="let element"> {{estados[element.isActive] }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Opciones">
+                <th mat-header-cell *matHeaderCellDef> Opciones</th>
+                <td mat-cell  *matCellDef="let element">
+                    <div class="btn">
+                        <button mat-icon-button class="btn_see" (click)= "visualizar(element)">
+                            <mat-icon> person_search</mat-icon>
+                        </button>
+                        <button mat-icon-button (click)="inactive(element)">
+                            <mat-icon>delete_forever</mat-icon>
+                        </button>
+                        <button mat-icon-button class="check"
+                        (click) = "editarUsuario(element)">
+                            <mat-icon>manage_accounts</mat-icon>
+                        </button>
+                    </div>
+                </td>
+            </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;" [disabled]='row.isActive == 0' ></tr>
+        </table>
+    </body>
+</html>
+

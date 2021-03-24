@@ -226,11 +226,11 @@
                         <button mat-icon-button class="btn_see" (click)= "visualizar(element)">
                             <mat-icon> person_search</mat-icon>
                         </button>
-                        <button mat-icon-button>
+                        <button mat-icon-button (click)="inactive(element)">
                             <mat-icon>delete_forever</mat-icon>
                         </button>
                         <button mat-icon-button class="check"
-                        (click) = "approveDoc(element.id_documentos, 1)">
+                        (click) = "editarUsuario(element)">
                             <mat-icon>manage_accounts</mat-icon>
                         </button>
                     </div>
@@ -238,7 +238,7 @@
             </ng-container>
 
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;" [disabled]='row.isActive == 0' ></tr>
         </table>
     </body>
 </html>

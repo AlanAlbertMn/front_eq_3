@@ -1,0 +1,63 @@
+
+body{ 
+    overflow-x : auto; 
+    overflow-y: scroll;
+    width: 1000px;
+    height: 400px;
+  } 
+
+    .names-container{
+        position: relative;
+        padding-bottom: 2%;
+    }
+
+    .contact-container{
+        position: relative;
+        padding-bottom: 2%;
+    }
+
+    .extras-container{
+        position: relative;
+        padding-bottom: 2%;
+    }
+
+    #cel{
+        position: relative;
+        padding-left: 5%;
+    }
+    
+    #nombre-editar{
+        position: relative;
+        padding-left: 5%;
+    }
+
+    #password-field-register{
+        position: relative;
+        padding-left: 5%;
+    }
+
+    #email-field-edit{
+        padding-left:5%;
+    }
+    
+    #confirmpassword-field{
+        padding-left:20px;
+    }
+
+    #rfc-editar{
+        position: relative;
+        padding-left: 5%;
+    }
+
+    #domicilio{
+        position: relative;
+        padding-left: 5%;
+    }
+
+    #guardar{
+        margin-left: 80px;
+    }
+
+    #cancelar{
+        margin-left: 40px;
+    }

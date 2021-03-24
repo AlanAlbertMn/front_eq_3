@@ -45,8 +45,15 @@ import { OperadorAddNominasComponent } from './operador-add-nominas/operador-add
 import { OperadorAddContabilidadComponent } from './operador-add-contabilidad/operador-add-contabilidad.component';
 import { DragDropDirective } from './drag-drop.directive';
 import { AddNotifComponent } from './add-notif/add-notif.component';
+import { EditarUsuarioComponent } from './editar-usuario/editar-usuario.component';
+import { RecepcionMenuComponent } from './recepcion-menu/recepcion-menu.component';
+import { RecepcionAvisosComponent } from './recepcion-avisos/recepcion-avisos.component';
+import { RecepAddNotifComponent } from './recep-add-notif/recep-add-notif.component';
+import { RecepUsuariosComponent } from './recep-usuarios/recep-usuarios.component';
+import { RecepAddUsuarioComponent } from './recep-add-usuario/recep-add-usuario.component';
+import { GraphComponent } from './graph/graph.component';
 
-
+import { ChartsModule } from 'ng2-charts';
 // import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 @NgModule({
@@ -75,7 +82,14 @@ import { AddNotifComponent } from './add-notif/add-notif.component';
     OperadorAddNominasComponent,
     OperadorAddContabilidadComponent,
     DragDropDirective,
-    AddNotifComponent
+    AddNotifComponent,
+    EditarUsuarioComponent,
+    RecepcionMenuComponent,
+    RecepcionAvisosComponent,
+    RecepAddNotifComponent,
+    RecepUsuariosComponent,
+    RecepAddUsuarioComponent,
+    GraphComponent
   ],
   imports: [
     BrowserModule,
@@ -92,11 +106,12 @@ import { AddNotifComponent } from './add-notif/add-notif.component';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [MatDialogModule]
+  entryComponents: [MatDialogModule, FormsModule]
 
 })
 export class AppModule { }

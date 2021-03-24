@@ -13,7 +13,7 @@ export class CrudService {
   constructor(
     private auth: AuthService, 
     private http: HttpClient) { 
-      this.URL = 'http://189.190.147.48:3000/';
+      this.URL = 'http://189.190.152.47:3000/';
 
     }
 
@@ -181,6 +181,48 @@ export class CrudService {
     });
   }
 
+  updateUser(body){
+    let url = this.URL + 'updateuser/';
+    console.log("update user " + body);
+    return axios.put(url, body, {
+      headers:{
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      }
+    });
+  }
 
+  addLog(body){
+    let url = this.URL + 'addlog/';
+    console.log("aqui te va la acción papu" + body);
+    return axios.post(url,body,{
+      headers:{
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      }
+    });
+  }
+
+  updateDoc(body){
+    let url = this.URL + 'updatedoc/';
+    console.log("aqui te va el doc" + body);
+    return axios.put(url, body, {
+      headers:{
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      }
+    });
+  }
+
+  getStadistics(body){
+    let url = this.URL + 'estadisticas/';
+    console.log("dame las estadisticas perro" + body);
+    return axios.post(url,body,{
+      headers:{
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      }
+    });
+  }
 
 }

@@ -26,6 +26,14 @@ import { OperadorAddNominasComponent } from './operador-add-nominas/operador-add
 import { OperadorContabilidadComponent } from './operador-contabilidad/operador-contabilidad.component';
 import { OperadorAddContabilidadComponent } from './operador-add-contabilidad/operador-add-contabilidad.component';
 
+import { RecepcionMenuComponent } from './recepcion-menu/recepcion-menu.component';
+import { RecepcionAvisosComponent } from './recepcion-avisos/recepcion-avisos.component';
+import { RecepAddNotifComponent } from './recep-add-notif/recep-add-notif.component';
+import { RecepUsuariosComponent } from './recep-usuarios/recep-usuarios.component';
+import { RecepAddUsuarioComponent } from './recep-add-usuario/recep-add-usuario.component';
+
+import { GraphComponent } from './graph/graph.component';
+
 const routes: Routes = [
   {path: 'auth', component: LoginComponent},
   { path: '',   redirectTo: '/auth', pathMatch: 'full' },
@@ -34,9 +42,9 @@ const routes: Routes = [
   {path: 'contabilidad', component: ContabilidadComponent},
   {path: 'documentacion', component: DocumentacionComponent},
   {path: 'menu_principal', component: MenuPrincipalComponent},
-  {path: 'nominas', component: NominasComponent},
+  // {path: 'nominas', component: NominasComponent},
   {path: 'recursos_humanos', component: RecursosHumanosComponent},
-  {path: 'nominayear', component: NominaYearComponent},
+  {path: 'nominas', component: NominaYearComponent},
   {path: 'admin_menu', component: AdministradorMenuPrincipalComponent},
   {path: 'admin_users', component: AdministradorUsuariosComponent},
   {path: 'admin_docs', component: AdministradorDocumentosComponent},
@@ -49,7 +57,14 @@ const routes: Routes = [
   {path: 'oper_addNominas', component: OperadorAddNominasComponent},
   {path: 'oper_contabilidad', component: OperadorContabilidadComponent},
   {path: 'oper_addContabilidad', component: OperadorAddContabilidadComponent},
-  {path: 'add_notif', component: AddNotifComponent}
+
+  {path: 'add_notif', component: AddNotifComponent},
+  {path: 'rec_menu', component: RecepcionMenuComponent},
+  {path: 'rec_notif', component: RecepcionAvisosComponent},
+  {path: 'rec_add_notif', component: RecepAddNotifComponent},
+  {path: 'rec_users', component: RecepUsuariosComponent},
+  {path: 'rec_add_user', component: RecepAddUsuarioComponent},
+  {path: 'graph', component: GraphComponent}
 ];
 
 @NgModule({

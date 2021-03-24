@@ -54,6 +54,15 @@ export class OperadorAddContabilidadComponent implements OnInit {
     usuario_receptor: 0
   }
 
+  log = {
+    /*action that is made*/
+    desc: 0,
+    /* user id */
+    id: this.auth.id,
+    /* doc id */
+    doc: 0
+  }
+
   constructor(
     private router: Router, private crudService: CrudService,
     private formBuilder: FormBuilder, private auth: AuthService,
@@ -128,10 +137,16 @@ export class OperadorAddContabilidadComponent implements OnInit {
     this.cliente = parseInt(value);
   }
 
-  // deptchanged(){
-
-  //   console.log("departamento" + parseInt(this.dep));
-  // }
+  newAction(){
+    this.crudService.addLog(this.log)
+    .then(res => {
+      console.log("log creado");
+      return res;
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  }
 
   create_document(){
     // console.log("departamento: " + this.dep);
@@ -156,6 +171,9 @@ export class OperadorAddContabilidadComponent implements OnInit {
       .then(res => {
         this.document = res.data;
         this.date;
+        console.log("resultado " + res.data.idInserted);
+        this.log.doc = res.data.idInserted;
+        this.newAction();
         console.log("Funciona");
         this.router.navigate(['./oper_contabilidad']);
       })

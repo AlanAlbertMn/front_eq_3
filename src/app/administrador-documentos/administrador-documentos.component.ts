@@ -91,8 +91,14 @@ export class AdministradorDocumentosComponent implements OnInit  {
     date_limit: this.hasta
   }
 
-  
-  constructor(private router: Router, private crudService: CrudService,
+  log = {
+    desc: 0,
+    id: this.auth.id,
+    doc: 0
+  }
+
+  constructor(private router: Router, 
+    private auth: AuthService, private crudService: CrudService,
     private formBuilder: FormBuilder, public dialog: MatDialog) { 
 
       // this.form = this.formBuilder.group({
@@ -166,11 +172,27 @@ export class AdministradorDocumentosComponent implements OnInit  {
     ];
   } 
 
+  newAction(){
+    this.crudService.addLog(this.log)
+    .then(res => {
+      console.log("log creado");
+      return res;
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  }
+
   approveDoc(num: number, status: number){
     console.log("id " + num);
     console.log("estado " + status);
     this.doc.id = num;
     this.doc.estado = status;
+
+    this.log.desc = 1;
+    this.log.id = this.auth.id;
+    this.log.doc = num;
+
     this.crudService.approve_doc(this.doc)
     .then(res => {
       console.log("documento aprovado");
@@ -180,6 +202,7 @@ export class AdministradorDocumentosComponent implements OnInit  {
       console.log(err);
     });
     this.filter();
+    this.newAction();
   }
 
   changed(value:any){
@@ -229,6 +252,10 @@ export class AdministradorDocumentosComponent implements OnInit  {
 
   deleteDocument(id_value: any, index: any) {
     console.log("documento con id " + id_value + " eliminado");
+
+    this.log.desc = 4;
+    this.log.id = this.auth.id;
+    this.log.doc = id_value;
     
     this.crudService.delete_doc(parseInt(id_value))
     .then(res => {
@@ -239,6 +266,7 @@ export class AdministradorDocumentosComponent implements OnInit  {
       .catch(err => {
         console.log(err);
       });
+    this.newAction();
   }
 
 }

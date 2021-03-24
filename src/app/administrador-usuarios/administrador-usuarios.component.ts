@@ -9,19 +9,17 @@ import {
 import {Router} from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { CrudService } from '../../services/crud.service';
-import { FormBuilder, FormGroup, FormArray, FormControl, ValidatorFn } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, FormControl, Validators} from '@angular/forms';
 import { of } from 'rxjs';
-import {formatDate} from '@angular/common';
 import {MatTableDataSource} from '@angular/material/table';
-import {MatSort} from '@angular/material/sort';
 import {MatTable} from '@angular/material/table';
 import {
   MatDialog,
   MatDialogRef, 
-  MatDialogConfig,
   MAT_DIALOG_DATA
-} from '@angular/material/dialog';
-
+} from '@angular/material/dialog';  
+import { EditarUsuarioComponent } from '../editar-usuario/editar-usuario.component';
+import { async } from 'rxjs/internal/scheduler/async';
 
 @Component({
   selector: 'app-administrador-usuarios',
@@ -46,7 +44,20 @@ export class AdministradorUsuariosComponent implements OnInit {
     type: 0,
     estado: 0,
     address:"",
-    phone: ""
+    phone: "",
+    passwd: "",
+    rfc: ""
+  }
+
+  put = {
+    id:0,
+    nombre: "",
+    email: "",
+    passwd: "",
+    rfc: "",
+    domicilio: "",
+    telefono: "",
+    isActive: 0
   }
 
   displayedColumns: string[] = ['Nombre', 'Correo', 'Tipo', 'Estado', 'Opciones'];
@@ -78,13 +89,14 @@ export class AdministradorUsuariosComponent implements OnInit {
     }
   // name, email, passwd, rfc, dom, dept, tel, userType}
   user = {
-    name: "",
+    id: 0, 
+    nombre: "",
     email: "",
     passwd: "", 
     rfc: 3,
-    dept: [1,2], 
-    cel: 122334,
-    userType: 1, 
+    domicilio:"",
+    telefono: "",
+    isActive: 1
   }
 
   tipos = [
@@ -145,27 +157,29 @@ export class AdministradorUsuariosComponent implements OnInit {
     console.log("nuevo estado:" + this.estado);
     this.cliente = this.form.value.usertypes;
     console.log("nuevo cliente:" + this.cliente);
+    this.getInfo();
+    // else {
+    //   this.users = this.users.filter(usuario => usuario.isActive == this.estado && usuario.tipo_user == this.cliente);
+    // }
+    
+  }
 
+  getInfo(){
     this.crudService.getusersByAdmin(this.auth.type)
     .then(res => {
       this.users = res.data;
       console.log("aqui te van los usuarios papu");
       console.log(res.data);
-
       if(this.estado == 3 && this.cliente == 999){console.log("sin filtros mamacita " + this.users);}
       if(this.cliente != 999) {this.users = this.users.filter(usuario => usuario.tipo_user == this.cliente); }
       if(this.estado != 3) { this.users = this.users.filter(usuario => usuario.isActive == this.estado);}
+      console.log("users update" + this.users);
+    this.dataSource = new MatTableDataSource(this.users);
       return res;
     })
     .catch(err => {
       console.log(err);
     });
-    
-    // else {
-    //   this.users = this.users.filter(usuario => usuario.isActive == this.estado && usuario.tipo_user == this.cliente);
-    // }
-    console.log("users update" + this.users);
-    this.dataSource = new MatTableDataSource(this.users);
   }
 
   visualizar(usuar: any){
@@ -205,6 +219,101 @@ export class AdministradorUsuariosComponent implements OnInit {
     // this.matDialog.open(DialogBodyComponent, dialogConfig);
   }
 
+  inactive(usuar:any){
+    this.user.id = usuar.id;
+    this.user.nombre = usuar.nombre;
+    this.user.email = usuar.correo;
+    this.user.passwd = usuar.password;
+    this.user.rfc = usuar.rfc;
+    this.user.domicilio = usuar.domicilio;
+    this.user.telefono = usuar.telefono;
+    this.user.isActive = 0;
+    this.update();
+  }
+
+  editarUsuario(usuar:any){
+    this.usuario.id = usuar.id;
+    this.usuario.name = usuar.nombre;
+    this.usuario.type = usuar.tipo_user;
+    this.usuario.email = usuar.correo;
+    this.usuario.estado = usuar.isActive;
+    this.usuario.address = usuar.domicilio;
+    this.usuario.phone = usuar.telefono;
+    this.usuario.passwd = usuar.password;
+    this.usuario.rfc = usuar.rfc;
+
+    console.log("usuario id: " + usuar.id 
+    + ", nombre " + usuar.nombre 
+    + ", tipo " + usuar.tipo_user
+    + ", correo " + usuar.correo
+    +  ", telefono " + usuar.telefono
+    +  ", domicilio " + usuar.domicilio
+    +  ", contraseña " + usuar.passwd
+    );
+    this.editDialog();
+  }
+
+  editDialog() {
+    const dialogRef = this.dialog.open(EditarUsuarioComponent, {
+      data: {
+        id: this.usuario.id,
+        name: this.usuario.name,
+        tipo: this.usuario.type,
+        email: this.usuario.email,
+        phone: this.usuario.phone,
+        address: this.usuario.address,
+        status: this.usuario.estado,
+        pass: this.usuario.passwd,
+        rfc: this.usuario.rfc
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+
+      this.user.id = result.id;
+      console.log("id es" + result.id);
+
+      this.user.nombre = result.name;
+      console.log(result.name);
+
+      this.user.telefono = result.phone;
+      console.log(result.phone);
+
+      this.user.email = result.correo;
+      console.log(result.correo);
+
+      this.user.passwd = result.password;
+      console.log(result.password);
+
+      this.user.rfc = result.rfc;
+      console.log(result.rfc);
+
+      this.user.domicilio = result.address;
+      console.log(result.address);
+
+      if(result.id == undefined){}else{this.update();}
+      
+    });
+
+    
+    // const dialogConfig = new MatDialogConfig();
+    // this.matDialog.open(DialogBodyComponent, dialogConfig);
+  }
+
+  update(){
+    
+    this.crudService.updateUser(this.user)
+      .then(res => {
+        
+        console.log("aqui te van el usuario mamu");
+        console.log(res.data);
+        this.getInfo();
+        return res;
+      })
+      .catch(err => {
+        console.log(err);
+      });
+      
+  }
 }
 
 @Component({

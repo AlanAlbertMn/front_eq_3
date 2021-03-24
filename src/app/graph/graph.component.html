@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="node_modules/chart.js/Chart.min.js"></script>
+    <script src="node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="titulo" >Portal del Administrador</h1>
+        <div class="header">
+            <ul class="breadcrumb">
+                <li><a routerLink="/admin_menu">Mi Portal</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Reportes</li>
+            </ul>
+            <a id="log_out" href="./auth/">Cerrar Sesión</a>
+        </div>
+    <div class="graph-buttons">
+        <button mat-raised-button color="primary" class="nominas" (click)="byNominas()">Por nominas</button>
+        <button mat-raised-button color="primary" class="conta" (click)="byContabilidad()">Por contabilidad</button>
+        <button mat-raised-button color="primary"class="rh" (click)="byRH()">Por recursos humanos</button>
+        
+        <form class="form-inline" [formGroup]="userform"  id="form-userType">
+            <label for="usertypes">Usuario:  </label>
+            <select class="form-control ml-2 mr-sm-2" #mySelect  (change)="changed($event.target.value)">
+                <option *ngFor = "let user of users;" [value]='user.id'>{{user.nombre}}</option>
+            </select>
+        </form> 
+    </div>
+    
+
+    <div class="chart-wrapper">
+        <canvas baseChart
+        class="canvas" 
+        [datasets]="barChartData"
+        [labels]="barChartLabels"
+        [options]="barChartOptions"
+        [plugins]="barChartPlugins"
+        [legend]="barChartLegend"
+        [chartType]="barChartType">
+      </canvas>
+    </div>
+</body>
+</html>
