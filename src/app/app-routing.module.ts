@@ -32,6 +32,8 @@ import { RecepAddNotifComponent } from './recep-add-notif/recep-add-notif.compon
 import { RecepUsuariosComponent } from './recep-usuarios/recep-usuarios.component';
 import { RecepAddUsuarioComponent } from './recep-add-usuario/recep-add-usuario.component';
 
+import { GraphComponent } from './graph/graph.component';
+
 const routes: Routes = [
   {path: 'auth', component: LoginComponent},
   { path: '',   redirectTo: '/auth', pathMatch: 'full' },
@@ -61,8 +63,8 @@ const routes: Routes = [
   {path: 'rec_notif', component: RecepcionAvisosComponent},
   {path: 'rec_add_notif', component: RecepAddNotifComponent},
   {path: 'rec_users', component: RecepUsuariosComponent},
-  {path: 'rec_add_user', component: RecepAddUsuarioComponent}
-  
+  {path: 'rec_add_user', component: RecepAddUsuarioComponent},
+  {path: 'graph', component: GraphComponent}
 ];
 
 @NgModule({

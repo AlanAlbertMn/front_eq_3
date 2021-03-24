@@ -20,7 +20,7 @@ export class ContabilidadComponent implements OnInit {
   @ViewChild(MatTable) table: MatTable<any>;
   filterSelectObj:any;
   documents = [];
-  desde="2020-01-01";
+  desde="2010-01-01";
   hasta=formatDate(new Date(), 'yyyy-MM-dd', 'en');
 
   states=[
@@ -45,6 +45,15 @@ export class ContabilidadComponent implements OnInit {
     isActive: 1,
     dept: 1,
     usuario_receptor: this.auth.id
+  }
+
+  log = {
+    /*action that is made*/
+    desc: 2,
+    /* user id */
+    id: this.auth.id,
+    /* doc id */
+    doc: 0
   }
 
   constructor(private router: Router, 
@@ -89,6 +98,7 @@ export class ContabilidadComponent implements OnInit {
     else{
       this.doc.id = document.id_documentos;
       console.log("id: " + document.id_documentos);
+      this.log.doc = document.id_documentos;
 
       this.doc.name = document.nombre_doc;
       console.log("name: " + document.nombre_doc);
@@ -106,12 +116,25 @@ export class ContabilidadComponent implements OnInit {
       .then(res => {
         console.log("documento visto ");
         this.getInfo();
+        
         // return res;
       })
       .catch(err => {
         console.log(err);
       });
+      this.newAction();
     }
+  }
+
+  newAction(){
+    this.crudService.addLog(this.log)
+    .then(res => {
+      console.log("log creado");
+      return res;
+    })
+    .catch(err => {
+      console.log(err);
+    });
   }
 
 }

@@ -21,7 +21,7 @@ export class RecursosHumanosComponent implements OnInit {
   @ViewChild(MatTable) table: MatTable<any>;
   filterSelectObj:any;
   documents = [];
-  desde="2020-01-01";
+  desde="2010-01-01";
   hasta=formatDate(new Date(), 'yyyy-MM-dd', 'en');
 
   states=[
@@ -45,6 +45,15 @@ export class RecursosHumanosComponent implements OnInit {
     isActive: 1,
     dept: 3,
     usuario_receptor: this.auth.id
+  }
+
+  log = {
+    /*action that is made*/
+    desc: 2,
+    /* user id */
+    id: this.auth.id,
+    /* doc id */
+    doc: 0
   }
 
   constructor(private router: Router, 
@@ -91,6 +100,17 @@ export class RecursosHumanosComponent implements OnInit {
       });
   }
 
+  newAction(){
+    this.crudService.addLog(this.log)
+    .then(res => {
+      console.log("log creado");
+      return res;
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  }
+
   seen(document: any){
     if (document.estado > 2){
       console.log("sin cambios");
@@ -98,6 +118,7 @@ export class RecursosHumanosComponent implements OnInit {
     else{
       this.doc.id = document.id_documentos;
       console.log("id: " + document.id_documentos);
+      this.log.doc = document.id_documentos;
 
       this.doc.name = document.nombre_doc;
       console.log("name: " + document.nombre_doc);
@@ -120,6 +141,7 @@ export class RecursosHumanosComponent implements OnInit {
       .catch(err => {
         console.log(err);
       });
+      // this.newAction();
     }
   }
 

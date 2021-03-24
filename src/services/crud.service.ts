@@ -214,4 +214,15 @@ export class CrudService {
     });
   }
 
+  getStadistics(body){
+    let url = this.URL + 'estadisticas/';
+    console.log("dame las estadisticas perro" + body);
+    return axios.post(url,body,{
+      headers:{
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      }
+    });
+  }
+
 }

@@ -43,6 +43,15 @@ export class OperadorRecursosHumanosComponent implements OnInit {
     estado: 0
   }
 
+  log = {
+    /*action that is made*/
+    desc: 0,
+    /* user id */
+    id: this.auth.id,
+    /* doc id */
+    doc: 0
+  }
+
   constructor(private router: Router, private crudService: CrudService,
     private formBuilder: FormBuilder, private auth: AuthService) { 
       
@@ -141,6 +150,10 @@ export class OperadorRecursosHumanosComponent implements OnInit {
     console.log("estado " + status);
     this.doc.id = num;
     this.doc.estado = status;
+
+    this.log.desc = status;
+    this.log.doc = num;
+
     this.crudService.approve_doc(this.doc)
     .then(res => {
       console.log("documento marcado para eliminacion");
@@ -149,7 +162,20 @@ export class OperadorRecursosHumanosComponent implements OnInit {
     .catch(err => {
       console.log(err);
     });
-    this.table.renderRows();
+    this.newAction();
+    this.filter();
+
+  }
+
+  newAction(){
+    this.crudService.addLog(this.log)
+    .then(res => {
+      console.log("log creado");
+      return res;
+    })
+    .catch(err => {
+      console.log(err);
+    });
   }
 
 

@@ -51,6 +51,7 @@ import { RecepcionAvisosComponent } from './recepcion-avisos/recepcion-avisos.co
 import { RecepAddNotifComponent } from './recep-add-notif/recep-add-notif.component';
 import { RecepUsuariosComponent } from './recep-usuarios/recep-usuarios.component';
 import { RecepAddUsuarioComponent } from './recep-add-usuario/recep-add-usuario.component';
+import { GraphComponent } from './graph/graph.component';
 
 
 // import { MatMomentDateModule } from '@angular/material-moment-adapter';
@@ -87,7 +88,8 @@ import { RecepAddUsuarioComponent } from './recep-add-usuario/recep-add-usuario.
     RecepcionAvisosComponent,
     RecepAddNotifComponent,
     RecepUsuariosComponent,
-    RecepAddUsuarioComponent
+    RecepAddUsuarioComponent,
+    GraphComponent
   ],
   imports: [
     BrowserModule,
