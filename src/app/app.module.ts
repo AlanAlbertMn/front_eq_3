@@ -53,7 +53,7 @@ import { RecepUsuariosComponent } from './recep-usuarios/recep-usuarios.componen
 import { RecepAddUsuarioComponent } from './recep-add-usuario/recep-add-usuario.component';
 import { GraphComponent } from './graph/graph.component';
 
-
+import { ChartsModule } from 'ng2-charts';
 // import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 @NgModule({
@@ -106,7 +106,8 @@ import { GraphComponent } from './graph/graph.component';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
