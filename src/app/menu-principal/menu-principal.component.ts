@@ -2,6 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { CrudService } from '../../services/crud.service';
+import { NotificacionesComponent } from '../notificaciones/notificaciones.component';
+
+import {
+  MatDialog,
+  MatDialogRef, 
+  MAT_DIALOG_DATA
+} from '@angular/material/dialog'; 
 
 
 @Component({
@@ -15,7 +22,7 @@ export class MenuPrincipalComponent implements OnInit {
 
   constructor(private router: Router, 
     private crudService: CrudService,
-    private auth: AuthService) { 
+    private auth: AuthService, private dialog: MatDialog) { 
       this.name = this.auth.name;
     }
 
@@ -37,6 +44,13 @@ export class MenuPrincipalComponent implements OnInit {
 
   goDocAdicional(){
     this.router.navigate(['documentacion'])
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(NotificacionesComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(' here is the result ' + result );
+    })
   }
 
 }

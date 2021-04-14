@@ -56,6 +56,12 @@ export class ContabilidadComponent implements OnInit {
     doc: 0
   }
 
+  not = {
+    notificacion: "",
+    tipo_usuario: 2, 
+    usuario_emisor: this.auth.id
+  }
+
   constructor(private router: Router, 
     private crudService: CrudService,
     private auth: AuthService) { }
@@ -135,6 +141,28 @@ export class ContabilidadComponent implements OnInit {
     .catch(err => {
       console.log(err);
     });
+  }
+
+  report(doc: any){
+    this.not.notificacion = "Reporte: Documento faltante con id " + doc.id_documentos +
+    ", reportado por el usuario " + this.auth.name + " con id " + this.auth.id
+    + " en el departamento " + 1;
+    this.crudService.create_notification(this.not)
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
+      this.not.tipo_usuario = 5;
+      this.crudService.create_notification(this.not)
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
 }

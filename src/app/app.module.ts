@@ -54,7 +54,17 @@ import { RecepAddUsuarioComponent } from './recep-add-usuario/recep-add-usuario.
 import { GraphComponent } from './graph/graph.component';
 
 import { ChartsModule } from 'ng2-charts';
+import { NotificacionesComponent } from './notificaciones/notificaciones.component';
 // import { MatMomentDateModule } from '@angular/material-moment-adapter';
+
+import { SupervisorAddContabilidadComponent } from './sup-add-contabilidad/sup-add-contabilidad.component';
+import { SupervisorAddNominasComponent } from './sup-add-nominas/sup-add-nominas.component';
+import { SupMenuComponent } from './supervisor-menu/sup-menu.component';
+import { SupervisorContabilidadComponent } from './supervisor-contabilidad/sup-contabilidad.component';
+import { SupervisorNominasComponent } from './supervisor-nominas/sup-nominas.component';
+import { SupervisorRecursosHumanosComponent } from './supervisor-recursos/sup-recursos-humanos.component';
+import { SupAddRhComponent } from './sup-add-rh/sup-add-rh.component';
+
 
 @NgModule({
   declarations: [
@@ -89,7 +99,15 @@ import { ChartsModule } from 'ng2-charts';
     RecepAddNotifComponent,
     RecepUsuariosComponent,
     RecepAddUsuarioComponent,
-    GraphComponent
+    GraphComponent,
+    NotificacionesComponent,
+    SupervisorAddContabilidadComponent,
+    SupervisorAddNominasComponent,
+    SupervisorContabilidadComponent,
+    SupervisorNominasComponent,
+    SupMenuComponent,
+    SupervisorRecursosHumanosComponent,
+    SupAddRhComponent
   ],
   imports: [
     BrowserModule,

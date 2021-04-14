@@ -70,6 +70,9 @@
         <h1>Portal Cliente</h1>
         <div class="header">
             <h3>Bienvenido, {{name}} !</h3>
+            <button mat-icon-button class="btn_see" (click)="openDialog()" >
+                <mat-icon> person_search</mat-icon>
+            </button>
             <a id="log_out" routerLink="/auth">Cerrar Sesión</a>
         </div>
         <div class="presentacion"></div>

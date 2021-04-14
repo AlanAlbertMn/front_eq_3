@@ -1,0 +1,14 @@
+<mat-dialog-content>
+    <table mat-table multiTemplateDataRows [dataSource]="notifs" class="tabla" >
+
+        <ng-container matColumnDef="Notificacion">
+            <th mat-header-cell *matHeaderCellDef > Notificacion </th>
+            <td mat-cell *matCellDef="let element"> {{element.notificacion}} </td>
+        </ng-container>
+    
+            <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+            <tr mat-row *matRowDef="let element; columns: displayedColumns;"
+                class="example-element-row">
+            </tr>
+    </table>    
+</mat-dialog-content>

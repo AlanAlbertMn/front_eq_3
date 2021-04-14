@@ -33,6 +33,13 @@ import { RecepUsuariosComponent } from './recep-usuarios/recep-usuarios.componen
 import { RecepAddUsuarioComponent } from './recep-add-usuario/recep-add-usuario.component';
 
 import { GraphComponent } from './graph/graph.component';
+import { SupervisorAddContabilidadComponent } from './sup-add-contabilidad/sup-add-contabilidad.component';
+import { SupervisorAddNominasComponent } from './sup-add-nominas/sup-add-nominas.component';
+import { SupMenuComponent } from './supervisor-menu/sup-menu.component';
+import { SupervisorContabilidadComponent } from './supervisor-contabilidad/sup-contabilidad.component';
+import { SupervisorNominasComponent } from './supervisor-nominas/sup-nominas.component';
+import { SupervisorRecursosHumanosComponent } from './supervisor-recursos/sup-recursos-humanos.component';
+import { SupAddRhComponent } from './sup-add-rh/sup-add-rh.component';
 
 const routes: Routes = [
   {path: 'auth', component: LoginComponent},
@@ -64,7 +71,14 @@ const routes: Routes = [
   {path: 'rec_add_notif', component: RecepAddNotifComponent},
   {path: 'rec_users', component: RecepUsuariosComponent},
   {path: 'rec_add_user', component: RecepAddUsuarioComponent},
-  {path: 'graph', component: GraphComponent}
+  {path: 'graph', component: GraphComponent},
+  {path: 'sup_menu', component: SupMenuComponent},
+  {path: 'sup_recursos', component: SupervisorRecursosHumanosComponent},
+  {path: 'sup_nominas', component: SupervisorNominasComponent},
+  {path: 'sup_contabilidad', component: SupervisorContabilidadComponent},
+  {path: 'sup_addContabilidad', component: SupervisorAddContabilidadComponent},
+  {path: 'sup_addNominas', component: SupervisorAddNominasComponent},
+  {path: 'sup_addRH', component: SupAddRhComponent}
 ];
 
 @NgModule({

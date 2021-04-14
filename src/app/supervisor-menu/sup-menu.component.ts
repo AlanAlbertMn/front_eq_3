@@ -4,13 +4,12 @@ import { AuthService } from '../../services/auth.service';
 import { NotificacionesComponent } from '../notificaciones/notificaciones.component';
 import {MatDialog} from '@angular/material/dialog'; 
 
-
 @Component({
-  selector: 'app-op-menu',
-  templateUrl: './op-menu.component.html',
-  styleUrls: ['./op-menu.component.css']
+  selector: 'app-sup-menu',
+  templateUrl: './sup-menu.component.html',
+  styleUrls: ['./sup-menu.component.css']
 })
-export class OpMenuComponent implements OnInit {
+export class SupMenuComponent implements OnInit {
   dept = [];
   name: string;
 
@@ -34,5 +33,6 @@ export class OpMenuComponent implements OnInit {
       console.log(' here is the result ' + result );
     })
   }
+
 
 }
